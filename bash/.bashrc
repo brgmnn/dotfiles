@@ -1,6 +1,7 @@
 export EDITOR=vim
 
 alias ls='ls --color=auto'
+alias ll='ls -la'
 
 # This will extract a wide range of compressed file types.
 # Uses the following syntax: extract <file1> <file2> ...
@@ -38,3 +39,8 @@ extract() {
     done
     return "$e"
 }
+
+# Work Specific
+export IFC=gfortran
+export XED=~/branches/dan-work/xed
+export BITS=64
