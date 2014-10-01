@@ -1,3 +1,5 @@
+export EDITOR=vim
+
 alias ls='ls --color=auto'
 
 # This will extract a wide range of compressed file types.
