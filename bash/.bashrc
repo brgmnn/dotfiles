@@ -1,3 +1,5 @@
+alias ls='ls --color=auto'
+
 # This will extract a wide range of compressed file types.
 # Uses the following syntax: extract <file1> <file2> ...
 extract() {
@@ -15,8 +17,8 @@ extract() {
         fi
 
         case $i in
-            *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
-                   c=(bsdtar xvf);;
+#            *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
+#                   c=(bsdtar xvf);;
             *.7z)  c=(7z x);;
             *.Z)   c=(uncompress);;
             *.bz2) c=(bunzip2);;
