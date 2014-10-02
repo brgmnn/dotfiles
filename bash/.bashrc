@@ -1,5 +1,7 @@
 export EDITOR=vim
 
+PATH=$PATH:~/.bin
+
 alias ls='ls --color=auto'
 alias ll='ls -la'
 
@@ -43,4 +45,5 @@ extract() {
 # Work Specific
 export IFC=gfortran
 export XED=~/branches/dan-work/xed
+export XED_LICENSE=~/.licenses
 export BITS=64
