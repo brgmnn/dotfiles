@@ -1,3 +1,8 @@
+# run a system wide bashrc
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
 export EDITOR=vim
 
 PATH=$PATH:~/.bin
