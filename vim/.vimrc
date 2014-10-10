@@ -7,11 +7,21 @@ set number
 " turn on syntax highlighting
 syntax on
 
-" Set line break and column break at 100 characters
+" Set line break and column break at 79 characters
 "set lbr
-set textwidth=100
+set textwidth=79
+set wm=0
 set ruler
 set formatoptions+=t
+
+augroup vimrc_autocmds
+  autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+  autocmd BufEnter * match OverLength /\%80v.*/
+augroup END
+
+
+" Turn on highlighting for search
+set hlsearch
 
 " adjust colours for a dark background terminal
 set background=dark
@@ -35,7 +45,8 @@ set smartindent
 " shows what you are typing as a command
 set showcmd
 
-" match trailing whitespace as an error and remove it when reading/writing a file.
+" match trailing whitespace as an error and remove it when reading/writing a
+" file.
 match ErrorMsg '\s\+$'
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 

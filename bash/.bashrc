@@ -8,7 +8,7 @@ export EDITOR=vim
 PATH=$PATH:~/.bin
 
 alias ls='ls --color=auto'
-alias ll='ls -la'
+alias ll='ls -lha'
 
 # This will extract a wide range of compressed file types.
 # Uses the following syntax: extract <file1> <file2> ...
