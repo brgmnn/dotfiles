@@ -4,6 +4,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 export EDITOR=vim
+export TERM=xterm-256color
 
 PATH=$PATH:~/.bin
 
