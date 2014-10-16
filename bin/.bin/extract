@@ -6,6 +6,11 @@
 #   extract $FILE1 $FILE2 $FILE3 ...
 
 set -e
+if [ ! "$1" ]; then
+    echo "$0: no files specified." >&2
+    exit
+fi
+
 for p in $@
 do
     if [[ ! -r $p ]]; then
