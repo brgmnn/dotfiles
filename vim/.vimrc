@@ -15,20 +15,19 @@ set ruler
 set formatoptions+=t
 
 augroup vimrc_autocmds
-  autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+  autocmd BufEnter * highlight OverLength ctermbg=233 guibg=#333333
   autocmd BufEnter * match OverLength /\%80v.*/
 augroup END
-
 
 " Turn on highlighting for search
 set hlsearch
 
 " adjust colours for a dark background terminal
-set background=dark
+colorscheme BusyBee
 
 " highlight the current line
-"set cul
-"hi CursorLine term=none cterm=none ctermbg=8
+set cul
+hi CursorLine term=none cterm=none ctermbg=235
 
 " enable mouse support
 set mouse=a
