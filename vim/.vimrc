@@ -29,10 +29,11 @@ filetype plugin on
 filetype plugin indent on
 syntax enable
 colorscheme BusyBee
+"colorscheme jellybean
 
 " highlight the current line
-set cul
-hi CursorLine term=none cterm=none ctermbg=235
+"set cul
+"hi CursorLine term=none cterm=none ctermbg=235 ctermfg=none
 
 " enable mouse support
 set mouse=a
@@ -61,3 +62,10 @@ match ErrorMsg '\s\+$'
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 au BufRead *.tex setlocal spell spelllang=en_gb
+
+
+" Commands
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
