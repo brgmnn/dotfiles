@@ -8,9 +8,9 @@ set number
 
 " turn on syntax highlighting
 
-" Set line break and column break at 79 characters
+" Set line break and column break at 78 characters
 "set lbr
-set textwidth=79
+set textwidth=78
 set wm=0
 set ruler
 set formatoptions+=t
