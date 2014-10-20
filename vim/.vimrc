@@ -28,8 +28,11 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 syntax enable
+
+" Fix color scheme problems
+set t_Co=256
+set background=dark
 colorscheme BusyBee
-"colorscheme jellybean
 
 " highlight the current line
 "set cul
