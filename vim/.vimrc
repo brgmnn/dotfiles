@@ -66,6 +66,9 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 au BufRead *.tex setlocal spell spelllang=en_gb
 
+" Syntax highlighting
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
+
 
 " Commands
 :command WQ wq
