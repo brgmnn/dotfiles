@@ -38,6 +38,13 @@ colorscheme BusyBee
 "set cul
 "hi CursorLine term=none cterm=none ctermbg=235 ctermfg=none
 
+" leave 5 lines overlap when scrolling
+set scrolloff=5
+set sidescrolloff=5
+
+" 1000 undo history
+set undolevels=1000
+
 " enable mouse support
 set mouse=a
 
@@ -53,11 +60,16 @@ set smartindent
 " shows what you are typing as a command
 set showcmd
 
+" auto completion
+set complete=.,w,b,u,U,t,i,d
+set wildmode=longest,list,full
+set wildmenu
+
 " remove buffers when a tab is closed
 set nohidden
 
 " Automatically cd into the directory that the file is in
-autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+set autochdir
 
 " match trailing whitespace as an error and remove it when reading/writing a
 " file.
