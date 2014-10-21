@@ -71,6 +71,9 @@ set nohidden
 " Automatically cd into the directory that the file is in
 set autochdir
 
+" Use two status lines
+set laststatus=2
+
 " match trailing whitespace as an error and remove it when reading/writing a
 " file.
 match ErrorMsg '\s\+$'
