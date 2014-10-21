@@ -5,6 +5,7 @@ fi
 
 export EDITOR=vim
 export TERM=screen-256color
+export BROWSER=firefox
 
 PATH=$PATH:~/.bin
 

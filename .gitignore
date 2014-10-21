@@ -1,3 +1,4 @@
 # Ignore vim swap files
 *.swp
-
+*~
+vim/.vim/backup

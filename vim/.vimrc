@@ -64,14 +64,33 @@ autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 match ErrorMsg '\s\+$'
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
+" Spell check .tex files.
 au BufRead *.tex setlocal spell spelllang=en_gb
+
+" Vim backup and swap files.
+set backup
+set writebackup
+set backupdir=~/.vim/backup//,/var/tmp,/tmp
+set directory=~/.vim/backup//,/var/tmp,/tmp
 
 " Syntax highlighting
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
 
+" Functions
+function! Browser()
+    let line = getline(".")
+    let line = matchstr(line, "http[^   ]*")
+    if line != ""
+        silent exec "!$BROWSER ".line
+        redraw!
+    endif
+endfunction
 
 " Commands
 :command WQ wq
 :command Wq wq
 :command W w
 :command Q q
+
+" Open Url on this line with the browser \w
+map <Leader>w :call Browser ()<CR>
