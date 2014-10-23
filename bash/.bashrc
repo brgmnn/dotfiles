@@ -7,6 +7,8 @@ export EDITOR=vim
 export TERM=screen-256color
 export BROWSER=firefox
 
+export GREP_OPTIONS="--color=auto"
+
 PATH=$PATH:~/.bin
 
 alias ls='ls --color=auto'
