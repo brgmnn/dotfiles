@@ -3,11 +3,15 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-export EDITOR=vim
-export TERM=screen-256color
-export BROWSER=firefox
+# Auto "cd" when entering just a path.
+shopt -s autocd
+shopt -s checkwinsize
 
+# Export some variables
+export EDITOR=vim
+export BROWSER=firefox
 export GREP_OPTIONS="--color=auto"
+export TERM=screen-256color
 
 PATH=$PATH:~/.bin
 
