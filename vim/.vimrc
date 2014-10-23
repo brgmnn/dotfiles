@@ -63,6 +63,7 @@ set showcmd
 " auto completion
 set complete=.,w,b,u,U,t,i,d
 set wildmode=longest,list,full
+set wildignore+=*.d
 set wildmenu
 
 " remove buffers when a tab is closed
