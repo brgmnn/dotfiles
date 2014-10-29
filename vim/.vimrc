@@ -114,3 +114,8 @@ map OH <Home>
 map OF <End>
 imap OH <Home>
 imap OF <End>
+
+" Load local vimrc.
+if filereadable("~/.vimrc.local")
+    source ~/.vimrc.local
+endif
