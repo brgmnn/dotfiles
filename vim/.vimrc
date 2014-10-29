@@ -6,8 +6,6 @@ set wildignore=*.o,*.exe,*.pyc
 " line numbers
 set number
 
-" turn on syntax highlighting
-
 " Set line break and column break at 78 characters
 "set lbr
 set textwidth=78
@@ -16,8 +14,8 @@ set ruler
 set formatoptions+=t
 
 augroup vimrc_autocmds
-  autocmd BufEnter * highlight OverLength ctermbg=233 guibg=#333333
-  autocmd BufEnter * match OverLength /\%80v.*/
+    autocmd BufEnter * highlight OverLength ctermbg=233 guibg=#333333
+    autocmd BufEnter * match OverLength /\%80v.*/
 augroup END
 
 " Turn on highlighting for search
@@ -110,3 +108,9 @@ endfunction
 
 " Open Url on this line with the browser \w
 map <Leader>w :call Browser ()<CR>
+
+" Fix some keys not working in screen.
+map OH <Home>
+map OF <End>
+imap OH <Home>
+imap OF <End>
