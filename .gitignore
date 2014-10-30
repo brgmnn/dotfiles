@@ -2,3 +2,4 @@
 *.swp
 *~
 vim/.vim/backup
+vim/.vim/.netrwhist
