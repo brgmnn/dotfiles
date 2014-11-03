@@ -6,6 +6,7 @@ fi
 # Auto "cd" when entering just a path.
 shopt -s autocd
 shopt -s checkwinsize
+shopt -s extglob
 
 # Export some variables
 export EDITOR=vim
