@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+#       extract
+# This program will extract a variety of different archives.
+# Syntax:
+#   extract $FILE1 $FILE2 $FILE3 ...
+
+set -e
+if [ ! "$1" ]; then
+    echo "$0: no files specified." >&2
+    exit
+fi
+
+# Compile and execute a C source on the fly
+[[ $1 ]]    || { echo "Missing operand" >&2; return 1; }
+[[ -r $1 ]] || { printf "File %s does not exist or is not readable\n" "$1" >&2; return 1; }
+output_path=${TMPDIR:-/tmp}/${1##*/};
+
+if [[ -n $CC ]]; then
+    $CC "$1" -o "$output_path" && "$output_path";
+else
+    gcc "$1" -o "$output_path" && "$output_path";
+fi
+
+rm -f "$output_path";

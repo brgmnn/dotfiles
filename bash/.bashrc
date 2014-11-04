@@ -14,6 +14,10 @@ export BROWSER=firefox
 export GREP_OPTIONS="--color=auto"
 export TERM=screen-256color
 
+# Software development environment variables.
+export CC=clang
+export CXX=clang++
+
 PATH=$PATH:~/.bin
 
 alias ls='ls --color=auto'
