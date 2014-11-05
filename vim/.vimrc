@@ -64,6 +64,8 @@ set wildmode=longest,list,full
 set wildignore+=*.d
 set wildmenu
 
+set showbreak=↳
+
 " remove buffers when a tab is closed
 set nohidden
 
