@@ -115,6 +115,9 @@ map OF <End>
 imap OH <Home>
 imap OF <End>
 
+" Disable Ex mode
+nnoremap Q <nop>
+
 " Load local vimrc.
 if filereadable("~/.vimrc.local")
     source ~/.vimrc.local
