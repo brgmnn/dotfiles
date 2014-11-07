@@ -34,6 +34,9 @@ set t_Co=256
 set background=dark
 colorscheme rainbow_fruit
 
+" Add a highlighted column at 80 characters
+set colorcolumn=80
+
 " Highlight trailing whitespace and long lines with the ErrorMsg coloring.
 call matchadd("ErrorMsg", '\s\+$')
 call matchadd("ErrorMsg", '\%80v.*')
