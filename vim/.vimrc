@@ -1,5 +1,38 @@
-" Don't use VI compatibility mode.
 set nocompatible
+
+
+"           View
+"-----------------------------------------------------------------------------
+" Instead of reverting the cursor to the last position in the buffer, we set
+" it to the first line when editing a git commit message.
+au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0,1,1,0])
+
+" Enable spell checking on comments, Unix line endings, better consistency
+" with editing at the end of lines.
+set viewoptions=cursor,slash,unix
+set virtualedit=onemore
+set showmode
+set spell
+
+set ruler
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+
+" Custom status line formatting.
+set statusline=%<%f\ " Filename
+set statusline+=%w%h%m%r " Options
+"set statusline+=%{fugitive#statusline()} " Git Hotness, needs fugitive
+set statusline+=\ [%{&ff}/%Y] " File type
+set statusline+=\ [%{getcwd()}] " Current directory
+set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file navigation info
+
+" Show matching braces/brackets, enable folding and when splitting the window,
+" put the new window to the right/below the current one. Remove hidden
+" buffers.
+set showmatch
+set foldenable
+set splitright
+set splitbelow
+set nohidden
 
 
 "           Formatting
@@ -8,11 +41,10 @@ set nocompatible
 set lbr
 set textwidth=78
 set wm=0
-set ruler
 set formatoptions+=t
 
-" configure tabbing in vim to be 4 spaces with automatic indentation
-set ai
+" configure tabbing in Vim to be 4 spaces with automatic indentation
+set autoindent
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -20,7 +52,9 @@ set smarttab
 set expandtab
 set smartindent
 
+" Better backspacing and F12 to toggle paste mode on/off.
 set backspace=indent,eol,start
+set pastetoggle=<F12>
 
 
 "           Color, Style and Syntax
@@ -61,6 +95,7 @@ set sidescrolloff=5
 
 " enable mouse support
 set mouse=a
+set mousehide
 
 
 "           Auto-completion
@@ -90,36 +125,14 @@ set writebackup
 set backupdir=~/.vim/backup//,/var/tmp//,/tmp//
 set directory=~/.vim/backup//,/var/tmp//,/tmp//
 
-
-"           Buffers and Tabs
-"-----------------------------------------------------------------------------
-" remove buffers when a tab is closed
-set nohidden
-
-
-"           Auto Commands
-"-----------------------------------------------------------------------------
-augroup vimrc_autocmd
-    " Remove trailing whitespace from buffers when reading and writing.
-    autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-
-    " Spell checking
-    autocmd BufNewFile,BufRead *.tex,*.txt setlocal spell spelllang=en_gb
-
-    " Set syntax highlighting for Nginx configuration files.
-    autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*
-            \ if &ft == '' | setfiletype nginx | endif
-
-    " Long line highlighting
-    "autocmd BufEnter * highlight OverLength ctermbg=233 guibg=#333333
-    "autocmd BufEnter * match OverLength /\%80v.*/
-augroup END
+" Vim info
+set viminfo='10,\"100,:20,%,n~/.viminfo
 
 
 "           Functions
 "-----------------------------------------------------------------------------
 "       Browser()
-" Opens a url on the current line in the users browser. The browser command is
+" Opens a URL on the current line in the users browser. The browser command is
 " read from the $BROWSER environment variable.
 function! Browser()
     let line = getline(".")
@@ -130,19 +143,61 @@ function! Browser()
     endif
 endfunction
 
+"       RestoreCursor()
+" Restores the cursor to the line it was on when a buffer was closed. This
+" function is called on entering a buffer by the auto commands.
+function! RestoreCursor()
+    if line("'\"") <= line("$")
+        normal! g`"
+        return 1
+    endif
+endfunction
+
+
+"           Auto Commands
+"-----------------------------------------------------------------------------
+augroup vimrc_autocmd
+    autocmd!
+
+    " Restore the cursor to the position it was in when we closed the buffer.
+    autocmd BufWinEnter * call RestoreCursor()
+
+    " Sets tabs to be 2 spaces for YAML.
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+    " Remove trailing whitespace from buffers when reading and writing.
+    autocmd BufRead,BufWinEnter,BufWrite *
+            \ if ! &bin | silent! %s/\s\+$//ge | endif
+
+    " Spell checking
+    autocmd BufNewFile,BufRead *.tex,*.txt setlocal spell spelllang=en_gb
+
+    " Set syntax highlighting for Nginx configuration files.
+    autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*
+            \ if &ft == '' | setfiletype nginx | endif
+
+    " Long line highlighting
+    autocmd BufEnter,BufRead * call matchadd("ErrorMsg", '\%80v.*')
+augroup END
+
 
 "           Commands
 "-----------------------------------------------------------------------------
-" Avoid easy typos with write and quit based on the shift key.
-command! WQ wq
-command! Wq wq
-command! W w
-command! Q q
+" Avoid easy typos with the shift key.
+command! -bang -nargs=* -complete=file E e<bang> <args>
+command! -bang -nargs=* -complete=file W w<bang> <args>
+command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
 
 
 "           Key Mappings
 "-----------------------------------------------------------------------------
-" Open Url on this line with the browser \w
+" Open URL on this line with the browser \w
 map <Leader>w :call Browser ()<CR>
 
 " Fix some keys not working in screen.
@@ -153,6 +208,9 @@ imap OF <End>
 
 " Disable Ex mode
 nnoremap Q <nop>
+
+" When you forget to sudo, really write the file.
+cmap w!! w !sudo tee % >/dev/null
 
 
 "           Load local host settings
