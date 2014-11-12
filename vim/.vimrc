@@ -157,6 +157,7 @@ endfunction
 "           Auto Commands
 "-----------------------------------------------------------------------------
 augroup vimrc_autocmd
+    " Remove all auto commands from the current group.
     autocmd!
 
     " Restore the cursor to the position it was in when we closed the buffer.
