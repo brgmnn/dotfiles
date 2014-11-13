@@ -1,0 +1,81 @@
+#!/usr/bin/env python
+import argparse
+import os.path
+import re
+import shlex
+import subprocess
+import sys
+from string import Template
+
+remote_path = "/home/$user"
+
+
+# Mount a host using sshfs.
+def mount_ssh(**host):
+    if "user" not in host or "hostname" not in host:
+        print "oops, you have a bad profile!"
+        sys.exit(1)
+
+    mountpoint = os.path.expanduser("~/mnt/"+host["name"])
+
+    if not os.path.exists(mountpoint):
+        os.makedirs(mountpoint)
+
+    rpath = "/home/"+host["user"]
+
+    # Construct a basic SSHFS command with the basic needed commands.
+    cmd = ["sshfs", Template("$user@$hostname:"+remote_path).substitute(host),
+            mountpoint]
+
+    # If there is a custom port, then specify the port.
+    if "port" in host:
+        cmd += ["-p", host["port"]]
+
+    # If an identity file should be used, then add it.
+    if "identity" in host:
+        cmd += ["-o", "IdentityFile="+host["identity"]]
+
+    print "->"," ".join(cmd)
+
+    # Run SSHFS!
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    out, err = p.communicate()
+    return out
+
+
+def ssh_get_hosts():
+    hosts = []
+    with open(os.path.expanduser("~/.ssh/config"), "r") as fp:
+        hosts = {}
+        ch = None
+        for line in fp.readlines():
+            if re.match("^Host", line):
+                ch = line.strip()[5:].strip()
+                hosts[ch] = {"name": ch}
+            elif re.match("^[^\S\n]+HostName", line):
+                hosts[ch]["hostname"] = line.strip()[9:].strip()
+            elif re.match("^[^\S\n]+User", line):
+                hosts[ch]["user"] = line.strip()[5:].strip()
+            elif re.match("^[^\S\n]+Port", line):
+                hosts[ch]["port"] = line.strip()[5:].strip()
+            elif re.match("^[^\S\n]+IdentityFile", line):
+                hosts[ch]["identity"] = line.strip()[13:].strip()
+    return hosts
+
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser(description="Easy SSH mounting.")
+    ap.add_argument("profile", type=str, nargs=1)
+
+    args = ap.parse_args()
+
+    hosts = ssh_get_hosts()
+    print hosts
+    print args.profile[0] in hosts
+
+
+    if args.profile[0] in hosts:
+        host = hosts[args.profile[0]]
+
+    mount_ssh(**host)
+
