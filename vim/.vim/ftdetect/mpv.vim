@@ -1,1 +1,1 @@
-au BufRead,BufNewFile ~/.config/mpv/*.conf set filetype=mpv
+au BufRead,BufNewFile */mpv/*.conf set filetype=mpv

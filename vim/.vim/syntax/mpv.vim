@@ -8,7 +8,7 @@ if exists("b:current_syntax")
 endif
 
 syn match  mpvComment   "\s*#.*$"                 contains=@Spell,@mpvFlagArea
-syn match  mpvFlag      "[0-9a-zA-Z-]\+\s*="      contains=mpvOperator,@NoSpell
+syn match  mpvFlag      "^\s*[0-9a-zA-Z-]\+\s*"   contains=mpvOperator,@NoSpell
 syn region mpvString    start=/"/ end=/"/ keepend contains=mpvColor
 syn match  mpvColor     "#\x\{8}"                 contained contains=@NoSpell
 
