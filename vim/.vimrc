@@ -3,10 +3,6 @@ set nocompatible
 
 "           View
 "-----------------------------------------------------------------------------
-" Instead of reverting the cursor to the last position in the buffer, we set
-" it to the first line when editing a git commit message.
-au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0,1,1,0])
-
 " Enable spell checking on comments, Unix line endings, better consistency
 " with editing at the end of lines.
 set viewoptions=cursor,slash,unix
@@ -159,6 +155,11 @@ endfunction
 augroup vimrc_autocmd
     " Remove all auto commands from the current group.
     autocmd!
+
+    " Instead of reverting the cursor to the last position in the buffer, we
+    " set it to the first line when editing a git commit message.
+    autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG
+            \ call setpos('.', [0,1,1,0])
 
     " Restore the cursor to the position it was in when we closed the buffer.
     autocmd BufWinEnter * call RestoreCursor()
