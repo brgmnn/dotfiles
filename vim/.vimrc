@@ -120,7 +120,8 @@ set undolevels=1000
 set backup
 set writebackup
 set backupdir=~/.vim/backup//,/var/tmp//,/tmp//
-set directory=~/.vim/backup//,/var/tmp//,/tmp//
+set directory=~/.vim/swap//,/var/tmp//,/tmp//
+set undodir  =~/.vim/undo//,/var/tmp//,/tmp//
 
 " Vim info
 set viminfo='10,\"100,:20,%,n~/.viminfo
