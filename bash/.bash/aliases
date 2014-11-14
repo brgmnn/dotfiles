@@ -1,0 +1,12 @@
+# Allow aliases to be sudo'ed.
+alias sudo='sudo '
+
+# A simple stopwatch timer.
+alias timer='echo "Timer started. Stop with Ctrl-D."
+        && date && time cat && date'
+
+# URL encode a string
+alias urlencode='python -c "import sys, urllib;
+        print urllib.quote_plus(sys.argv[1]);"'
+
+
