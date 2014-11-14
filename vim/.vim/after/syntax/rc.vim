@@ -1,1 +1,1 @@
-:syntax region Comment start="#" end="\n"
+syntax region Comment start="#" end="\n"

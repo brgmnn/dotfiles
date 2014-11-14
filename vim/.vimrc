@@ -9,6 +9,7 @@ set viewoptions=cursor,slash,unix
 set virtualedit=onemore
 set showmode
 set spell
+set spelllang=en_gb
 
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
@@ -158,25 +159,19 @@ augroup vimrc_autocmd
 
     " Instead of reverting the cursor to the last position in the buffer, we
     " set it to the first line when editing a git commit message.
-    autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG
+    autocmd FileType gitcommit autocmd! BufEnter COMMIT_EDITMSG
             \ call setpos('.', [0,1,1,0])
 
     " Restore the cursor to the position it was in when we closed the buffer.
     autocmd BufWinEnter * call RestoreCursor()
 
-    " Sets tabs to be 2 spaces for YAML.
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
     " Remove trailing whitespace from buffers when reading and writing.
     autocmd BufRead,BufWinEnter,BufWrite *
             \ if ! &bin | silent! %s/\s\+$//ge | endif
 
-    " Spell checking
-    autocmd BufNewFile,BufRead *.tex,*.txt setlocal spell spelllang=en_gb
-
     " Set syntax highlighting for Nginx configuration files.
-    autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*
-            \ if &ft == '' | setfiletype nginx | endif
+    "autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*
+    "        \ if &ft == '' | setfiletype nginx | endif
 
     " Long line highlighting
     autocmd BufEnter,BufRead * call matchadd("ErrorMsg", '\%80v.*')
