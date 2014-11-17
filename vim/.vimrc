@@ -198,6 +198,11 @@ command! -bang Qa qa<bang>
 " Open URL on this line with the browser \w
 map <Leader>w :call Browser ()<CR>
 
+" Toggle folding at the cursor position with spacebar when in normal mode, as
+" well as folding code with spacebar when in visual mode.
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
 " Fix some keys not working in screen.
 map OH <Home>
 map OF <End>
