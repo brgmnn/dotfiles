@@ -52,6 +52,9 @@ setopt appendhistory
 setopt HIST_IGNORE_DUPS
 
 
+# Source keybindings
+[[ -r ~/.zsh/key-bindings.zsh ]] && source ~/.zsh/key-bindings.zsh
+
 # Source aliases
 if [ -r ~/.zsh/aliases.zsh ]; then
     source ~/.zsh/aliases.zsh
