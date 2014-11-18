@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 #
-# MOVIE ME as in: "MOVIE ME AN ANIMATED GIF FROM THIS MOVIE, DAMMIT"
-#
-# Creates an animated gif from a movie file. Uploads to CloudApp. You must also
-# have `gifme` and `cloudapp` in your $PATH.
-#
 # $1 - the path to the movie we're converting.
 # $2 - the start time of the finished product.
 # This can be in seconds, or it also accepts the "hh:mm:ss[.xxx]" format.

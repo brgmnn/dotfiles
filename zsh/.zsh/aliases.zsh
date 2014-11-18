@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 #       Aliases
 # Simple aliases which are useful. Longer aliases should be converted to their
 # own scripts and placed in the .bin folder.

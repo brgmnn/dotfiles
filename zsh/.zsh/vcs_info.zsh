@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 #       VCS info
 # Configures the vcs_info plugin which displays version control information in
 # the prompt. In this case it is configured to show in the right hand prompt.

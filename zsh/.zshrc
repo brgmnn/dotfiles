@@ -9,6 +9,8 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 zstyle ":completion:*" menu select
 
+# Load 256 colours.
+[[ -r ~/.zsh/colors.zsh ]] && source ~/.zsh/colors.zsh
 
 # Load and run the vcs_info commands.
 if [ -r ~/.zsh/vcs_info.zsh ]; then
