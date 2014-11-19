@@ -36,3 +36,4 @@ function spectrum_bls() {
         print -P -- "$BG[$code]$code: $ZSH_SPECTRUM_TEXT %{$reset_color%}"
     done
 }
+

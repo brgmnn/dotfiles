@@ -12,10 +12,9 @@ zstyle ":completion:*" menu select
 # Load 256 colours.
 [[ -r ~/.zsh/colors.zsh ]] && source ~/.zsh/colors.zsh
 
+
 # Load and run the vcs_info commands.
-if [ -r ~/.zsh/vcs_info.zsh ]; then
-    source ~/.zsh/vcs_info.zsh
-fi
+[[ -r ~/.zsh/vcs_info.zsh ]] && source ~/.zsh/vcs_info.zsh
 
 
 # Set up the path
@@ -54,13 +53,9 @@ setopt appendhistory
 setopt HIST_IGNORE_DUPS
 
 
-# Source keybindings
+# Source keybindings and aliases
 [[ -r ~/.zsh/key-bindings.zsh ]] && source ~/.zsh/key-bindings.zsh
-
-# Source aliases
-if [ -r ~/.zsh/aliases.zsh ]; then
-    source ~/.zsh/aliases.zsh
-fi
+[[ -r ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 
 # Source local .zshrc
 if [ -r ~/.zshrc.local ]; then
