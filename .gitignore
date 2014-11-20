@@ -1,5 +1,6 @@
 # Ignore vim swap files
 *.swp
 *~
-vim/.vim/backup
 vim/.vim/.netrwhist
+vim/.vim/backup
+vim/.vim/undo
