@@ -1,6 +1,6 @@
 # Lines configured by zsh-newuser-install
 bindkey -v
-setopt autocd completealiases extendedglob notify
+setopt extendedglob notify
 zstyle :compinstall filename '/home/dan/.zshrc'
 
 
@@ -32,14 +32,26 @@ antigen bundle git
 antigen bundle svn
 
 
-# Set completion colours to those used by `ls`.
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-
 #       Prompt
 # Configure the left and right prompt
-PROMPT="%n@%B%m%b:%~%(!.#.$) "
+PROMPT="%(!.%F{1}%B.)%n%b%f %B%m%b:%~%(!.#.$) "
 RPROMPT='${vcs_info_msg_0_} '
+
+
+#       Changing Directories
+# Change directory even if `cd` is omitted and the command is a valid
+# directory.
+setopt autocd
+setopt cdable_vars
+
+
+#       Completion
+# Auto complete. Use the colours used by `ls` for tab completion.
+setopt complete_aliases
+setopt always_to_end
+setopt auto_remove_slash
+setopt list_packed
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 
 #       History
@@ -50,7 +62,32 @@ HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 setopt appendhistory
-setopt HIST_IGNORE_DUPS
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
+
+
+#       Input/Output
+# Allow spell checking on commands and easier redirection for file creation
+# and truncation. No annoying flow control. Hash command locations. Query the
+# user before trying to remove a path with a *.
+setopt clobber
+setopt correct
+setopt no_flow_control
+setopt hash_cmds
+setopt no_rm_star_silent
+
+
+#       Job Control
+# When listing jobs, be verbose.
+setopt long_list_jobs
+
+
+#       Scripts and Functions
+# Use C language style bases for hex and octal numbers and use C language
+# style precedence rules for operators. Use parenthesis if writing scripts to
+# ensure shell compatibility.
+setopt c_bases
+setopt c_precedences
 
 
 # Source keybindings and aliases
