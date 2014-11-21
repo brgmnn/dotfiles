@@ -1,15 +1,16 @@
-urxvt.depth:		32
-urxvt.transparent:	true
-urxvt.shading:		170
+urxvt.depth:        32
+urxvt.transparent:  true
+urxvt.shading:      170
 
 urxvt.font:             -*-terminus-medium-r-normal-*-12-*-*-*-*-*-*-*
 urxvt.boldFont:         -*-terminus-bold-r-normal-*-12-*-*-*-*-*-*-*
 urxvt.italicFont:       -*-terminus-medium-r-normal-*-12-*-*-*-*-*-*-*
 urxvt.bolditalicFont:   -*-terminus-bold-r-normal-*-12-*-*-*-*-*-*-*
 
-urxvt.scrollBar:	false
+urxvt.scrollBar:        false
 urxvt.internalBorder:   5
 
+urxvt.termName:         "Terminal"
 
 ! URxvt*termName:                       string
 ! URxvt*geometry:                       geometry
