@@ -35,6 +35,7 @@ set nohidden
 "           Formatting
 "-----------------------------------------------------------------------------
 " Set line break and column break at 78 characters
+set wrap
 set lbr
 set textwidth=78
 set wm=0
@@ -66,7 +67,7 @@ set background=dark
 colorscheme rainbow_fruit
 
 " Add a highlighted column at 80 characters
-set colorcolumn=80
+set colorcolumn=+2
 
 " Highlight trailing whitespace and long lines with the ErrorMsg coloring.
 call matchadd("ErrorMsg", '\s\+$')
@@ -170,10 +171,6 @@ augroup vimrc_autocmd
     " Remove trailing whitespace from buffers when reading and writing.
     autocmd BufRead,BufWinEnter,BufWrite *
             \ if ! &bin | silent! %s/\s\+$//ge | endif
-
-    " Set syntax highlighting for Nginx configuration files.
-    "autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*
-    "        \ if &ft == '' | setfiletype nginx | endif
 
     " Long line highlighting
     autocmd BufEnter,BufRead * call matchadd("ErrorMsg", '\%80v.*')

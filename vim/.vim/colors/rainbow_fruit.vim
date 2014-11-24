@@ -90,6 +90,7 @@ hi PMenuThumb guifg=NONE guibg=#acacac guisp=#acacac gui=NONE ctermfg=NONE cterm
 "hi LocalVariable -- no settings --
 hi Repeat guifg=#0070e6 guibg=NONE guisp=NONE gui=NONE ctermfg=26 ctermbg=NONE cterm=NONE
 "hi SpellBad -- no settings --
+hi SpellBad guifg=NONE guibg=#ffe6e6 guisp=#ff4080 gui=NONE ctermfg=15 ctermbg=13 cterm=NONE
 "hi CTagsClass -- no settings --
 hi Directory guifg=#0070b8 guibg=NONE guisp=NONE gui=NONE ctermfg=25 ctermbg=NONE cterm=NONE
 hi Structure guifg=#0070e6 guibg=NONE guisp=NONE gui=NONE ctermfg=26 ctermbg=NONE cterm=NONE
