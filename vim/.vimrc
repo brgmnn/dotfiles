@@ -52,6 +52,7 @@ set smartindent
 
 " Better backspacing and F12 to toggle paste mode on/off.
 set backspace=indent,eol,start
+set clipboard=unnamedplus
 set pastetoggle=<F12>
 
 
@@ -200,6 +201,11 @@ map <Leader>w :call Browser ()<CR>
 " well as folding code with spacebar when in visual mode.
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
+
+" Map ctrl + c to copy when in visual mode.
+vnoremap <C-c> "+yy
+inoremap <C-S-v> <F12><C-r>+<F12>
+
 
 " Fix some keys not working in screen.
 map OH <Home>
