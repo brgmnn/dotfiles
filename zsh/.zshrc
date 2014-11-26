@@ -12,7 +12,6 @@ zstyle ":completion:*" menu select
 # Load 256 colours.
 [[ -r ~/.zsh/colors.zsh ]] && source ~/.zsh/colors.zsh
 
-
 # Load and run the vcs_info commands.
 [[ -r ~/.zsh/vcs_info.zsh ]] && source ~/.zsh/vcs_info.zsh
 
@@ -90,9 +89,10 @@ setopt c_bases
 setopt c_precedences
 
 
-# Source keybindings and aliases
+# Source keybindings, aliases and suffix aliases
 [[ -r ~/.zsh/key-bindings.zsh ]] && source ~/.zsh/key-bindings.zsh
 [[ -r ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
+[[ -r ~/.zsh/suffix-aliases.zsh ]] && source ~/.zsh/suffix-aliases.zsh
 
 # Source local .zshrc
 if [ -r ~/.zshrc.local ]; then

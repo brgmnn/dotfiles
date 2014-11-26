@@ -1,6 +1,7 @@
 #       Environment variables
 export EDITOR=vim
 export BROWSER=firefox
+export PLAYER=mpv
 export CC=clang
 export CXX=clang++
 
