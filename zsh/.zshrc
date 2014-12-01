@@ -92,7 +92,7 @@ setopt c_precedences
 # Source keybindings, aliases and suffix aliases
 [[ -r ~/.zsh/key-bindings.zsh ]] && source ~/.zsh/key-bindings.zsh
 [[ -r ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
-[[ -r ~/.zsh/suffix-aliases.zsh ]] && source ~/.zsh/suffix-aliases.zsh
+#[[ -r ~/.zsh/suffix-aliases.zsh ]] && source ~/.zsh/suffix-aliases.zsh
 
 # Source local .zshrc
 if [ -r ~/.zshrc.local ]; then
