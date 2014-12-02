@@ -68,7 +68,7 @@ set background=dark
 colorscheme rainbow_fruit
 
 " Add a highlighted column at 80 characters
-set colorcolumn=+2
+"set colorcolumn=+2
 
 " Highlight trailing whitespace and long lines with the ErrorMsg coloring.
 call matchadd("ErrorMsg", '\s\+$')
@@ -120,11 +120,13 @@ set undolevels=1000
 
 " backup and swap files.
 set backup
-set undofile
 set writebackup
 set backupdir=~/.vim/backup//,/var/tmp//,/tmp//
 set directory=~/.vim/swap//,/var/tmp//,/tmp//
-set undodir  =~/.vim/undo//,/var/tmp//,/tmp//
+if has('persistent_undo')
+    set undofile
+    set undodir  =~/.vim/undo//,/var/tmp//,/tmp//
+endif
 
 " Vim info
 set viminfo='10,\"100,:20,%,n~/.viminfo
