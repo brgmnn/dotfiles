@@ -1,16 +1,43 @@
-#!/bin/bash
+#!/usr/bin/env python
+import argparse
+import os
+import shlex
+import subprocess
+import sys
+import time
 
-set -e
-if [ ! "$1" ]; then
-    echo "$0: no files specified." >&2
-    exit
-fi
 
-echo -e "--- files ---"
-find . -name "$1" \
-    -not \( -path \*/.git -prune \) \
-    -not \( -path \*.swp -prune \) \
-    -not \( -path \*~ -prune \) \
+def call(cmd, silence = True):
+    """Calls a shell command given 'cmd' which can also contain arguments."""
+    p = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE)
+    out, err = p.communicate()
+    return out
 
-echo -e "--- file contents ---"
-#grep -r "$1" .
+
+def process_query(query):
+    print "--- files ---"
+
+    for root,dirs,files in os.walk("."):
+        path = root.split("/")
+        print (len(path) - 1) *'---' , os.path.basename(root)
+        for file in files:
+            print len(path)*'---', file
+
+
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser(description="Search for things.")
+    ap.add_argument("query",
+            nargs="+",
+            type=str,
+            help="What to find.")
+    args = ap.parse_args()
+
+    for q in args.query:
+        print "===",q,"==="
+        print call("find . -name '*"+q+"*' \
+                -not \( -path \*/.git -prune \) \
+                -not \( -path \*.swp -prune \) \
+                -not \( -path \*~ -prune \)")
+        #process_query(q)
+
