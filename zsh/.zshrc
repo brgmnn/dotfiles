@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
 bindkey -v
 setopt extendedglob notify
-zstyle :compinstall filename '/home/dan/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 
 # Autoloads
