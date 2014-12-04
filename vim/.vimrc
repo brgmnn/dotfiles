@@ -1,5 +1,16 @@
 set nocompatible
 
+"           Plugins
+"-----------------------------------------------------------------------------
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/.vim/bundle')
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'bling/vim-airline'
+
+call vundle#end()
+
 
 "           View
 "-----------------------------------------------------------------------------
