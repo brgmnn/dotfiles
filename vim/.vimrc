@@ -11,6 +11,15 @@ Plugin 'bling/vim-airline'
 
 call vundle#end()
 
+"           Airline
+"-----------------------------------------------------------------------------
+" Tabline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
 
 "           View
 "-----------------------------------------------------------------------------
@@ -218,7 +227,6 @@ vnoremap <Space> zf
 " Map ctrl + c to copy when in visual mode.
 vnoremap <C-c> "+yy
 inoremap <C-S-v> <F12><C-r>+<F12>
-
 
 " Fix some keys not working in screen.
 map OH <Home>
