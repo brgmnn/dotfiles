@@ -1,5 +1,20 @@
 # dotfiles
 
+Clone this repository with:
+
+```
+git clone --recursive https://github.com/brgmnn/dotfiles.git
+```
+
+The `--recursive` flag includes submodules. If you forgot to clone with
+`--recursive` then you can just run the following command from the repository
+root:
+
+```
+git submodule update --init --recursive
+```
+
+
 ## Dependencies
 
 If you want to clone and install my dotfiles as I do, then you will need the
@@ -10,7 +25,6 @@ following things installed:
 
 You can of course use code snippets, download folders over http and place them
 wherever you like in which case you won't need all/any of these dependencies.
-
 
 ## Using Stow
 
