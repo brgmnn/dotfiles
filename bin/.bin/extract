@@ -3,7 +3,7 @@
 #       extract
 # This program will extract a variety of different archives.
 # Syntax:
-#   extract $FILE1 $FILE2 $FILE3 ...
+#   extract $FILE1 [$FILE2 $FILE3 ...]
 
 set -e
 if [ ! "$1" ]; then

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+#       compress
+# This program will compress a directory. At the moment just using gzip.
+# Syntax:
+#   compress $PATH1 [$PATH2 $PATH3 ...]
+
+set -e
+if [ ! "$1" ]; then
+    echo "$0: no files specified." >&2
+    exit
+fi
+
+arname=`basename $1`-`date +"%Y-%m-%d"`.tar.gz
+tar -zcvf $arname $@
