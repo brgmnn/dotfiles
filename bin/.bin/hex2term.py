@@ -80,7 +80,7 @@ def distance(a, b):
 
 if __name__ == "__main__":
     for v in sys.argv[1:]:
-        a = rgb(v)
+        a = rgb(v.replace("#", ""))
         distances = [(distance(a, rgb(h)),t) for h,t in hexterm.iteritems()]
         print sorted(distances, key=lambda tup: tup[0])[0][1]
 
