@@ -1,10 +1,15 @@
 #!/usr/bin/env python
+from operator import itemgetter
 import argparse
 import os
 import shlex
 import subprocess
 import sys
 import time
+
+blacklist = [
+    ".git"
+]
 
 
 def call(cmd, silence = True):
@@ -14,15 +19,50 @@ def call(cmd, silence = True):
     return out
 
 
-def process_query(query):
+def highlight(str, match):
+    """Highlights any occurrences of 'match' inside 'str' in a colour."""
+    return str.replace(match, "\033[91m"+match+"\033[0m")
+
+
+def search_text(path, query):
+    """Searches a text file given at 'path' for some query string 'query'."""
+    matches = []
+    with open(path, 'r') as fp:
+        ln = 1
+        for line in fp.readlines():
+            if query in line:
+                matches.append((ln,line.strip()))
+            ln += 1
+    return matches
+
+
+def search_names(query):
+    """Searches for files who's name contains the string 'query'."""
     print "--- files ---"
-
     for root,dirs,files in os.walk("."):
-        path = root.split("/")
-        print (len(path) - 1) *'---' , os.path.basename(root)
-        for file in files:
-            print len(path)*'---', file
+        dirs[:]  = [d for d in dirs  if d not in blacklist]
+        files[:] = [f for f in files if f not in blacklist]
 
+        for file in files:
+            if query in file:
+                print root+"/"+highlight(file, query)
+
+
+def search_files(query):
+    """Searches for files who's contents contains the string 'query' and
+    prints the lines that 'query' is on."""
+    print "--- texts ---"
+    for root,dirs,files in os.walk("."):
+        dirs[:]  = [d for d in dirs  if d not in blacklist]
+        files[:] = [f for f in files if f not in blacklist]
+
+        for file in files:
+            matches = search_text(root+"/"+file,query)
+            if len(matches) > 0:
+                print root+"/"+file
+                lnl = str(len(str(max(matches,key=itemgetter(0))[0])))
+                for ln,line in matches:
+                    print ("{0: >"+lnl+"} ").format(ln),highlight(line, query)
 
 
 if __name__ == "__main__":
@@ -35,9 +75,10 @@ if __name__ == "__main__":
 
     for q in args.query:
         print "===",q,"==="
-        print call("find . -name '*"+q+"*' \
-                -not \( -path \*/.git -prune \) \
-                -not \( -path \*.swp -prune \) \
-                -not \( -path \*~ -prune \)")
-        #process_query(q)
+        #print call("find . -name '*"+q+"*' \
+        #        -not \( -path \*/.git -prune \) \
+        #        -not \( -path \*.swp -prune \) \
+        #        -not \( -path \*~ -prune \)")
+        search_names(q)
+        search_files(q)
 
