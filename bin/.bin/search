@@ -59,7 +59,7 @@ def search_files(query):
         for file in files:
             matches = search_text(root+"/"+file,query)
             if len(matches) > 0:
-                print root+"/"+file
+                print "\033[34m"+root+"/"+file+"\033[0m"
                 lnl = str(len(str(max(matches,key=itemgetter(0))[0])))
                 for ln,line in matches:
                     print ("{0: >"+lnl+"} ").format(ln),highlight(line, query)
