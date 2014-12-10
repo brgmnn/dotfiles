@@ -5,6 +5,7 @@ vim/.vim/.netrwhist
 vim/.vim/backup
 vim/.vim/undo
 vim/.vim/bundle/*
+vim/.vim/spell/*.spl
 
 # Ignore likely places for sensitive information
 ssh/*

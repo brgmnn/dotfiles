@@ -1,4 +1,5 @@
 set nocompatible
+set encoding=utf-8
 
 "           Plugins
 "-----------------------------------------------------------------------------
@@ -23,6 +24,21 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 
+"           Spelling
+"-----------------------------------------------------------------------------
+set spell
+set spelllang=en_gb
+set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.en.local.utf-8.add
+
+if empty(glob("$HOME/.vim/spell/en.utf-8.add.spl"))
+    silent! mkspell $HOME/.vim/spell/en.utf-8.add
+endif
+if filereadable("$HOME/.en.local.utf-8.add")
+    if empty(glob("$HOME/.en.local.utf-8.add.spl"))
+        mkspell $HOME/.vim/spell/en.local.utf-8.add
+    endif
+endif
+
 "           View
 "-----------------------------------------------------------------------------
 " Enable spell checking on comments, Unix line endings, better consistency
@@ -30,8 +46,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 set viewoptions=cursor,slash,unix
 set virtualedit=onemore
 set showmode
-set spell
-set spelllang=en_gb
 
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
