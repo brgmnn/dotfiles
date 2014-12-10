@@ -132,7 +132,12 @@ set wildmode=longest,list,full
 set wildmenu
 
 " ignore files with these extensions
-set wildignore=*.a,*.d,*.exe,*.o,*.p,*.pyc,*.so
+set wildignore =*.d                                 " Build files
+set wildignore+=*.a,*.exe,*.o,*.so                  " C/C++
+set wildignore+=*.aux,*.out,*.toc                   " LaTeX
+set wildignore+=*.bmp,*.gif,*.jpeg,*.jpg,*.png      " Binary images
+set wildignore+=*.p,*.pyc                           " Python
+set wildignore+=*.sw?                               " Vim swap files
 
 
 "           Backup, History and Swap
