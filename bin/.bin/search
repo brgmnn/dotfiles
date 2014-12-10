@@ -24,8 +24,20 @@ def highlight(str, match):
     return str.replace(match, "\033[91m"+match+"\033[0m")
 
 
+def is_binary_file(path):
+    """Tries to work out if a file is binary or not. Uses the method file(1)
+    uses."""
+    with open(path, "rb") as fp:
+        textchars = bytearray([7,8,9,10,12,13,27]) \
+                + bytearray(range(0x20, 0x100))
+        return bool(fp.read(1024).translate(None, textchars))
+
+
 def search_text(path, query):
     """Searches a text file given at 'path' for some query string 'query'."""
+    if is_binary_file(path):
+        return []
+
     matches = []
     with open(path, 'r') as fp:
         ln = 1
@@ -75,10 +87,6 @@ if __name__ == "__main__":
 
     for q in args.query:
         print "===",q,"==="
-        #print call("find . -name '*"+q+"*' \
-        #        -not \( -path \*/.git -prune \) \
-        #        -not \( -path \*.swp -prune \) \
-        #        -not \( -path \*~ -prune \)")
         search_names(q)
         search_files(q)
 
