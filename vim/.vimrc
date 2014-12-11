@@ -35,7 +35,7 @@ if empty(glob("$HOME/.vim/spell/en.utf-8.add.spl"))
 endif
 if filereadable("$HOME/.en.local.utf-8.add")
     if empty(glob("$HOME/.en.local.utf-8.add.spl"))
-        mkspell $HOME/.vim/spell/en.local.utf-8.add
+        silent! mkspell $HOME/.vim/spell/en.local.utf-8.add
     endif
 endif
 
@@ -195,6 +195,14 @@ function! RestoreCursor()
         normal! g`"
         return 1
     endif
+endfunction
+
+"       BuildDictionaries()
+" Recompiles the spelling dictionaries. This function should be called if new
+" words are added manually to any of the user dictionaries.
+function BuildDictionaries()
+    mkspell! $HOME/.vim/spell/en.utf-8.add
+    mkspell! $HOME/.en.local.utf-8.add
 endfunction
 
 
