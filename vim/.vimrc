@@ -257,6 +257,9 @@ vnoremap <Space> zf
 vnoremap <C-c> "+yy
 inoremap <C-S-v> <F12><C-r>+<F12>
 
+" Clear highlighted searches when pressing Ctrl+L
+nnoremap <C-L> :nohlsearch<CR><C-L>
+
 " Fix some keys not working in screen.
 map OH <Home>
 map OF <End>
