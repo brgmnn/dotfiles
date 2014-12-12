@@ -12,7 +12,10 @@ Plugin 'bling/vim-airline'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
+Plugin 'fatih/vim-go'
+
 call vundle#end()
+filetype plugin indent on
 
 "           Airline
 "-----------------------------------------------------------------------------
@@ -94,9 +97,6 @@ set pastetoggle=<F12>
 
 "           Color, Style and Syntax
 "-----------------------------------------------------------------------------
-filetype on
-filetype plugin on
-filetype plugin indent on
 syntax enable
 
 set t_Co=256
