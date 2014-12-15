@@ -8,8 +8,10 @@ OpenCL
 Ubuntu
 admin
 bergmann
+cd
 changelog
 codebase
+ctrl
 dotfiles
 dropbox
 etc
@@ -18,6 +20,7 @@ firefox
 gcc
 gmail
 hostname
+init
 json
 lua
 metadata
@@ -25,6 +28,8 @@ namespace
 plugin
 refactor
 screenshot
+spacebar
+sudo
 svn
 thunderbird
 tmux
