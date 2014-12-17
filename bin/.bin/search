@@ -8,8 +8,12 @@ import sys
 import time
 
 blacklist = [
-    ".git"
+    ".git",
 ]
+
+trows, tcols = os.popen('stty size', 'r').read().split()
+trows = int(trows)
+tcols = int(tcols)
 
 
 def call(cmd, silence = True):
@@ -17,7 +21,6 @@ def call(cmd, silence = True):
     p = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE)
     out, err = p.communicate()
     return out
-
 
 def highlight(str, match):
     """Highlights any occurrences of 'match' inside 'str' in a colour."""
@@ -43,7 +46,7 @@ def search_text(path, query):
         ln = 1
         for line in fp.readlines():
             if query in line:
-                matches.append((ln,line.strip()))
+                matches.append((ln,line.strip(),line.strip().index(query)))
             ln += 1
     return matches
 
@@ -72,9 +75,12 @@ def search_files(query):
             matches = search_text(root+"/"+file,query)
             if len(matches) > 0:
                 print "\033[34m"+root+"/"+file+"\033[0m"
-                lnl = str(len(str(max(matches,key=itemgetter(0))[0])))
-                for ln,line in matches:
-                    print ("{0: >"+lnl+"} ").format(ln),highlight(line, query)
+                lnl = len(str(max(matches,key=itemgetter(0))[0]))
+                for ln,line,idx in matches:
+                    low = max(0, idx-tcols/2)
+                    high = min(len(line), low+tcols-lnl-5)
+                    print ("{0: >"+str(lnl)+"} ").format(ln), \
+                            highlight(line[low:high], query)
 
 
 if __name__ == "__main__":
@@ -84,6 +90,11 @@ if __name__ == "__main__":
             type=str,
             help="What to find.")
     args = ap.parse_args()
+
+    # Ignore paths in the search ignore file.
+    if os.path.isfile(os.path.expanduser("~/.searchignore")):
+        with open(os.path.expanduser("~/.searchignore"), "r") as fp:
+            blacklist.extend([line.strip() for line in fp.readlines()])
 
     for q in args.query:
         print "===",q,"==="
