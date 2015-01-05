@@ -11,6 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'Raimondi/delimitMate'
 
 Plugin 'fatih/vim-go'
 
@@ -26,6 +27,8 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
+" delimitMate
+let delimitMate_expand_cr = 1
 
 "           Spelling
 "-----------------------------------------------------------------------------
