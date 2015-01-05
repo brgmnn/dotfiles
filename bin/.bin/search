@@ -89,6 +89,12 @@ if __name__ == "__main__":
             nargs="+",
             type=str,
             help="What to find.")
+    ap.add_argument("--filenames",
+            action="store_true",
+            help="Only search file names.")
+    ap.add_argument("--files",
+            action="store_true",
+            help="Only search the contents of text files.")
     args = ap.parse_args()
 
     # Ignore paths in the search ignore file.
@@ -96,8 +102,14 @@ if __name__ == "__main__":
         with open(os.path.expanduser("~/.searchignore"), "r") as fp:
             blacklist.extend([line.strip() for line in fp.readlines()])
 
+    # If no default arguments are given, search both names and texts.
+    if args.filenames == False and args.files == False:
+        args.filenames, args.files = True, True
+
     for q in args.query:
         print "===",q,"==="
-        search_names(q)
-        search_files(q)
+        if args.filenames:
+            search_names(q)
+        if args.files:
+            search_files(q)
 
