@@ -29,7 +29,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 "           Spelling
 "-----------------------------------------------------------------------------
-set spell
+"set spell
 set spelllang=en_gb
 set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.en.local.utf-8.add
 
@@ -200,7 +200,7 @@ endfunction
 "       BuildDictionaries()
 " Recompiles the spelling dictionaries. This function should be called if new
 " words are added manually to any of the user dictionaries.
-function BuildDictionaries()
+function! BuildDictionaries()
     mkspell! $HOME/.vim/spell/en.utf-8.add
     mkspell! $HOME/.en.local.utf-8.add
 endfunction
@@ -224,8 +224,13 @@ augroup vimrc_autocmd
     autocmd BufRead,BufWinEnter,BufWrite *
             \ if ! &bin | silent! %s/\s\+$//ge | endif
 
+    " Highlight trailing whitespace on buffer enter, read, winenter and write.
+    autocmd BufEnter,BufRead,BufWinEnter,BufWrite *
+            \ call matchadd("ErrorMsg", '\s\+$')
+
     " Long line highlighting
-    autocmd BufEnter,BufRead * call matchadd("ErrorMsg", '\%80v.*')
+    autocmd BufEnter,BufRead,BufWinEnter,BufWrite *
+            \ call matchadd("ErrorMsg", '\%80v.*')
 augroup END
 
 
