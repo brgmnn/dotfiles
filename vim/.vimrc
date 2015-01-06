@@ -110,8 +110,8 @@ colorscheme rainbow_fruit
 "set colorcolumn=+2
 
 " Highlight trailing whitespace and long lines with the ErrorMsg coloring.
-call matchadd("ErrorMsg", '\s\+$')
-call matchadd("ErrorMsg", '\%80v.*')
+"call matchadd("ErrorMsg", '\s\+$')
+"call matchadd("ErrorMsg", '\%80v.*')
 
 " Turn on highlighting for search
 set hlsearch
@@ -228,12 +228,12 @@ augroup vimrc_autocmd
             \ if ! &bin | silent! %s/\s\+$//ge | endif
 
     " Highlight trailing whitespace on buffer enter, read, winenter and write.
-    autocmd BufEnter,BufRead,BufWinEnter,BufWrite *
-            \ call matchadd("ErrorMsg", '\s\+$')
+    "autocmd BufEnter,BufRead,BufWinEnter,BufWrite *
+    ""        \ call matchadd("ErrorMsg", '\s\+$')
 
     " Long line highlighting
-    autocmd BufEnter,BufRead,BufWinEnter,BufWrite *
-            \ call matchadd("ErrorMsg", '\%80v.*')
+    "autocmd BufEnter,BufRead,BufWinEnter,BufWrite *
+    ""        \ call matchadd("ErrorMsg", '\%80v.*')
 augroup END
 
 
