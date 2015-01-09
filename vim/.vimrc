@@ -209,6 +209,17 @@ function! BuildDictionaries()
 endfunction
 
 
+function! SetMatches()
+    let w:m_trailing_whitespace=matchadd("ErrorMsg", '\s\+$')
+    let w:m_long_lines=matchadd("ErrorMsg", '\%80v.*')
+endfunction
+
+function! ClearMatches()
+    call matchdelete(w:m_trailing_whitespace)
+    call matchdelete(w:m_long_lines)
+endfunction
+
+
 "           Auto Commands
 "-----------------------------------------------------------------------------
 augroup vimrc_autocmd
@@ -227,13 +238,16 @@ augroup vimrc_autocmd
     autocmd BufRead,BufWinEnter,BufWrite *
             \ if ! &bin | silent! %s/\s\+$//ge | endif
 
-    " Highlight trailing whitespace on buffer enter, read, winenter and write.
-    "autocmd BufEnter,BufRead,BufWinEnter,BufWrite *
-    ""        \ call matchadd("ErrorMsg", '\s\+$')
+    " Highlight trailing whitespace and long lines on buffer enter, read,
+    " winenter and write.
+    "autocmd BufEnter,BufRead,BufWinEnter,BufWrite * call SetMatches()
+    ""        \ let w:m_trailing_whitespace=matchadd("ErrorMsg", '\s\+$') |
+    ""        \ let w:m_long_lines=matchadd("ErrorMsg", '\%80v.*')
 
-    " Long line highlighting
-    "autocmd BufEnter,BufRead,BufWinEnter,BufWrite *
-    ""        \ call matchadd("ErrorMsg", '\%80v.*')
+    " Clear the trailing whitespace and long line matches.
+    "autocmd BufLeave * call ClearMatches()
+    ""        \ call! matchdelete(w:m_trailing_whitespace) |
+    ""        \ call! matchdelete(w:m_long_lines)
 augroup END
 
 
