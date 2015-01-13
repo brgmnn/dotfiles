@@ -209,16 +209,15 @@ function! BuildDictionaries()
 endfunction
 
 
+"       SetMatches()
+" Sets helper matches for files, at the moment this is for long lines and for
+" trailing whitespace.
 function! SetMatches()
-    let w:m_trailing_whitespace=matchadd("ErrorMsg", '\s\+$')
-    let w:m_long_lines=matchadd("ErrorMsg", '\%80v.*')
+    silent! call matchdelete(w:m1)
+    silent! call matchdelete(w:m2)
+    let w:m1 = matchadd('ErrorMsg', '\s\+$')
+    let w:m2 = matchadd('ErrorMsg', '\%80v.*')
 endfunction
-
-function! ClearMatches()
-    call matchdelete(w:m_trailing_whitespace)
-    call matchdelete(w:m_long_lines)
-endfunction
-
 
 "           Auto Commands
 "-----------------------------------------------------------------------------
@@ -240,14 +239,7 @@ augroup vimrc_autocmd
 
     " Highlight trailing whitespace and long lines on buffer enter, read,
     " winenter and write.
-    "autocmd BufEnter,BufRead,BufWinEnter,BufWrite * call SetMatches()
-    ""        \ let w:m_trailing_whitespace=matchadd("ErrorMsg", '\s\+$') |
-    ""        \ let w:m_long_lines=matchadd("ErrorMsg", '\%80v.*')
-
-    " Clear the trailing whitespace and long line matches.
-    "autocmd BufLeave * call ClearMatches()
-    ""        \ call! matchdelete(w:m_trailing_whitespace) |
-    ""        \ call! matchdelete(w:m_long_lines)
+    autocmd BufEnter,BufRead,BufWinEnter,BufWrite * call SetMatches()
 augroup END
 
 
