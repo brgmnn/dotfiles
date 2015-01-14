@@ -109,16 +109,8 @@ colorscheme rainbow_fruit
 " Add a highlighted column at 80 characters
 "set colorcolumn=+2
 
-" Highlight trailing whitespace and long lines with the ErrorMsg coloring.
-"call matchadd("ErrorMsg", '\s\+$')
-"call matchadd("ErrorMsg", '\%80v.*')
-
 " Turn on highlighting for search
 set hlsearch
-
-" highlight the current line
-"set cul
-"hi CursorLine term=none cterm=none ctermbg=235 ctermfg=none
 
 " Use two status lines and set a custom line wrap character
 set laststatus=2
@@ -149,12 +141,12 @@ set wildmode=longest,list,full
 set wildmenu
 
 " ignore files with these extensions
-set wildignore =*.d                                 " Build files
-set wildignore+=*.a,*.exe,*.o,*.so                  " C/C++
-set wildignore+=*.aux,*.out,*.toc                   " LaTeX
-set wildignore+=*.bmp,*.gif,*.jpeg,*.jpg,*.png      " Binary images
-set wildignore+=*.p,*.pyc                           " Python
-set wildignore+=*.sw?                               " Vim swap files
+set wildignore =*.d                             " Build files
+set wildignore+=*.a,*.exe,*.o,*.so              " C/C++
+set wildignore+=*.aux,*.out,*.toc               " LaTeX
+set wildignore+=*.bmp,*.gif,*.jpeg,*.jpg,*.png  " Binary images
+set wildignore+=*.p,*.pyc                       " Python
+set wildignore+=*~,*.sw?                        " Swap files
 
 
 "           Backup, History and Swap
