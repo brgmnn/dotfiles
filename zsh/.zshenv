@@ -4,6 +4,7 @@ export BROWSER=firefox
 export PLAYER=mpv
 export CC=clang
 export CXX=clang++
+export SHELL=`which zsh`
 
 export GREP_OPTIONS="--color=auto"
 # ls colours. Plan to move these to .dircolors
