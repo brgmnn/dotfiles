@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
+set -u
+set -e
 svn rm $( svn status | sed -e '/^!/!d' -e 's/^!//' )

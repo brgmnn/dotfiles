@@ -12,6 +12,9 @@
 # ~/Desktop/dr-strangelove.mp4 23:12 3
 # ~/Desktop/holman-backflip-on-fire.mov 3.9 1.75
 
+set -u
+set -e
+
 tmpdir=mktemp -d
 ffmpeg -i $1 -f image2 -ss $2 -t $3 -r 7 $tmpdir/d-%05d.png
 gifme $tmpdir/* -d 0

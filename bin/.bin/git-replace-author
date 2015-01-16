@@ -7,6 +7,7 @@
 #   $2 = New authors name
 #   $3 = New authors email
 
+set -u
 set -e
 if [ ! "$1" ]; then
     echo "$0: Takes three arguments." >&2

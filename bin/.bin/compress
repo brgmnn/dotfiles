@@ -5,6 +5,7 @@
 # Syntax:
 #   compress $PATH1 [$PATH2 $PATH3 ...]
 
+set -u
 set -e
 if [ ! "$1" ]; then
     echo "$0: no files specified." >&2

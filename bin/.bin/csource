@@ -5,6 +5,7 @@
 # Syntax:
 #   extract $FILE1 $FILE2 $FILE3 ...
 
+set -u
 set -e
 if [ ! "$1" ]; then
     echo "$0: no files specified." >&2
