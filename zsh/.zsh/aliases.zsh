@@ -7,7 +7,8 @@
 # Colour ls as well as provide more detailed version `ll`.
 alias ls="ls --color=auto"
 alias ll="ls -lh"
-alias la="ls -lah"
+alias la="ls -a"
+alias lla="ls -lah"
 
 # Allow aliases to be sudo'ed.
 alias sudo='sudo '
