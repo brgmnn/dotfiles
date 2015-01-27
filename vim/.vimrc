@@ -16,6 +16,8 @@ Plugin 'Raimondi/delimitMate'
 
 Plugin 'fatih/vim-go'
 
+Plugin 'reedes/vim-colors-pencil'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -27,6 +29,7 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline_theme = 'pencil'
 
 " delimitMate
 let delimitMate_expand_cr = 1
@@ -104,8 +107,8 @@ set pastetoggle=<F12>
 syntax enable
 
 set t_Co=256
-set background=dark
-colorscheme rainbow_fruit
+set background=light
+colorscheme pencil
 
 " Add a highlighted column at 80 characters
 "set colorcolumn=+2
