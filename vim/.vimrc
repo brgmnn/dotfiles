@@ -207,10 +207,15 @@ endfunction
 " Sets helper matches for files, at the moment this is for long lines and for
 " trailing whitespace.
 function! SetMatches()
+    " Error match trailing whitespace
     silent! call matchdelete(w:m1)
-    silent! call matchdelete(w:m2)
     let w:m1 = matchadd('ErrorMsg', '\s\+$')
-    let w:m2 = matchadd('ErrorMsg', '\%80v.*')
+
+    " Error highlight lines which exceed the text width length.
+    if &textwidth > 0
+        silent! call matchdelete(w:m2)
+        let w:m2 = matchadd('ErrorMsg', '\%80v.*')
+    endif
 endfunction
 
 "           Auto Commands
