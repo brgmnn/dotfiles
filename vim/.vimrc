@@ -214,7 +214,7 @@ function! SetMatches()
     " Error highlight lines which exceed the text width length.
     if &textwidth > 0
         silent! call matchdelete(w:m2)
-        let w:m2 = matchadd('ErrorMsg', '\%80v.*')
+        let w:m2 = matchadd('ErrorMsg', '\%'.(&textwidth+2).'v.*')
     endif
 endfunction
 
