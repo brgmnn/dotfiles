@@ -197,6 +197,28 @@ function! RestoreCursor()
     endif
 endfunction
 
+"       CloseHiddenBuffers()
+" Closes all hidden buffers that are not in windows or tabs and that haven't
+" been modified.
+function! CloseHiddenBuffers()
+    " Get a list of all buffers in all tabs.
+    let tablist = []
+    for i in range(tabpagenr('$'))
+        call extend(tablist, tabpagebuflist(i + 1))
+    endfor
+
+    let nclosed = 0
+    for i in range(1, bufnr('$'))
+        " If buffer i exists and isn't modified and isn't in the list of
+        " buffers open in windows and tabs, then we delete it.
+        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+            silent exec 'bwipeout' i
+            let nclosed = nclosed + 1
+        endif
+    endfor
+    echomsg nclosed . ' buffer(s) closed.'
+endfunction
+
 "       BuildDictionaries()
 " Recompiles the spelling dictionaries. This function should be called if new
 " words are added manually to any of the user dictionaries.
