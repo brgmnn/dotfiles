@@ -19,6 +19,7 @@ Plugin 'fatih/vim-go'
 call vundle#end()
 filetype plugin indent on
 
+
 "           Airline
 "-----------------------------------------------------------------------------
 " Tabline
@@ -32,6 +33,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " delimitMate
 let delimitMate_expand_cr = 1
 
+
 "           Spelling
 "-----------------------------------------------------------------------------
 "set spell
@@ -41,11 +43,12 @@ set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.en.local.utf-8.add
 if empty(glob("$HOME/.vim/spell/en.utf-8.add.spl"))
     silent! mkspell $HOME/.vim/spell/en.utf-8.add
 endif
-if filereadable("$HOME/.en.local.utf-8.add")
+if filereadable(glob("$HOME/.en.local.utf-8.add"))
     if empty(glob("$HOME/.en.local.utf-8.add.spl"))
         silent! mkspell $HOME/.vim/spell/en.local.utf-8.add
     endif
 endif
+
 
 "           View
 "-----------------------------------------------------------------------------
@@ -218,6 +221,7 @@ function! SetMatches()
     endif
 endfunction
 
+
 "           Auto Commands
 "-----------------------------------------------------------------------------
 augroup vimrc_autocmd
@@ -289,6 +293,6 @@ cmap w!! w !sudo tee % >/dev/null
 "           Load local host settings
 "-----------------------------------------------------------------------------
 " Load local vimrc.
-if filereadable("~/.vimrc.local")
-    source ~/.vimrc.local
+if filereadable(glob("$HOME/.vimrc.local"))
+    source $HOME/.vimrc.local
 endif
