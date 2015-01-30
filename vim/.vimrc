@@ -16,6 +16,11 @@ Plugin 'Raimondi/delimitMate'
 
 Plugin 'fatih/vim-go'
 
+if version > 703
+    " YouCompleteMe requires at least Vim version 7.3
+    Plugin 'Valloric/YouCompleteMe'
+endif
+
 call vundle#end()
 filetype plugin indent on
 
