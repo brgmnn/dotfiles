@@ -13,6 +13,7 @@ Plugin 'bling/vim-airline'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'fatih/vim-go'
 
