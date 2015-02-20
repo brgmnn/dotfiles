@@ -290,6 +290,10 @@ command! -bang Qa qa<bang>
 
 "           Key Mappings
 "-----------------------------------------------------------------------------
+" Move left and right a word at a time with ctrl+arrow keys.
+nnoremap <C-Left> b
+nnoremap <C-Right> w
+
 " Open URL on this line with the browser \w
 map <Leader>w :call Browser ()<CR>
 
