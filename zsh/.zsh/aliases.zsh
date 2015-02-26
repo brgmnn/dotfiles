@@ -10,8 +10,14 @@ alias ll="ls -lh"
 alias la="ls -a"
 alias lla="ls -lah"
 
+# When passing multiple files to Vim, open them in new tabs.
+alias vim='vim -p'
+
 # Allow aliases to be sudo'ed.
 alias sudo='sudo '
+
+# Returns the current external IP address.
+alias ip='curl curlmyip.com'
 
 # A simple stopwatch timer.
 alias timer='echo "Timer started. Stop with Ctrl-D." \
