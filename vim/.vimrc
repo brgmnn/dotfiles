@@ -11,10 +11,11 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'airblade/vim-gitgutter'
 
+Plugin 'plasticboy/vim-markdown'
 Plugin 'fatih/vim-go'
 
 if version > 703
@@ -26,7 +27,7 @@ call vundle#end()
 filetype plugin indent on
 
 
-"           Airline
+"           Plugin Settings
 "-----------------------------------------------------------------------------
 " Tabline
 let g:airline#extensions#tabline#enabled = 1
@@ -35,9 +36,13 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_exclude_preview=1
 
 " delimitMate
 let delimitMate_expand_cr = 1
+
+" Git Gutter
+let g:gitgutter_sign_removed = '-'
 
 
 "           Spelling
@@ -120,8 +125,9 @@ colorscheme hemisu
 " Add a highlighted column at 80 characters
 "set colorcolumn=+2
 
-" Turn on highlighting for search
+" Turn on highlighting for search, match the search term as it is typed.
 set hlsearch
+set incsearch
 
 " Use two status lines and set a custom line wrap character
 set laststatus=2
