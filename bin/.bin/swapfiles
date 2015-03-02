@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+#       swapfiles
+# Swap two files location.
+# TODO: Could use more error checking for moving files in case of failure.
+#   swapfiles $PATH1 $PATH2
+
+set -u
+set -e
+if [[ ! "$1" || ! "$2" ]]; then
+    echo "$0: requires two files." >&2
+    exit 1
+fi
+
+if [[ ! -f "$1" || ! -f "$2" ]]; then
+    echo "$0: both paths must be regular files." >&2
+    exit 2
+fi
+
+if [[ ! -w `dirname "$1"` || ! -w `dirname "$2"` ]]; then
+    echo "$0: need write permission for parent folders." >&2
+    exit 3
+fi
+
+tmpdir=`mktemp -d`
+
+mv "$1" "$tmpdir/"$(basename "$1")
+mv "$2" "$1"
+mv "$tmpdir/"$(basename "$1") "$2"
+
+rm -rf "$tmpdir"
