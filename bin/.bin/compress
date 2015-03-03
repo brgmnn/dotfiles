@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 #       compress
-# This program will compress a directory. At the moment just using gzip.
+# This program will compress a directory. Defaults to using gzip but can also
+# compress with zip.
 # Syntax:
-#   compress $PATH1 [$PATH2 $PATH3 ...]
+#   compress [-z] $PATH1 [$PATH2 $PATH3 ...]
 
 set -u
 set -e
@@ -12,5 +13,32 @@ if [ ! "$1" ]; then
     exit
 fi
 
-arname=`basename $1`-`date +"%Y-%m-%d"`.tar.gz
-tar -zcvf $arname $@
+# Generates an archive name. It is either the name of the file/folder with the
+# current date, or in the case of multiple files/folders being archived it is
+# the name of the current directories parent with the current date.
+function arname() {
+    if [[ "$#" -eq 1 ]]; then
+        echo "`basename $1`-`date +"%Y-%m-%d"`"
+    else
+        echo "$(basename $(pwd))-`date +"%Y-%m-%d"`"
+    fi
+}
+
+# Choose which compression method to use.
+while getopts ":z" opt; do
+    case "$opt" in
+        z)
+            shift
+            zip "`arname $@`.zip" $@
+            exit 0
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            ;;
+    esac
+done
+
+# Default case, use tar and create a tar.gz archive.
+tar -zcvf "`arname $@`.tar.gz" $@
+exit 0
+
