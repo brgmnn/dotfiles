@@ -29,7 +29,7 @@ while getopts ":z" opt; do
     case "$opt" in
         z)
             shift
-            zip "`arname $@`.zip" $@
+            zip -r9 "`arname $@`.zip" $@
             exit 0
             ;;
         \?)
