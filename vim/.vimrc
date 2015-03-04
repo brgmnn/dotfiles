@@ -14,6 +14,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-vinegar'
 
 Plugin 'plasticboy/vim-markdown'
 Plugin 'fatih/vim-go'
