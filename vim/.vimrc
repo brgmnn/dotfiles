@@ -111,8 +111,11 @@ set smartindent
 
 " Better backspacing and F12 to toggle paste mode on/off.
 set backspace=indent,eol,start
-set clipboard=unnamedplus
 set pastetoggle=<F12>
+
+if !has("gui_running")
+    set clipboard=unnamedplus
+endif
 
 
 "           Color, Style and Syntax
