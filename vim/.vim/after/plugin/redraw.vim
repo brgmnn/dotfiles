@@ -2,5 +2,5 @@ augroup au_redraw
     autocmd!
 
     " Refresh airline after writing to a file.
-    autocmd BufReadPost,BufWritePost * redraw!
+    autocmd BufReadPost,BufWritePost,FileChangedShellPost * redraw!
 augroup END
