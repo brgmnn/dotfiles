@@ -6,6 +6,7 @@ BLAS
 cd
 changelog
 codebase
+CoffeeScript
 ctrl
 CUDA
 Debian
@@ -31,6 +32,7 @@ json
 lambertian
 lua
 metadata
+MongoDB
 MySQL
 namespace
 NVIDIA
@@ -38,9 +40,12 @@ Ogg
 OpenCL
 PHP
 plugin
+Postgre
+PostgreSQL
 raytracer
 Redhat
 refactor
+repo
 screenshot
 spacebar
 SQL
