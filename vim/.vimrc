@@ -18,6 +18,7 @@ Plugin 'tpope/vim-vinegar'
 
 Plugin 'plasticboy/vim-markdown'
 Plugin 'fatih/vim-go'
+Plugin 'brgmnn/vim-opencl'
 
 if version > 703
     " YouCompleteMe requires at least Vim version 7.3
