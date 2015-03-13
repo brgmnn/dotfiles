@@ -5,10 +5,12 @@
 # own scripts and placed in the .bin folder.
 
 # Colour ls as well as provide more detailed version `ll`.
-alias ls="ls --color=auto"
+alias ls="ls --color=auto -F --group-directories-first"
 alias ll="ls -lh"
-alias la="ls -a"
-alias lla="ls -lah"
+alias la="ls -A"
+alias lla="ls -lAh"
+alias lsd="ls -d .*"
+alias lld="ll -lh -d .*"
 
 # When passing multiple files to Vim, open them in new tabs.
 alias vim='vim -p'
@@ -18,6 +20,9 @@ alias sudo='sudo '
 
 # Returns the current external IP address.
 alias ip='curl curlmyip.com'
+
+# Gets the total size of a directory.
+alias dut='du -ch | tail -1'
 
 # A simple stopwatch timer.
 alias timer='echo "Timer started. Stop with Ctrl-D." \
