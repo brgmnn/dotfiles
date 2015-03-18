@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+#       path
+# Shortcut to view paths for different tools.
+
+set -e
+
+if [ ! "$1" ]; then
+    echo $PATH | sed 's/:/\n/g';
+fi
+
+case "$1" in
+    python)
+        python -c "import sys; print '\n'.join(sys.path)"
+        exit 0;;
+    *)
+        echo "Environment was not found."
+        exit 1;;
+esac
