@@ -52,6 +52,7 @@ let delimitMate_expand_cr = 1
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '*'
 let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_modified_removed = '*-'
 
 
 "           Spelling
@@ -84,7 +85,6 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 " Custom status line formatting.
 set statusline=%<%f\ " Filename
 set statusline+=%w%h%m%r " Options
-"set statusline+=%{fugitive#statusline()} " Git Hotness, needs fugitive
 set statusline+=\ [%{&ff}/%Y] " File type
 set statusline+=\ [%{getcwd()}] " Current directory
 set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file navigation info
@@ -312,6 +312,9 @@ command! -bang Wa wa<bang>
 
 "           Key Mappings
 "-----------------------------------------------------------------------------
+" Map the leader key.
+let mapleader = ","
+
 " Move left and right a word at a time with ctrl+arrow keys.
 nnoremap <C-Left> b
 nnoremap <C-Right> w
