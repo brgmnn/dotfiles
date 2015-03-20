@@ -31,19 +31,26 @@ filetype plugin indent on
 
 "           Plugin Settings
 "-----------------------------------------------------------------------------
-" Tabline
+" Airline (modifies vims statusline)
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_exclude_preview=1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_exclude_preview = 1
+let g:airline_mode_map = {'c': 'C ', 'i': 'I ', 'n': 'N ', 'v': 'V ',
+        \ 'R': 'R ', 'V': 'VL', '' : 'VB' }
+
 
 " delimitMate
 let delimitMate_expand_cr = 1
 
 " Git Gutter
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '*'
 let g:gitgutter_sign_removed = '-'
 
 
@@ -257,6 +264,8 @@ function! SetMatches()
     if &textwidth > 0
         silent! call matchdelete(w:m2)
         let w:m2 = matchadd('ErrorMsg', '\%'.(&textwidth+2).'v.*')
+    elseif exists('w:m2')
+        silent! call matchdelete(w:m2)
     endif
 endfunction
 
@@ -281,7 +290,8 @@ augroup vimrc_autocmd
 
     " Highlight trailing whitespace and long lines on buffer enter, read,
     " winenter and write.
-    autocmd BufEnter,BufRead,BufWinEnter,BufWrite * call SetMatches()
+    autocmd BufEnter,BufRead,BufWinEnter,BufWrite,WinEnter,WinLeave *
+            \ call SetMatches()
 augroup END
 
 
