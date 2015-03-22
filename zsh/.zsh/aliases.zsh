@@ -12,6 +12,9 @@ alias lla="ls -lAh"
 alias lsd="ls -d .*"
 alias lld="ll -lh -d .*"
 
+# Colour matches in Greps output
+alias grep='grep --color=auto'
+
 # When passing multiple files to Vim, open them in new tabs.
 alias vim='vim -p'
 
