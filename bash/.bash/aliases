@@ -1,6 +1,9 @@
 # Allow aliases to be sudo'ed.
 alias sudo='sudo '
 
+# Colour matches in Greps output
+alias grep='grep --color=auto'
+
 # A simple stopwatch timer.
 alias timer='echo "Timer started. Stop with Ctrl-D." \
         && date && time cat && date'

@@ -5,12 +5,12 @@
 # own scripts and placed in the .bin folder.
 
 # Colour ls as well as provide more detailed version `ll`.
-alias ls="ls --color=auto -F --group-directories-first"
-alias ll="ls -lh"
-alias la="ls -A"
-alias lla="ls -lAh"
-alias lsd="ls -d .*"
-alias lld="ll -lh -d .*"
+alias ls='ls --color=auto -F --group-directories-first'
+alias ll='ls -lh'
+alias la='ls -A'
+alias lla='ls -lAh'
+alias lsd='ls -d .*'
+alias lld='ll -lh -d .*'
 
 # Colour matches in Greps output
 alias grep='grep --color=auto'
