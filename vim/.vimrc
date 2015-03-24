@@ -16,8 +16,11 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-vinegar'
 
-Plugin 'plasticboy/vim-markdown'
 Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-git'
+Plugin 'pangloss/vim-javascript'
+Plugin 'elzr/vim-json'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'brgmnn/vim-opencl'
 
 if version > 703
