@@ -24,11 +24,7 @@ path=(~/.bin $path)
 #       Antigen
 # Use antigen script to load plugins and themes for zsh from github.
 source ~/.zsh/antigen/antigen.zsh
-
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle svn
+source ~/.zsh/plugins.zsh
 
 
 #       Prompt

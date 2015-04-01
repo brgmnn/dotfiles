@@ -27,6 +27,9 @@ alias ip='curl curlmyip.com'
 # Gets the total size of a directory.
 alias dut='du -ch | tail -1'
 
+# Added this as a fix for the autoenv Zsh plugin.
+alias shasum='sha256sum'
+
 # A simple stopwatch timer.
 alias timer='echo "Timer started. Stop with Ctrl-D." \
         && date && time cat && date'
