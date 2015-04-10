@@ -22,6 +22,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'brgmnn/vim-opencl'
+Plugin 'justinmk/vim-syntax-extra'
 
 if version > 703
     " YouCompleteMe requires at least Vim version 7.3
@@ -81,16 +82,8 @@ endif
 set viewoptions=cursor,slash,unix
 set virtualedit=onemore
 set showmode
-
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
-
-" Custom status line formatting.
-set statusline=%<%f\ " Filename
-set statusline+=%w%h%m%r " Options
-set statusline+=\ [%{&ff}/%Y] " File type
-set statusline+=\ [%{getcwd()}] " Current directory
-set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file navigation info
 
 " Show matching braces/brackets, enable folding and when splitting the window,
 " put the new window to the right/below the current one. Remove hidden
@@ -137,9 +130,6 @@ set t_Co=256
 set background=light
 colorscheme hemisu
 
-" Add a highlighted column at 80 characters
-"set colorcolumn=+2
-
 " Turn on highlighting for search, match the search term as it is typed.
 set hlsearch
 set incsearch
@@ -173,7 +163,7 @@ set wildmode=longest,list,full
 set wildmenu
 
 " ignore files with these extensions
-set wildignore =*.d                             " Build files
+set wildignore =*.d,*.moc                       " Build files
 set wildignore+=*.a,*.exe,*.o,*.so              " C/C++
 set wildignore+=*.aux,*.out,*.toc               " LaTeX
 set wildignore+=*.bmp,*.gif,*.jpeg,*.jpg,*.png  " Binary images
