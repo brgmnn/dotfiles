@@ -2,9 +2,9 @@
 
 #       compress
 # This program will compress a directory. Defaults to using gzip but can also
-# compress with zip.
+# compress with bz2 and zip.
 # Syntax:
-#   compress [-z] $PATH1 [$PATH2 $PATH3 ...]
+#   compress [-bz2/-gz/-zip] $PATH1 [$PATH2 $PATH3 ...]
 
 set -u
 set -e
@@ -24,21 +24,26 @@ function arname() {
     fi
 }
 
-# Choose which compression method to use.
-while getopts ":z" opt; do
-    case "$opt" in
-        z)
-            shift
-            zip -r9 "`arname $@`.zip" $@
-            exit 0
-            ;;
-        \?)
-            echo "Invalid option: -$OPTARG" >&2
-            ;;
-    esac
-done
+case "$1" in
+    -bz2)
+        # Compress as a tar.bz2 archive.
+        shift
+        tar -jcvf "`arname $@`.tar.bz2" $@
+        exit 0;
+        ;;
+    -zip)
+        # Compress as a zip file.
+        shift
+        zip -r9 "`arname $@`.zip" $@
+        exit 0
+        ;;
+    -gz)
+        # Create a tar.gz archive.
+        shift
+        ;;
+    *)
+        ;;
+esac
 
 # Default case, use tar and create a tar.gz archive.
 tar -zcvf "`arname $@`.tar.gz" $@
-exit 0
-
