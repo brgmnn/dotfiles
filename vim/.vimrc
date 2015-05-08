@@ -16,6 +16,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-vinegar'
 
+" Language Plugins
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-git'
 Plugin 'pangloss/vim-javascript'
