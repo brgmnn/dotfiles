@@ -24,6 +24,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'brgmnn/vim-opencl'
+Plugin 'rust-lang/rust.vim'
 Plugin 'justinmk/vim-syntax-extra'
 
 if version > 703
