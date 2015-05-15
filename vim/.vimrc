@@ -18,6 +18,7 @@ Plugin 'tpope/vim-vinegar'
 
 " Language Plugins
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'dag/vim-fish'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-git'
 Plugin 'pangloss/vim-javascript'
