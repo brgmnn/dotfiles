@@ -41,7 +41,7 @@ end
 
 function _git_dirty --description "Prints a short status string for how dirty a git repo is."
     if git status -s ^&- | grep -q '^??'
-        echo -n "?"
+        echo -n (set_color $fish_color_status)"?"(set_color normal)
     end
 
     if git status -s ^&- | grep -q '^ M'
