@@ -40,16 +40,21 @@ function fish_prompt --description "Write out the prompt"
 end
 
 function _git_dirty --description "Prints a short status string for how dirty a git repo is."
-    if git status -s ^&- | grep -q '^??'
-        echo -n (set_color $fish_color_status)"?"(set_color normal)
+    set -l untracked (git status -s | grep '^??' | wc -l)
+    set -l modified  (git status -s | grep '^.M' | wc -l)
+    set -l staged    (git status -s | grep '^M' | wc -l)
+
+    if test $untracked -gt 0
+        echo -n (set_color dd0000)"$untracked?"(set_color normal)
     end
 
-    if git status -s ^&- | grep -q '^ M'
-        echo -n (set_color $fish_color_status)"*"(set_color normal)
+    if test $modified -gt 0
+        echo -n (set_color ff9900)"$modified*"(set_color normal)
     end
 
-    if git status -s ^&- | grep -q '^A'
-        echo -n (set_color $fish_color_user)"+"(set_color normal)
+    if test $staged -gt 0
+        #echo -n (set_color $fish_color_user)"$staged+"(set_color normal)
+        echo -n (set_color 00dd00)"$staged+"(set_color normal)
     end
 end
 
@@ -57,8 +62,6 @@ function _git_branch_name --description "Prints out the current git branch."
     echo -n (set_color blue)
     echo -n (command git symbolic-ref HEAD ^&- | sed -e 's|^refs/heads/||')
     echo -n (set_color normal)
-
-    echo (_git_dirty)
 end
 
 function _git_last_commit --description "Prints the last git commit hash."
@@ -77,11 +80,18 @@ function _svn_branch_name
             (set_color normal)
 end
 
+function _svn_dirty
+    set -l edits (svn status -q | grep '^M   ' | wc -l)
+    if test $edits -gt 0
+        echo -n (set_color $fish_color_status)"*$edits"(set_color normal)
+    end
+end
+
 # Prompt for the right side
 function fish_right_prompt --description "Write out the right side prompt"
     if git status >&- ^&-
-        echo -s "git " (_git_last_commit) " " (_git_branch_name)
+        echo -s "git " (_git_last_commit) " " (_git_branch_name) (_git_dirty)
     else if svn info >&- ^&-
-        echo -s "svn " (_svn_revision) " " (_svn_branch_name)
+        echo -s "svn " (_svn_revision) " " (_svn_branch_name) (_svn_dirty)
     end
 end

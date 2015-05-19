@@ -14,3 +14,4 @@ set -x LS_COLORS (dircolors ~/.LS_COLORS | sed -e '1!d' -e "s/LS_COLORS='//" -e 
 
 # Source local environment variables file
 source ~/.fishenv.local ^&-
+
