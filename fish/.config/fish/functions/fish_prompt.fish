@@ -89,7 +89,7 @@ end
 
 # Prompt for the right side
 function fish_right_prompt --description "Write out the right side prompt"
-    if git status >&- ^&-
+    if git status >/dev/null ^&-
         echo -s "git " (_git_last_commit) " " (_git_branch_name) (_git_dirty)
     else if svn info >&- ^&-
         echo -s "svn " (_svn_revision) " " (_svn_branch_name) (_svn_dirty)
