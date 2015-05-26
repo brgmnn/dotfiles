@@ -83,7 +83,7 @@ end
 function _svn_dirty
     set -l edits (svn status -q | grep '^M   ' | wc -l)
     if test $edits -gt 0
-        echo -n (set_color $fish_color_status)"*$edits"(set_color normal)
+        echo -n (set_color $fish_color_status)"$edits*"(set_color normal)
     end
 end
 
