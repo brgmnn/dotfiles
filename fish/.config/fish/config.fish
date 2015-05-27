@@ -6,7 +6,7 @@ set -x PLAYER   mpv
 set -x CC       clang
 set -x CXX      clang++
 
-set -x LD_LIBRARY_PATH /usr/local/lib
+set -x LD_LIBRARY_PATH /usr/local/lib $LD_LIBRARY_PATH
 
 # Source local environment variables file
 source ~/.fishenv ^&-

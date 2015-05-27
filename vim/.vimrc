@@ -27,6 +27,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'brgmnn/vim-opencl'
 Plugin 'rust-lang/rust.vim'
 Plugin 'justinmk/vim-syntax-extra'
+Plugin 'tpope/vim-liquid'
 
 if version > 703
     " YouCompleteMe requires at least Vim version 7.3
