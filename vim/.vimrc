@@ -29,6 +29,12 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'tpope/vim-liquid'
 
+" CSS and SCSS language plugin
+if version < 704
+    Plugin 'JulesWang/css.vim'
+endif
+Plugin 'cakebaker/scss-syntax.vim'
+
 if version > 703
     " YouCompleteMe requires at least Vim version 7.3
     Plugin 'Valloric/YouCompleteMe'
