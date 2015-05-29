@@ -1,6 +1,6 @@
 # run a system wide bashrc
 if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
+    source /etc/bashrc
 fi
 
 # Auto "cd" when entering just a path.
@@ -20,10 +20,7 @@ eval "$(dircolors $HOME/.LS_COLORS)"
 export CC=clang
 export CXX=clang++
 
-PATH=$PATH:~/.bin
-
-alias ls='ls --color=auto'
-alias ll='ls -lha'
+PATH=$HOME/.bin:$PATH
 
 
 #       History
@@ -36,15 +33,21 @@ shopt -s histappend
 export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
 
+#       Prompt
+# Set up the prompt
+if [ -f $HOME/.bash/prompt.sh ]; then
+    source $HOME/.bash/prompt.sh
+fi
+
 #       Aliases
 # Import aliases.
-if [ -f ~/.bash/aliases ]; then
-    . ~/.bash/aliases
+if [ -f $HOME/.bash/aliases.sh ]; then
+    source $HOME/.bash/aliases.sh
 fi
 
 #       Local
 # Run .bashrc.local last if the file exists. This script holds commands that
 # are only relevant locally.
-if [ -f ~/.bashrc.local ]; then
-    . ~/.bashrc.local
+if [ -f $HOME/.bashrc.local ]; then
+    source $HOME/.bashrc.local
 fi
