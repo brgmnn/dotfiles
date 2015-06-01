@@ -28,12 +28,15 @@ Plugin 'brgmnn/vim-opencl'
 Plugin 'rust-lang/rust.vim'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'tpope/vim-liquid'
+Plugin 'artoj/qmake-syntax-vim'
 
 " CSS and SCSS language plugin
 if version < 704
     Plugin 'JulesWang/css.vim'
 endif
 Plugin 'cakebaker/scss-syntax.vim'
+
+Plugin 'kchmck/vim-coffee-script'
 
 if version > 703
     " YouCompleteMe requires at least Vim version 7.3
