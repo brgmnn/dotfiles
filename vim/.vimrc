@@ -350,6 +350,10 @@ imap OF <End>
 " Disable Ex mode
 nnoremap Q <nop>
 
+" Timestamp
+nnoremap <F5> "=strftime("%c")<CR>P
+inoremap <F5> <C-R>=strftime("%c")<CR>
+
 " When you forget to sudo, really write the file.
 cmap w!! w !sudo tee % >/dev/null
 
