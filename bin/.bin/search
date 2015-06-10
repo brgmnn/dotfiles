@@ -9,6 +9,7 @@ import time
 
 blacklist = [
     ".git",
+    ".svn"
 ]
 
 trows, tcols = os.popen('stty size', 'r').read().split()
