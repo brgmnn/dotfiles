@@ -1,5 +1,6 @@
 set nocompatible
 set encoding=utf-8
+set shell=/bin/sh
 
 "           Plugins
 "-----------------------------------------------------------------------------
