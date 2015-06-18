@@ -24,12 +24,13 @@ Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-git'
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
+Plugin 'tpope/vim-liquid'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'brgmnn/vim-opencl'
 Plugin 'rust-lang/rust.vim'
 Plugin 'justinmk/vim-syntax-extra'
-Plugin 'tpope/vim-liquid'
 Plugin 'artoj/qmake-syntax-vim'
+Plugin 'cespare/vim-toml'
 
 " CSS and SCSS language plugin
 if version < 704

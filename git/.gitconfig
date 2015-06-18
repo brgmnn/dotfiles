@@ -31,5 +31,5 @@
 [difftool]
     prompt = false
 
-[url "git@github.com"]
+[url "git@github.com:"]
     insteadOf = github:
