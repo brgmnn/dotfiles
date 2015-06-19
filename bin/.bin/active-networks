@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#       active-networks
+# Echos the names of the current active network interfaces ("eth0", "eth0
+# eth1" etc). Takes no parameters.
+# Syntax:
+#   active-networks
+
+for interface in `ifconfig | grep '^[a-z]' | awk '{print $1}'`; do
+    case $interface in
+        lo*)    continue ;;
+    esac
+    ifconfig $interface | grep -q 'inet ' && echo $interface
+done
+

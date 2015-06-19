@@ -1,0 +1,32 @@
+#!/bin/sh
+
+#       ls-archive
+# Lists the contents of an archive similar to how 'ls' does.
+# Syntax:
+#   ls-archive $FILE
+
+set -u
+set -e
+if [ ! "$1" ]; then
+    echo "$0: no files specified." >&2
+    exit
+fi
+
+for p in $@
+do
+    if [[ ! -r $p ]]; then
+        echo "$0: file is unreadable: \`$p'" >&2
+        continue
+    fi
+
+    if [ -f "$p" ]; then
+        case "$p" in
+            *.tar)      tar -tvf $p;;
+            *.tar.bz2)  tar -jtvf $p;;
+            *.tar.gz)   tar -ztvf $p;;
+
+            *)  echo "$0: unrecognized file extension for: \`$p'" >&2
+                continue;;
+        esac
+    fi
+done
