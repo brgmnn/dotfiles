@@ -1,0 +1,7 @@
+[helpers]
+editor-cmd = vim
+diff-cmd = colordiff
+
+[miscellany]
+global-ignores = #*# *.a *.al *.la *.lo *.o *.out *.pyc *.pyo *.rej *.so
+    *.so.[0-9]* *.supp *.tmp *~ .#* .*.swp .DS_Store .libs .moc .obj
