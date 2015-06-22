@@ -22,7 +22,7 @@ if [ ! "$3" ]; then
     exit
 fi
 
-cmd='if [ "$GIT_COMMITTER_NAME" = "'$1'" ];
+cmd="'"'if [ "$GIT_COMMITTER_NAME" = "'$1'" ];
 then
     GIT_COMMITTER_NAME="'$2'";
     GIT_AUTHOR_NAME="'$2'";
@@ -31,7 +31,8 @@ then
     git commit-tree "$@";
 else
     git commit-tree "$@";
-fi'
+fi'"'"
 
 # Bugged at the moment, problem getting git to run from the shell.
-echo git filter-branch --commit-filter $cmd HEAD
+echo "git filter-branch -f --commit-filter $cmd HEAD"
+#echo $cmd
