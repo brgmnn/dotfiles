@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+#       fix-folder-mtimes
+# Recursively loops over a given folder and updates that folder and containing
+# folders timestamps to be that of the most recently modified file/folder
+# beneath them.
+
+if [ ! "$1" ]; then
+    path="."
+else
+    path="$1"
+fi
+
+set -u
+
+find "$path" -mindepth 1 -maxdepth 1 -type d -exec "$0" {} \;
+echo "$path"
+
+get_newest_timestamp() {
+    find "$1" -mindepth 1 -maxdepth 1 -printf '%T+ %p\n' | sort | tail -n 1 \
+        | cut -f 1 -d ' ' --complement
+}
+
+touch "$path" -r "`get_newest_timestamp "$path"`"
+
