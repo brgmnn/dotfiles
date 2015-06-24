@@ -1,26 +1,23 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-#       extract
-# This program will extract a variety of different archives.
+#       csource
+# Compiles and executes a C program. Can be used to execute a C file as if it
+# were a script. Uses GCC or the command specified in $CC if set to compile
+# the source. Will also pass arguments along to the C compiler.
 # Syntax:
-#   extract $FILE1 $FILE2 $FILE3 ...
+#   csource [args] $FILE1 [$FILE2 $FILE3 ...]
 
-set -u
 set -e
+
 if [ ! "$1" ]; then
     echo "$0: no files specified." >&2
-    exit
+    exit 1
 fi
 
-# Compile and execute a C source on the fly
-[[ $1 ]]    || { echo "Missing operand" >&2; return 1; }
-[[ -r $1 ]] || { printf "File %s does not exist or is not readable\n" "$1" >&2; return 1; }
-output_path=${TMPDIR:-/tmp}/${1##*/};
 
-if [[ -n $CC ]]; then
-    $CC "$1" -o "$output_path" && "$output_path";
-else
-    gcc "$1" -o "$output_path" && "$output_path";
-fi
+[ ! "$CC" ] && CC=gcc
+tmpexe=`mktemp`
 
-rm -f "$output_path";
+$CC "$@" -o "$tmpexe" && "$tmpexe"
+
+rm -f "$tmpexe"
