@@ -14,7 +14,7 @@ fi
 
 for p in $@
 do
-    if [[ ! -r $p ]]; then
+    if [[ ! -r "$p" ]]; then
         echo "$0: file is unreadable: \`$p'" >&2
         continue
     fi

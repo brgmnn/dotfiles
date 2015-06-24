@@ -1,25 +1,60 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #       fix-folder-mtimes
-# Recursively loops over a given folder and updates that folder and containing
-# folders timestamps to be that of the most recently modified file/folder
-# beneath them.
+# Loops over a given folders contents and updates that folders timestamp to be
+# that of the most recently modified file/folder beneath it. Can optionally be
+# called to recursively update sub-folder timestamps in a depth first search.
+# Syntax:
+#   fix-folder-mtimes [-r/-v] [$PATH]
 
-if [ ! "$1" ]; then
-    path="."
-else
-    path="$1"
-fi
 
-set -u
+set -e
 
-find "$path" -mindepth 1 -maxdepth 1 -type d -exec "$0" {} \;
-echo "$path"
+verbose=false
+recursive=false
+implicit_path=true
 
 get_newest_timestamp() {
     find "$1" -mindepth 1 -maxdepth 1 -printf '%T+ %p\n' | sort | tail -n 1 \
         | cut -f 1 -d ' ' --complement
 }
 
-touch "$path" -r "`get_newest_timestamp "$path"`"
+process_folder() {
+    if [ "$verbose" = true ]; then
+        echo "$1"
+        local v="-v"
+    fi
+
+    if [ "$recursive" = true ]; then
+        find "$1" -mindepth 1 -maxdepth 1 -type d -exec "$0" -r "$v" {} \;
+    fi
+
+    local newest="`get_newest_timestamp "$1"`"
+
+    if [ ! "$newest" ]; then
+        touch "$1" -r "$newest"
+    fi
+}
+
+for arg in "$@"; do
+    case "$arg" in
+        -v)
+            # Verbose flag
+            verbose=true
+            ;;
+        -r)
+            # Recursive flag
+            recursive=true
+            ;;
+        *)
+            # A folder path
+            implicit_path=false
+            process_folder "$arg"
+            ;;
+    esac
+done
+
+if [ "$implicit_path" = true ]; then
+    process_folder "."
+fi
 
