@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 #       extract
-# This program will extract a variety of different archives.
+# This program will extract a variety of different archives. Depends on the
+# following executables being available in the path: 7z, ar, bunzip2,
+# cabextract, gunzip, lzma, tar, uncompress, unrar, unzip, xz.
 # Syntax:
 #   extract $FILE1 [$FILE2 $FILE3 ...]
 
@@ -12,37 +14,38 @@ if [ ! "$1" ]; then
     exit
 fi
 
-for p in $@
+for p in "$@"
 do
     if [[ ! -r "$p" ]]; then
-        echo "$0: file is unreadable: \`$p'" >&2
+        echo "$0: file is unreadable: '$p'" >&2
         continue
     fi
 
     if [ -f "$p" ]; then
         case "$p" in
-            *.tar)      tar -xf $p;;
-            *.tar.7z)   7z x -so $p | tar xf -;;
-            *.tar.bz2)  tar -jxf $p;;
-            *.tar.gz)   tar -zxf $p;;
-            *.tar.lzma) tar -Jxf $p;;
-            *.tar.xz)   tar -Jxf $p;;
-            *.7z)       7z x $p;;
-            *.Z)        uncompress $p;;
-            *.ar)       ar x $p;;
-            *.bz2)      bunzip2 $p;;
-            *.cbz)      unzip $p;;
-            *.exe)      cabextract $p;;
-            *.gz)       gunzip $p;;
-            *.jar)      unzip $p;;
-            *.lzma)     lzma -dk $p;;
-            *.rar)      unrar x $p;;
-            *.tbz2)     tar -xjf $p;;
-            *.tgz)      tar -xzf $p;;
-            *.xz)       xz -dk $p;;
-            *.zip)      unzip $p;;
+            *.tar)      tar -xf "$p";;
+            *.tar.7z)   7z x -so "$p" | tar xf -;;
+            *.tar.bz2)  tar -jxf "$p";;
+            *.tar.gz)   tar -zxf "$p";;
+            *.tar.lzma) tar -Jxf "$p";;
+            *.tar.xz)   tar -Jxf "$p";;
+            *.7z)       7z x "$p";;
+            *.Z)        uncompress "$p";;
+            *.ar)       ar x "$p";;
+            *.bz2)      bunzip2 "$p";;
+            *.cbz)      unzip "$p";;
+            *.exe)      cabextract "$p";;
+            *.gz)       gunzip "$p";;
+            *.ja)       unzip "$p";;
+            *.jar)      unzip "$p";;
+            *.lzma)     lzma -dk "$p";;
+            *.rar)      unrar x "$p";;
+            *.tbz2)     tar -xjf "$p";;
+            *.tgz)      tar -xzf "$p";;
+            *.xz)       xz -dk "$p";;
+            *.zip)      unzip "$p";;
 
-            *)  echo "$0: unrecognized file extension for: \`$p'" >&2
+            *)  echo "$0: unrecognized file extension for: '$p'" >&2
                 continue;;
         esac
     fi
