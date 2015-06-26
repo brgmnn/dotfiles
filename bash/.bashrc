@@ -11,6 +11,7 @@ shopt -s extglob
 # Export some variables
 export EDITOR=vim
 export BROWSER=firefox
+export PLAYER=mpv
 #export TERM=screen-256color
 
 # Set up dir colors to color the output of ls
