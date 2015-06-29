@@ -2,6 +2,7 @@ admin
 API
 AWS
 bergmann
+bitrate
 BLAS
 cd
 changelog
@@ -46,12 +47,14 @@ raytracer
 Redhat
 refactor
 repo
+resample
 screenshot
 spacebar
 SQL
 sudo
 svn
 thunderbird
+timestamp
 tmux
 Ubuntu
 username

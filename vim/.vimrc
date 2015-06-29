@@ -108,10 +108,10 @@ set nohidden
 
 "           Formatting
 "-----------------------------------------------------------------------------
-" Set line break and column break at 78 characters
+" Set line break and column break at 80 characters
 set wrap
 set lbr
-set textwidth=78
+set textwidth=80
 set wm=0
 set formatoptions+=t
 
@@ -267,7 +267,7 @@ function! SetMatches()
     " Error highlight lines which exceed the text width length.
     if &textwidth > 0
         silent! call matchdelete(w:m2)
-        let w:m2 = matchadd('ErrorMsg', '\%'.(&textwidth+2).'v.*')
+        let w:m2 = matchadd('ErrorMsg', '\%'.(&textwidth+1).'v.*')
     elseif exists('w:m2')
         silent! call matchdelete(w:m2)
     endif
