@@ -1,2 +1,2 @@
 setlocal foldmethod=syntax
-normal zR
+setlocal foldlevel=99
