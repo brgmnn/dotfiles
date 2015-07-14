@@ -9,4 +9,4 @@ else
     export __BASH_DIR=`tput sgr0`
 fi
 
-PS1="\u $__BASH_BOLD\h$__BASH_NORMAL \[\e["$__BASH_DIR"m\]\w$__BASH_NORMAL\n -- "
+PS1="\u $__BASH_BOLD\h$__BASH_NORMAL \[\e["$__BASH_DIR"m\]\w$__BASH_NORMAL\n \302\273 "

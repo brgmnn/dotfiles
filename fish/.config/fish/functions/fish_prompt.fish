@@ -34,7 +34,8 @@ function fish_prompt --description "Write out the prompt"
 
         echo -s "$USER $__fish_prompt_hostname $__fish_prompt_cwd" \
                 (prompt_long_pwd) "$__fish_prompt_normal"
-        echo " -- "
+
+        echo " "\u00bb" "
 
     end
 end
