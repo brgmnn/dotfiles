@@ -292,9 +292,6 @@ augroup vimrc_autocmd
     autocmd BufRead,BufWinEnter,BufWrite *
             \ if ! &bin | silent! %s/\s\+$//ge | endif
 
-    " Close hidden buffers when we close a buffer.
-    autocmd BufDelete * call CloseHiddenBuffers()
-
     " Highlight trailing whitespace and long lines on buffer enter, read,
     " winenter and write.
     autocmd BufEnter,BufRead,BufWinEnter,BufWrite,WinEnter,WinLeave *
