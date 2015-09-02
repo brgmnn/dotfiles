@@ -24,12 +24,12 @@ function _git_branch_name --description "Prints out the current git branch."
 end
 
 function _git_last_commit --description "Prints the last git commit hash."
-    echo -ns (set_color $fish_color_quote)(git log -1 --pretty=format:%h) \
+    echo -n -s (set_color $fish_color_quote)(git log -1 --pretty=format:%h) \
             (set_color normal)
 end
 
 function _gitsvn_revision
-    echo -ns (set_color $fish_color_quote) \
+    echo -n -s (set_color $fish_color_quote) \
         (git log -1 | tail -1 | awk -F'@' '{print $2}' | awk '{print $1}') \
         (set_color normal)
 end
