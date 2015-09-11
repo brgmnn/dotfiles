@@ -31,6 +31,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'artoj/qmake-syntax-vim'
 Plugin 'cespare/vim-toml'
+Plugin 'ngmy/vim-rubocop'
 
 " CSS and SCSS language plugin
 if version < 704
@@ -320,8 +321,20 @@ command! -bang Wa wa<bang>
 let mapleader = ","
 
 " Move left and right a word at a time with ctrl+arrow keys.
-nnoremap <C-Left> b
-nnoremap <C-Right> w
+nnoremap <C-h> b
+nnoremap <C-l> w
+nnoremap <C-k> <C-u>
+nnoremap <C-j> <C-d>
+
+
+nnoremap <up>    <nop>
+nnoremap <down>  <nop>
+nnoremap <left>  <nop>
+nnoremap <right> <nop>
+inoremap <up>    <nop>
+inoremap <down>  <nop>
+inoremap <left>  <nop>
+inoremap <right> <nop>
 
 " Open URL on this line with the browser \w
 map <Leader>w :call Browser ()<CR>
