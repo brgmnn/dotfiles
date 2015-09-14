@@ -326,7 +326,7 @@ nnoremap <C-l> w
 nnoremap <C-k> <C-u>
 nnoremap <C-j> <C-d>
 
-
+" Arrow keys are not allowed.
 nnoremap <up>    <nop>
 nnoremap <down>  <nop>
 nnoremap <left>  <nop>
@@ -335,6 +335,10 @@ inoremap <up>    <nop>
 inoremap <down>  <nop>
 inoremap <left>  <nop>
 inoremap <right> <nop>
+vnoremap <up>    <nop>
+vnoremap <down>  <nop>
+vnoremap <left>  <nop>
+vnoremap <right> <nop>
 
 " Open URL on this line with the browser \w
 map <Leader>w :call Browser ()<CR>
