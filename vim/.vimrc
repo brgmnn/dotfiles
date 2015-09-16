@@ -27,6 +27,7 @@ Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-liquid'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'brgmnn/vim-opencl'
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'rust-lang/rust.vim'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'artoj/qmake-syntax-vim'
@@ -325,6 +326,10 @@ nnoremap <C-h> b
 nnoremap <C-l> w
 nnoremap <C-k> <C-u>
 nnoremap <C-j> <C-d>
+vnoremap <C-h> b
+vnoremap <C-l> w
+vnoremap <C-k> <C-u>
+vnoremap <C-j> <C-d>
 
 " Arrow keys are not allowed.
 nnoremap <up>    <nop>
