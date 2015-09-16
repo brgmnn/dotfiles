@@ -1,3 +1,7 @@
 function ls --description "List contents of a directory."
-    command ls --color=auto -F --group-directories-first $argv
+    if which gls >/dev/null ^&-
+        command gls --color=auto -F --group-directories-first $argv
+    else
+        command ls --color=auto -F --group-directories-first $argv
+    end
 end
