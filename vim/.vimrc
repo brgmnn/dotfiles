@@ -16,6 +16,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-fugitive'
 
 " Language Plugins
 Plugin 'elixir-lang/vim-elixir'
