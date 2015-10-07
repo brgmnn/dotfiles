@@ -1,7 +1,7 @@
 function _git_dirty --description "Prints a short status string for how dirty a git repo is."
     set -l untracked (git status -s | grep '^??' | wc -l | tr -d '[[:space:]]')
     set -l modified  (git status -s | grep '^.M' | wc -l | tr -d '[[:space:]]')
-    set -l staged    (git status -s | grep '^M' | wc -l | tr -d '[[:space:]]')
+    set -l staged    (git status -s | grep '^[AM]' | wc -l | tr -d '[[:space:]]')
 
     if test $untracked -gt 0
         echo -n (set_color dd0000)"$untracked?"(set_color normal)
