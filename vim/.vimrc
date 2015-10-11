@@ -50,6 +50,7 @@ filetype plugin indent on
 "           Plugin Settings
 "-----------------------------------------------------------------------------
 " Airline (modifies vims statusline)
+let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
@@ -62,7 +63,6 @@ let g:airline_exclude_preview = 1
 let g:airline_mode_map = {'c': 'C ', 'i': 'I ', 'n': 'N ', 'v': 'V ',
         \ 'R': 'R ', 'V': 'VL', '' : 'VB' }
 
-
 " delimitMate
 let delimitMate_expand_cr = 1
 
@@ -72,6 +72,9 @@ let g:gitgutter_sign_modified = '*'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_modified_removed = '*-'
 
+" CtrlP
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_clear_cache_on_exit = 0
 
 "           Spelling
 "-----------------------------------------------------------------------------
