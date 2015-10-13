@@ -372,6 +372,7 @@ imap OF <End>
 
 " Disable Ex mode
 nnoremap Q <nop>
+nnoremap K <nop>
 
 " Timestamp
 nnoremap <F5> "=strftime("%c")<CR>P

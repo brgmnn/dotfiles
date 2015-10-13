@@ -17,6 +17,11 @@
 [help]
     autocorrect = 1
 
+[log]
+    abbrevCommit = true
+    decorate = true
+    date = relative
+
 [alias]
     lg1 = log --graph --abbrev-commit --decorate --date=relative \
         --format=format:'%C(bold blue)%h%C(reset) - \
