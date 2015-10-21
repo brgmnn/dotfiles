@@ -16,7 +16,8 @@ source ~/.fishenv ^&-
 set -U fish_color_autosuggestion   555
 set -U fish_color_command          005fd7
 set -U fish_color_comment          990000
-set -U fish_color_cwd              719600
+#set -U fish_color_cwd              719600
+set -U fish_color_cwd              87ffaf
 set -U fish_color_cwd_root         red
 set -U fish_color_end              009900
 set -U fish_color_error            ff5f5f
