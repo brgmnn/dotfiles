@@ -18,9 +18,13 @@ function _git_dirty --description "Prints a short status string for how dirty a 
 end
 
 function _git_branch_name --description "Prints out the current git branch."
-    echo -n (set_color blue)
+    if not set -q __fish_git_branch_color
+        set -g __fish_git_branch_color (set_color $fish_color_command)
+    end
+
+    echo -n $__fish_git_branch_color
     echo -n (command git symbolic-ref HEAD ^&- | sed -e 's|^refs/heads/||')
-    echo -n (set_color normal)
+    echo -n $__fish_prompt_normal
 end
 
 function _git_last_commit --description "Prints the last git commit hash."
