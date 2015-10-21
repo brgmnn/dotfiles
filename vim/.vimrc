@@ -74,7 +74,6 @@ let g:gitgutter_sign_modified_removed = '*-'
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_clear_cache_on_exit = 0
 
 "           Spelling
 "-----------------------------------------------------------------------------
