@@ -144,8 +144,8 @@ endif
 syntax enable
 
 set t_Co=256
-set background=light
-colorscheme hemisu
+set background=dark
+colorscheme badwolf
 
 " Turn on highlighting for search, match the search term as it is typed.
 set hlsearch
