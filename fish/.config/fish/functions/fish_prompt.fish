@@ -1,14 +1,26 @@
 # Prompt for the left side
 function fish_prompt --description "Write out the prompt"
+    # Prompt header background
+    if not set -q __fish_prompt_bg
+        set -g __fish_prompt_bg (set_color -b 1a1a1a)
+    end
 
     # Just calculate these once, to save a few cycles when displaying the prompt
     if not set -q __fish_prompt_hostname
         set -g __fish_prompt_hostname \
-                (set_color --bold)(hostname|cut -d . -f 1)(set_color normal)
+                (set_color --bold)(hostname|cut -d . -f 1)(set_color normal)$__fish_prompt_bg
     end
 
     if not set -q __fish_prompt_normal
         set -g __fish_prompt_normal (set_color normal)
+    end
+
+    if not set -q __fish_prompt_session
+        if set -q SSH_CLIENT; or set -q SSH_TTY; or true
+            set -g __fish_prompt_session (set_color 666666)"ssh:"(set_color normal)$__fish_prompt_bg
+        else
+            set -g __fish_prompt_session ""
+        end
     end
 
     switch $USER
@@ -17,9 +29,9 @@ function fish_prompt --description "Write out the prompt"
 
         if not set -q __fish_prompt_cwd
             if set -q fish_color_cwd_root
-                set -g __fish_prompt_cwd (set_color $fish_color_cwd_root)
+                set -g __fish_prompt_cwd (set_color $fish_color_cwd_root)$__fish_prompt_bg
             else
-                set -g __fish_prompt_cwd (set_color $fish_color_cwd)
+                set -g __fish_prompt_cwd (set_color $fish_color_cwd)$__fish_prompt_bg
             end
         end
 
@@ -32,10 +44,10 @@ function fish_prompt --description "Write out the prompt"
             set -g __fish_prompt_cwd (set_color $fish_color_cwd)
         end
 
-        echo -s "$USER $__fish_prompt_hostname $__fish_prompt_cwd" \
-                (prompt_long_pwd) "$__fish_prompt_normal"
+        echo -s (set_color -b 1a1a1a)"$USER $__fish_prompt_session$__fish_prompt_hostname $taken$__fish_prompt_cwd" \
+                (prompt_long_pwd) "$__fish_prompt_normal$__fish_prompt_bg"\x1b'[K'
 
-        echo " "\u00bb" "
+        echo "$__fish_prompt_normal "\u00bb" "
 
     end
 end
