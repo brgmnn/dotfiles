@@ -19,6 +19,7 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
 
 " Language Plugins
+Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'dag/vim-fish'
 Plugin 'fatih/vim-go'
