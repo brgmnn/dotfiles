@@ -17,6 +17,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-fugitive'
+Plugin 'rking/ag.vim'
 
 " Language Plugins
 Plugin 'ekalinin/Dockerfile.vim'
