@@ -9,7 +9,11 @@ set -x CXX      clang++
 set -x LD_LIBRARY_PATH /usr/local/lib $LD_LIBRARY_PATH
 
 # Source local environment variables file
-source ~/.fishenv ^&-
+if math (echo $FISH_VERSION | sed 's/\.//g') '>=220' >/dev/null ^&-
+    source ~/.fishenv ^&-
+else
+    . ~/.fishenv ^&-
+end
 
 
 # Set colors
@@ -51,4 +55,8 @@ end
 
 
 # Source local fish configuration file
-source ~/.fishrc ^&-
+if math (echo $FISH_VERSION | sed 's/\.//g') '>=220' >/dev/null ^&-
+    source ~/.fishrc ^&-
+else
+    . ~/.fishrc ^&-
+end
