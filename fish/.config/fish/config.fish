@@ -16,6 +16,10 @@ else
 end
 
 
+# Fundle
+fundle init
+
+
 # Set colors
 set -U fish_color_autosuggestion   555
 set -U fish_color_command          005fd7
