@@ -1,0 +1,1 @@
+../fundle/completions/fundle.fish

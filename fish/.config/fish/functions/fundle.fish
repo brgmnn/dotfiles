@@ -1,0 +1,1 @@
+../fundle/functions/fundle.fish

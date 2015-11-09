@@ -17,6 +17,9 @@ end
 
 
 # Fundle
+fundle plugin 'tuvistavie/fish-completion-helpers'
+fundle plugin 'brgmnn/fish-docker-compose'
+
 fundle init
 
 
@@ -37,7 +40,7 @@ set -U fish_color_operator         cyan
 set -U fish_color_param            00afff
 set -U fish_color_quote            ffd700
 set -U fish_color_redirection      00afff
-set -U fish_color_search_match     --background=purple
+set -U fish_color_search_match     --background=333333
 set -U fish_color_selection        --background=purple
 set -U fish_color_status           red
 set -U fish_color_user             ffde99
