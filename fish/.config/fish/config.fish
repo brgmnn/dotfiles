@@ -17,6 +17,8 @@ end
 
 
 # Fundle
+set -x fundle_plugins_dir ~/.config/fish/plugins
+
 fundle plugin 'tuvistavie/fish-completion-helpers'
 fundle plugin 'brgmnn/fish-docker-compose'
 
