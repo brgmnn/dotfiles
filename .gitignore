@@ -7,6 +7,7 @@ vim/.vim/backup
 vim/.vim/undo
 vim/.vim/bundle/*
 vim/.vim/spell/*.spl
+neovim/.config/nvim/.shada
 
 # Ignore likely places for sensitive information
 ssh/*
