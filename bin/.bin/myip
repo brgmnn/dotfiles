@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+#       myip
+# Returns the external IP address of the machine as seen by the external
+# internet. Requires an active internet connection, and relies on the third
+# party service httpbin.org. Syntax:
+#   myip
+
+addr=`curl -s httpbin.org/ip`
+ret=$?
+
+case "$ret" in
+    0) echo "$addr" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}';;
+    6) echo "couldn't resolve host";;
+    *) echo "failed to get ip address";;
+esac
+
+exit $ret
