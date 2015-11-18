@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+#       data-uri
+# Generates a data uri for a file according to RFC 2397
+# (http://tools.ietf.org/rfc/rfc2397.txt). Depends on `file`, `base64` and
+# `awk`. Syntax:
+#   data-uri $FILE1 [$FILE2 $FILE3 ...]
+
+set -e
+
+if [ ! "$1" ]; then
+    echo "$0: no files specified." >&2
+    exit 1
+fi
+
+
+for p in "$@"
+do
+    if [[ ! -r "$p" ]]; then
+        echo "$0: file is unreadable: '$p'" >&2
+        continue
+    fi
+
+    if [ -f "$p" ]; then
+        echo -n "data:"`file --mime "$p" | awk '{ print $2 }'`"base64,"
+        echo `base64 "$p"`
+    fi
+done

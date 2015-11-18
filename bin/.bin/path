@@ -7,6 +7,7 @@ set -e
 
 if [ ! "$1" ]; then
     echo $PATH | sed 's/:/\n/g';
+    exit $?
 fi
 
 case "$1" in
