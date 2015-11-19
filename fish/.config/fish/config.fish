@@ -8,12 +8,17 @@ set -x CXX      clang++
 
 set -x LD_LIBRARY_PATH /usr/local/lib $LD_LIBRARY_PATH
 
-# Source local environment variables file
-if math (echo $FISH_VERSION | sed 's/\.//g') '>=220' >/dev/null ^&-
-    source ~/.fishenv ^&-
-else
-    . ~/.fishenv ^&-
+
+# A fix for older versions of fish which don't have the source command.
+if math (echo $FISH_VERSION | sed 's/\.//g') '<220' >/dev/null ^&-
+    function source --description "Backwards compatible source shim for fish."
+        . $argv
+    end
 end
+
+
+# Source local environment variables file
+source ~/.fishenv ^&-
 
 
 # Fundle
