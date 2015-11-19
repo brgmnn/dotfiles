@@ -4,11 +4,11 @@ function _git_branch_name --description "Prints out the current git branch."
     end
 
     if set -l branch (command git symbolic-ref HEAD ^&-)
-        echo -ns $__fish_git_branch_color \
+        echo -s $__fish_git_branch_color \
             (echo $branch | sed -e 's|^refs/heads/||') \
             $__fish_prompt_normal
     else
-        echo -ns (set_color $fish_color_error) \
+        echo -s (set_color $fish_color_error) \
             "detached" \
             (set_color $fish_color_normal)
     end
