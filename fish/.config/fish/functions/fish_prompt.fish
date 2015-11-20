@@ -1,5 +1,8 @@
 # Prompt for the left side
 function fish_prompt --description "Write out the prompt"
+    # return value of last command
+    set -l ret $status
+
     # Prompt header background
     if not set -q __fish_prompt_bg
         set -g __fish_prompt_bg (set_color normal)(set_color -b 1a1a1a)
@@ -49,7 +52,13 @@ function fish_prompt --description "Write out the prompt"
             echo -s $__fish_prompt_bg(set_color $fish_color_user)"$USER$__fish_prompt_bg " \
                     "$__fish_prompt_session$__fish_prompt_hostname $__fish_prompt_cwd" \
                     (prompt_long_pwd) "$__fish_prompt_bg"\x1b'[K'
-            echo "$__fish_prompt_normal "\u00bb" "
+
+            if test $ret -eq 0
+                echo -s "$__fish_prompt_normal "\u00bb" "
+            else
+                echo -s "$__fish_prompt_normal "(set_color $fish_color_error) \
+                        \u00bb"$__fish_prompt_normal "
+            end
     end
 end
 
