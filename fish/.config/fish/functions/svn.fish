@@ -1,11 +1,12 @@
 function _svn_revision --description "Returns the current SVN revision number."
-    echo -n -s (set_color $fish_color_quote) \
+    echo -s (set_color $fish_color_quote) \
             (svn info | grep "Revision" | sed -e 's/Revision: //') \
             (set_color normal)
 end
 
 function _svn_branch_name --description "Returns the current SVN branch name."
-    echo -n -s (set_color blue)(svn info | sed -n "/URL:/s/.*\///p") \
+    echo -s (set_color $fish_color_command) \
+            (svn info | sed -n "/URL:/s/.*\///p") \
             (set_color normal)
 end
 
