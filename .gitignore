@@ -6,8 +6,12 @@ vim/.vim/.netrwhist
 vim/.vim/backup
 vim/.vim/undo
 vim/.vim/bundle/*
+vim/.vim/plugs/*
 vim/.vim/spell/*.spl
+
+# Neovim files
 neovim/.config/nvim/.shada
+neovim/.config/nvim/.netrwhist
 
 # Fish paths
 fish/.config/fish/plugins/

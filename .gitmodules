@@ -1,9 +1,9 @@
 [submodule "zsh/.zsh/antigen"]
 	path = zsh/.zsh/antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule "vim/.vim/bundle/Vundle.vim"]
-	path = vim/.vim/bundle/Vundle.vim
-	url = https://github.com/gmarik/Vundle.vim.git
 [submodule "fish/.config/fish/fundle"]
 	path = fish/.config/fish/fundle
 	url = https://github.com/tuvistavie/fundle.git
+[submodule "vim/.vim/vim-plug"]
+	path = vim/.vim/vim-plug
+	url = https://github.com/junegunn/vim-plug.git

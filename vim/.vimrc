@@ -1,52 +1,55 @@
 set nocompatible
 set encoding=utf-8
 set shell=/bin/sh
+filetype plugin indent on
 
 "           Plugins
 "-----------------------------------------------------------------------------
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/.vim/bundle')
-Plugin 'gmarik/Vundle.vim'
+source $HOME/.vim/autoload/plug.vim
+call plug#begin('~/.vim/plugs')
 
-Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'godlygeek/tabular'
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-fugitive'
-Plugin 'rking/ag.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'bling/vim-airline'
+Plug 'junegunn/vim-easy-align'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-fugitive'
+Plug 'rking/ag.vim'
 
 " Language Plugins
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'dag/vim-fish'
-Plugin 'fatih/vim-go'
-Plugin 'tpope/vim-git'
-Plugin 'pangloss/vim-javascript'
-Plugin 'elzr/vim-json'
-Plugin 'tpope/vim-liquid'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'brgmnn/vim-opencl'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'rust-lang/rust.vim'
-Plugin 'justinmk/vim-syntax-extra'
-Plugin 'artoj/qmake-syntax-vim'
-Plugin 'cespare/vim-toml'
-Plugin 'ngmy/vim-rubocop'
+Plug 'ekalinin/Dockerfile.vim',   { 'for': 'Dockerfile' }
+Plug 'elixir-lang/vim-elixir',    { 'for': 'elixer' }
+Plug 'dag/vim-fish',              { 'for': 'fish' }
+Plug 'fatih/vim-go',              { 'for': 'go' }
+Plug 'tpope/vim-git'
+Plug 'pangloss/vim-javascript',   { 'for': 'javascript' }
+Plug 'elzr/vim-json',             { 'for': 'json' }
+Plug 'tpope/vim-liquid',          { 'for': 'liquid' }
+Plug 'plasticboy/vim-markdown',   { 'for': 'markdown' }
+Plug 'brgmnn/vim-opencl',         { 'for': 'opencl' }
+Plug 'vim-ruby/vim-ruby',         { 'for': 'ruby' }
+Plug 'rust-lang/rust.vim',        { 'for': 'rust' }
+Plug 'justinmk/vim-syntax-extra'
+Plug 'artoj/qmake-syntax-vim'
+Plug 'cespare/vim-toml',          { 'for': 'toml' }
+Plug 'ngmy/vim-rubocop',          { 'for': 'ruby' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'kchmck/vim-coffee-script',  { 'for': 'coffee' }
 
 " CSS and SCSS language plugin
 if version < 704
-    Plugin 'JulesWang/css.vim'
+    Plug 'JulesWang/css.vim'
 endif
-Plugin 'cakebaker/scss-syntax.vim'
 
-Plugin 'kchmck/vim-coffee-script'
+" This is ugly but I don't know how else we can load plugins in several
+" locations.
+if filereadable(glob("$HOME/.config/nvim/plugins.vim"))
+    source $HOME/.config/nvim/plugins.vim
+endif
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 
 "           Plugin Settings
@@ -76,6 +79,7 @@ let g:gitgutter_sign_modified_removed = '*-'
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
+
 
 "           Spelling
 "-----------------------------------------------------------------------------
@@ -158,6 +162,8 @@ set showbreak=↳
 
 " have line numbers
 set number
+set relativenumber
+set cursorline
 
 " leave 5 lines overlap when scrolling
 set scrolloff=5
@@ -303,6 +309,12 @@ augroup vimrc_autocmd
     " winenter and write.
     autocmd BufEnter,BufRead,BufWinEnter,BufWrite,WinEnter,WinLeave *
             \ call SetMatches()
+
+    " Switch between normal and hybrid line number modes.
+    autocmd FocusLost * set norelativenumber
+    autocmd FocusGained * set relativenumber
+    autocmd InsertEnter * set norelativenumber
+    autocmd InsertLeave * set relativenumber
 augroup END
 
 
