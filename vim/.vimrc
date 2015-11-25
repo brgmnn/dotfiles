@@ -5,7 +5,6 @@ filetype plugin indent on
 
 "           Plugins
 "-----------------------------------------------------------------------------
-source $HOME/.vim/autoload/plug.vim
 call plug#begin('~/.vim/plugs')
 
 Plug 'rking/ag.vim'
@@ -31,6 +30,7 @@ Plug 'elzr/vim-json',             { 'for': 'json' }
 Plug 'tpope/vim-liquid',          { 'for': 'liquid' }
 Plug 'plasticboy/vim-markdown',   { 'for': 'markdown' }
 Plug 'brgmnn/vim-opencl',         { 'for': 'opencl' }
+Plug 'tpope/vim-rails',           { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',         { 'for': 'ruby' }
 Plug 'rust-lang/rust.vim',        { 'for': 'rust' }
 Plug 'justinmk/vim-syntax-extra'
@@ -41,7 +41,7 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'kchmck/vim-coffee-script',  { 'for': 'coffee' }
 
 " CSS and SCSS language plugin
-if version < 704
+if v:version < 704 && !has('nvim')
     Plug 'JulesWang/css.vim'
 endif
 
@@ -167,8 +167,10 @@ set showbreak=↳
 
 " have line numbers
 set number
-set relativenumber
 set cursorline
+if v:version > 704 || has('nvim')
+    set relativenumber
+end
 
 " leave 5 lines overlap when scrolling
 set scrolloff=5
@@ -316,10 +318,12 @@ augroup vimrc_autocmd
             \ call SetMatches()
 
     " Switch between normal and hybrid line number modes.
-    autocmd FocusLost * set norelativenumber
-    autocmd FocusGained * set relativenumber
-    autocmd InsertEnter * set norelativenumber
-    autocmd InsertLeave * set relativenumber
+    if v:version > 704 || has('nvim')
+        autocmd FocusLost * set norelativenumber
+        autocmd FocusGained * set relativenumber
+        autocmd InsertEnter * set norelativenumber
+        autocmd InsertLeave * set relativenumber
+    end
 
     " Close NerdTree buffers if it's the only window left
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
@@ -376,8 +380,8 @@ map <Leader>w :call Browser ()<CR>
 
 " Toggle folding at the cursor position with spacebar when in normal mode, as
 " well as folding code with spacebar when in visual mode.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-"vnoremap <Space> zf
+nnoremap <silent> <Space>f @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space>f zf
 
 " Map ctrl + c to copy when in visual mode.
 vnoremap <C-c> "+yy
