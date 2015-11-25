@@ -8,15 +8,16 @@ filetype plugin indent on
 source $HOME/.vim/autoload/plug.vim
 call plug#begin('~/.vim/plugs')
 
-Plug 'kien/ctrlp.vim'
-Plug 'bling/vim-airline'
-Plug 'junegunn/vim-easy-align'
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-fugitive'
 Plug 'rking/ag.vim'
+Plug 'bling/vim-airline'
+Plug 'kien/ctrlp.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-vinegar'
 
 " Language Plugins
 Plug 'ekalinin/Dockerfile.vim',   { 'for': 'Dockerfile' }
@@ -24,6 +25,7 @@ Plug 'elixir-lang/vim-elixir',    { 'for': 'elixer' }
 Plug 'dag/vim-fish',              { 'for': 'fish' }
 Plug 'fatih/vim-go',              { 'for': 'go' }
 Plug 'tpope/vim-git'
+Plug 'digitaltoad/vim-jade',      { 'for': 'jade' }
 Plug 'pangloss/vim-javascript',   { 'for': 'javascript' }
 Plug 'elzr/vim-json',             { 'for': 'json' }
 Plug 'tpope/vim-liquid',          { 'for': 'liquid' }
@@ -76,6 +78,9 @@ let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '*'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_modified_removed = '*-'
+
+" NerdTree
+let NERDTreeShowHidden=1
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
@@ -315,6 +320,10 @@ augroup vimrc_autocmd
     autocmd FocusGained * set relativenumber
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
+
+    " Close NerdTree buffers if it's the only window left
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
+            \ && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
 
@@ -368,7 +377,7 @@ map <Leader>w :call Browser ()<CR>
 " Toggle folding at the cursor position with spacebar when in normal mode, as
 " well as folding code with spacebar when in visual mode.
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
+"vnoremap <Space> zf
 
 " Map ctrl + c to copy when in visual mode.
 vnoremap <C-c> "+yy
@@ -399,6 +408,12 @@ inoremap <F5> <C-R>=strftime("%c")<CR>
 
 " When you forget to sudo, really write the file.
 cmap w!! w !sudo tee % >/dev/null
+
+
+"           Plugin Key Mappings
+"-----------------------------------------------------------------------------
+" NerdTree
+nnoremap <Space>n :NERDTreeToggle<CR>
 
 
 "           Load local host settings
