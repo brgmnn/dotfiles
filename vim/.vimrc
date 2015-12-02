@@ -18,6 +18,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
 
+if v:version > 704 || has('nvim')
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+end
+
 " Language Plugins
 Plug 'ekalinin/Dockerfile.vim',   { 'for': 'Dockerfile' }
 Plug 'elixir-lang/vim-elixir',    { 'for': 'elixer' }
