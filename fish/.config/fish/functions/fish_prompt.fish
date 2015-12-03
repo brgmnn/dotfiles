@@ -45,6 +45,12 @@ function fish_prompt --description "Write out the prompt"
 
         # Normal users
         case '*'
+            # Print out duration of command if it's over a certain duration
+            set -q CMD_DURATION; and test $CMD_DURATION -gt 4000; and begin
+                echo -s $__fish_prompt_bg(set_color 666666)" took "(math $CMD_DURATION / 1000) \
+                        "."(math (math $CMD_DURATION \% 1000) / 10)"s "
+            end
+
             if not set -q __fish_prompt_cwd
                 set -g __fish_prompt_cwd (set_color $fish_color_cwd)
             end
