@@ -47,8 +47,18 @@ function fish_prompt --description "Write out the prompt"
         case '*'
             # Print out duration of command if it's over a certain duration
             set -q CMD_DURATION; and test $CMD_DURATION -gt 4000; and begin
-                echo -s $__fish_prompt_bg(set_color 666666)" took "(math $CMD_DURATION / 1000) \
-                        "."(math (math $CMD_DURATION \% 1000) / 10)"s "
+                set -l days    (math $CMD_DURATION / 86400000)
+                set -l hours   (math $CMD_DURATION / 3600000 \% 24)
+                set -l minutes (math $CMD_DURATION / 60000 \% 60)
+                set -l seconds (math $CMD_DURATION / 1000 \% 60)
+                set    days    (test $CMD_DURATION -gt 86399999; and echo $days"d "; or echo "")
+                set    hours   (test $CMD_DURATION -gt 3599999; and echo $hours"h "; or echo "")
+                set    minutes (test $CMD_DURATION -gt 59999; and echo $minutes"m "; or echo "")
+                set    seconds (test $CMD_DURATION -gt 59999; and echo $seconds"s"; \
+                        or echo "$seconds."(math $CMD_DURATION / 100 \% 10)"s")
+
+                echo -s $__fish_prompt_bg(set_color 666666)" took $days$hours$minutes$seconds " \
+                        $__fish_prompt_normal
             end
 
             if not set -q __fish_prompt_cwd
