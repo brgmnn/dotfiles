@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+#       confirm
+# Ask the user for confirmation. Exits with 0 if yes, and 1 if no.
+
+read -r -p "${1:-Are you sure? [y/N]} " response
+case $response in
+    [yY][eE][sS]|[yY])
+        exit 0
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
