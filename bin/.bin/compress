@@ -13,6 +13,18 @@ if [ ! "$1" ]; then
     exit
 fi
 
+function helptext() {
+    cat <<-EOF
+Usage: compress [OPTION...] [FILE...]
+Compress directories or files using one of several compression algorithms.
+
+  -h, --help   display this help and exit
+  -bz2         compress as a tar.bz2 archive
+  -gz          compress as a tar.gz archive
+  -zip         compress as a .zip archive
+EOF
+}
+
 # Generates an archive name. It is either the name of the file/folder with the
 # current date, or in the case of multiple files/folders being archived it is
 # the name of the current directories parent with the current date.
@@ -40,6 +52,14 @@ case "$1" in
     -gz)
         # Create a tar.gz archive.
         shift
+        ;;
+    -h)
+        helptext
+        exit
+        ;;
+    --help)
+        helptext
+        exit
         ;;
     *)
         ;;
