@@ -57,7 +57,7 @@ function fish_prompt --description "Write out the prompt"
                 set    seconds (test $CMD_DURATION -gt 59999; and echo $seconds"s"; \
                         or echo "$seconds."(math $CMD_DURATION / 100 \% 10)"s")
 
-                echo -s $__fish_prompt_bg(set_color 666666)" took $days$hours$minutes$seconds " \
+                echo -s " "$__fish_prompt_bg(set_color 666666)" took $days$hours$minutes$seconds " \
                         $__fish_prompt_normal
             end
 
