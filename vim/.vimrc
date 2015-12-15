@@ -84,7 +84,8 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_modified_removed = '*-'
 
 " NerdTree
-let NERDTreeShowHidden=1
+let g:NERDTreeWinSize=50
+let g:NERDTreeShowHidden=0
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
@@ -323,10 +324,8 @@ augroup vimrc_autocmd
 
     " Switch between normal and hybrid line number modes.
     if v:version > 704 || has('nvim')
-        autocmd FocusLost * set norelativenumber
-        autocmd FocusGained * set relativenumber
-        autocmd InsertEnter * set norelativenumber
-        autocmd InsertLeave * set relativenumber
+        autocmd FocusLost,InsertEnter,WinLeave * set norelativenumber
+        autocmd FocusGained,InsertLeave,WinEnter * set relativenumber
     end
 
     " Close NerdTree buffers if it's the only window left
