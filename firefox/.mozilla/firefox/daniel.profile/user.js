@@ -6,3 +6,8 @@ user_pref("browser.tabs.warnOnClose", false);
 
 user_pref("network.http.pipelining", true);
 user_pref("network.http.proxy.pipelining", true);
+
+// Dictionary language
+user_pref("spellchecker.dictionary", "en-GB");
+
+//user_pref("layers.async-pan-zoom.enabled", true);

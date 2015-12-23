@@ -1,4 +1,4 @@
-set nocompatible
+if !has('nvim') | set nocompatible | endif
 set encoding=utf-8
 set shell=/bin/sh
 filetype plugin indent on
@@ -158,7 +158,7 @@ endif
 "-----------------------------------------------------------------------------
 syntax enable
 
-set t_Co=256
+if !has('nvim') | set t_Co=256 | endif
 set background=dark
 colorscheme badwolf
 
