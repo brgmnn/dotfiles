@@ -27,12 +27,13 @@ EOF
 
 # Generates an archive name. It is either the name of the file/folder with the
 # current date, or in the case of multiple files/folders being archived it is
-# the name of the current directories parent with the current date.
+# the name of the current directories parent with the current date. Strips any
+# '.' from the file or directory name.
 function arname() {
     if [[ "$#" -eq 1 ]]; then
-        echo "`basename $1`-`date +"%Y-%m-%d"`"
+        echo "$(basename $1 | tr -d .)-$(date +"%Y-%m-%d")"
     else
-        echo "$(basename $(pwd))-`date +"%Y-%m-%d"`"
+        echo "$(basename $(pwd) | tr -d .)-$(date +"%Y-%m-%d")"
     fi
 }
 
