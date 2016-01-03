@@ -37,6 +37,7 @@ Plug 'brgmnn/vim-opencl',         { 'for': 'opencl' }
 Plug 'tpope/vim-rails',           { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',         { 'for': 'ruby' }
 Plug 'rust-lang/rust.vim',        { 'for': 'rust' }
+Plug 'brgmnn/vim-syncthing'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'artoj/qmake-syntax-vim'
 Plug 'cespare/vim-toml',          { 'for': 'toml' }
