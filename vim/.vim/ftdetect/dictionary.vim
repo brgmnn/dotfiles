@@ -1,1 +1,2 @@
-autocmd BufNewFile,BufRead */spell/*.add set filetype=dictionary
+autocmd BufNewFile,BufRead */spell/*.add,$HOME/.*.add
+        \ set filetype=dictionary
