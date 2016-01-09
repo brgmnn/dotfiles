@@ -1,5 +1,4 @@
 if !has('nvim') | set nocompatible | endif
-set encoding=utf-8
 set shell=/bin/sh
 filetype plugin indent on
 
@@ -44,6 +43,7 @@ Plug 'cespare/vim-toml',          { 'for': 'toml' }
 Plug 'ngmy/vim-rubocop',          { 'for': 'ruby' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'kchmck/vim-coffee-script',  { 'for': 'coffee' }
+Plug 'mxw/vim-jsx'
 
 " CSS and SCSS language plugin
 if v:version < 704 && !has('nvim')
@@ -72,6 +72,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_exclude_preview = 1
+let g:airline_section_z = '%3p%% %3v'
 let g:airline_mode_map = {'c': 'C ', 'i': 'I ', 'n': 'N ', 'v': 'V ',
         \ 'R': 'R ', 'V': 'VL', '' : 'VB' }
 
@@ -309,6 +310,9 @@ function! SetMatches()
         silent! call matchdelete(w:m2)
     endif
 endfunction
+
+" TODO: make a function to format the text?
+" execute '%!python -m json.tool'
 
 
 "           Auto Commands
