@@ -44,6 +44,7 @@ Plug 'ngmy/vim-rubocop',          { 'for': 'ruby' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'kchmck/vim-coffee-script',  { 'for': 'coffee' }
 Plug 'mxw/vim-jsx'
+Plug 'tmatilai/vim-monit',        { 'for': 'monitrc' }
 
 " CSS and SCSS language plugin
 if v:version < 704 && !has('nvim')
