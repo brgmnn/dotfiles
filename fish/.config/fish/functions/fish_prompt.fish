@@ -78,33 +78,36 @@ function fish_prompt --description "Write out the prompt"
     end
 end
 
-# Prompt for the right side
+# Prompt for the right side. Is hidden if the terminal is less than 70
+# characters wide
 function fish_right_prompt --description "Write out the right side prompt"
-    begin
-        # Git-SVN prompt
-        set -q __fish_has_git;
-        and _git_is_repo;
-        and cat (git rev-parse --show-toplevel)"/.git/config" | grep -qs '^\[svn-remote';
-        and echo -s "git-svn "(_gitsvn_revision)" "(_git_branch_name);
-        and echo -s (_git_dirty)
-    end
-    or begin
-        # Git Submodule prompt
-        set -q __fish_has_git;
-        and _git_is_submodule;
-        and echo -s (_git_submodule_prompt)
-    end
-    or begin
-        # Git prompt
-        set -q __fish_has_git;
-        and _git_is_repo;
-        and echo -s (_git_repo_prompt)
-    end
-    or begin
-        # SVN prompt
-        set -q __fish_has_svn;
-        and svn info >/dev/null ^&-;
-        and echo -s "svn "(_svn_revision)" "(_svn_branch_name);
-        and echo -s (_svn_dirty)
+    if test $COLUMNS -gt 69
+        begin
+            # Git-SVN prompt
+            set -q __fish_has_git;
+            and _git_is_repo;
+            and cat (git rev-parse --show-toplevel)"/.git/config" | grep -qs '^\[svn-remote';
+            and echo -s "git-svn "(_gitsvn_revision)" "(_git_branch_name);
+            and echo -s (_git_dirty)
+        end
+        or begin
+            # Git Submodule prompt
+            set -q __fish_has_git;
+            and _git_is_submodule;
+            and echo -s (_git_submodule_prompt)
+        end
+        or begin
+            # Git prompt
+            set -q __fish_has_git;
+            and _git_is_repo;
+            and echo -s (_git_repo_prompt)
+        end
+        or begin
+            # SVN prompt
+            set -q __fish_has_svn;
+            and svn info >/dev/null ^&-;
+            and echo -s "svn "(_svn_revision)" "(_svn_branch_name);
+            and echo -s (_svn_dirty)
+        end
     end
 end
