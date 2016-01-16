@@ -5,6 +5,13 @@
 
 set -eu
 
+which gwc 2>&1 >/dev/null
+if [ $? -eq 0 ]; then
+    maxlen=`git log --format='%an' | sort | uniq -c | sort -nr | head -10 | sed 's/^[ 0-9]*//g' | gwc -L`
+else
+    maxlen=`git log --format='%an' | sort | uniq -c | sort -nr | head -10 | sed 's/^[ 0-9]*//g' | wc -L`
+fi
+
 git log --abbrev-commit --decorate \
-    --format=format:'%C(26)%d%C(reset)%n %C(220)%<(9)%h%C(reset) %<(21,trunc)%C(241)%ar%C(reset) %<(18,trunc)%C(222)%an%C(reset) %s' \
+    --format=format:"%C(26)%d%C(reset)%n %C(220)%<(9)%h%C(reset) %<(21,trunc)%C(241)%ar%C(reset) %<($maxlen,trunc)%C(222)%an%C(reset) %s" \
     | perl -pe 's/\x1b\[[0-9;]*m\x1b\[m\n//g' | less -FrX
