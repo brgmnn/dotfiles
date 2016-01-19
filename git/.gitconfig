@@ -1,26 +1,31 @@
 [user]
     name = Daniel Bergmann
     email = brgmnn@users.noreply.github.com
-
 [core]
     editor = vim
     excludesfile = ~/.config/git/ignore
-
 [color]
     diff = true
     ui = true
     branch = true
-
+[pull]
+    ff-only = true
 [push]
     default = current
-
 [help]
     autocorrect = 1
-
 [log]
     abbrevCommit = true
     decorate = true
     date = relative
+[svn]
+    rmdir = true
+[diff]
+	tool = vimdiff
+[difftool]
+    prompt = false
+[url "git@github.com:"]
+    insteadOf = github:
 
 [alias]
     lg2 = log --graph --abbrev-commit --decorate \
@@ -30,18 +35,7 @@
     lg = !bash -c git-lg
     merge-upstream = !git fetch upstream && git checkout master \
         && git rebase upstream/master
-
-[svn]
-    rmdir = true
-
-[diff]
-	tool = vimdiff
-
-[difftool]
-    prompt = false
-
-[url "git@github.com:"]
-    insteadOf = github:
+    su = !git submodule update
 
 [include]
     path = ~/.gitconfig.local
