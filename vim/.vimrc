@@ -70,6 +70,7 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_exclude_preview = 1
@@ -82,9 +83,9 @@ let delimitMate_expand_cr = 1
 
 " Git Gutter
 let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '*'
+let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_modified_removed = '*-'
+let g:gitgutter_sign_modified_removed = '*'
 
 " NerdTree
 let g:NERDTreeWinSize=50
