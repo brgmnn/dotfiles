@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+#       smv
+# Move a file from one place to another. Both the source and destination can be
+# ssh endpoints.
+# Syntax:
+#   smv $SRC $DEST
+
+from sh import rm, rsync, ssh
+import sys
+
+src, dest = sys.argv[1:3]
+paths = []
+
+for p in [src, dest]:
+    paths += ['-e', 'ssh', p] if ':' in p else [p]
+
+rsync('-Pavt', *paths)
+
+if ':' in src:
+    host, file = src.split(':')
+    ssh(host, 'rm '+file)
+else:
+    rm(src)
