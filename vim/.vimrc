@@ -1,9 +1,14 @@
+"           Initial Checks
+"-------------------------------------------------------------------------------
+if exists('g:vimrc_loaded') | finish | endif
+let g:vimrc_loaded = 1
+
 if !has('nvim') | set nocompatible | endif
 set shell=/bin/sh
 filetype plugin indent on
 
 "           Plugins
-"-----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugs')
 
 Plug 'rking/ag.vim'
