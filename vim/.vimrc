@@ -1,5 +1,5 @@
 "           Initial Checks
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 if exists('g:vimrc_loaded') | finish | endif
 let g:vimrc_loaded = 1
 
@@ -8,7 +8,7 @@ set shell=/bin/sh
 filetype plugin indent on
 
 "           Plugins
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugs')
 
 Plug 'rking/ag.vim'
@@ -66,7 +66,7 @@ call plug#end()
 
 
 "           Plugin Settings
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Airline (modifies vims statusline)
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
@@ -101,7 +101,7 @@ let g:ctrlp_working_path_mode = 'ra'
 
 
 "           Spelling
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 "set spell
 set spelllang=en_gb
 set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.en.local.utf-8.add
@@ -117,7 +117,7 @@ endif
 
 
 "           View
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Enable spell checking on comments, Unix line endings, better consistency
 " with editing at the end of lines.
 set viewoptions=cursor,slash,unix
@@ -137,7 +137,7 @@ set nohidden
 
 
 "           Formatting
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Set line break and column break at 80 characters
 set wrap
 set lbr
@@ -175,7 +175,7 @@ endif
 
 
 "           Color, Style and Syntax
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 syntax enable
 
 if !has('nvim') | set t_Co=256 | endif
@@ -207,7 +207,7 @@ set mousehide
 
 
 "           Auto-completion
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Shows what you are typing as a command. Automatically cd into the directory
 " that the file is in
 set showcmd
@@ -228,7 +228,7 @@ set wildignore+=*~,*.sw?                        " Swap files
 
 
 "           Backup, History and Swap
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " 1000 undo history
 set undolevels=1000
 
@@ -247,7 +247,7 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 
 
 "           Functions
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 "       Browser()
 " Opens a URL on the current line in the users browser. The browser command is
 " read from the $BROWSER environment variable.
@@ -323,7 +323,7 @@ endfunction
 
 
 "           Auto Commands
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 augroup vimrc_autocmd
     " Remove all auto commands from the current group.
     autocmd!
@@ -358,7 +358,7 @@ augroup END
 
 
 "           Commands
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Avoid easy typos with the shift key.
 command! -bang -nargs=* -complete=file E e<bang> <args>
 command! -bang -nargs=* -complete=file Tabnew tabnew<bang> <args>
@@ -373,7 +373,7 @@ command! -bang Wa wa<bang>
 
 
 "           Key Mappings
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Map the leader key.
 let mapleader = ","
 
@@ -425,8 +425,8 @@ imap OF <End>
 " Disable Ex mode
 nnoremap Q <nop>
 
-" Remap uppercase navigation keys to be navigation keys as I commonly misstype with the shift key
-" on.
+" Remap uppercase navigation keys to be navigation keys as I commonly misstype
+" with the shift key on.
 nnoremap K k
 nnoremap J j
 vnoremap K k
@@ -441,13 +441,13 @@ cmap w!! w !sudo tee % >/dev/null
 
 
 "           Plugin Key Mappings
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " NerdTree
 nnoremap <Space>n :NERDTreeToggle<CR>
 
 
 "           Load local host settings
-"-----------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Load local vimrc.
 if filereadable(glob("$HOME/.vimrc.local"))
     source $HOME/.vimrc.local
