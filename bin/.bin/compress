@@ -42,13 +42,13 @@ case "$1" in
         # Compress as a tar.bz2 archive.
         shift
         tar -jcvf "`arname $@`.tar.bz2" $@
-        exit 0;
+        exit
         ;;
     -zip)
         # Compress as a zip file.
         shift
         zip -r9 "`arname $@`.zip" $@
-        exit 0
+        exit
         ;;
     -gz)
         # Create a tar.gz archive.
