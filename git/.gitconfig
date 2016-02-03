@@ -35,7 +35,8 @@
     lg = !bash -c git-lg
     merge-upstream = !git fetch upstream && git checkout master \
         && git rebase upstream/master
-    su = !git submodule update
+    su   = !git submodule update
+    nuke = !git reset --hard HEAD && git clean -f -d
 
 [include]
     path = ~/.gitconfig.local
