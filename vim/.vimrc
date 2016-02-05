@@ -99,6 +99,9 @@ let g:NERDTreeShowHidden=0
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
 
+" RuboCop
+let g:vimrubocop_config = "$HOME/.vim/rubocop.yml"
+
 
 "           Spelling
 "------------------------------------------------------------------------------
@@ -134,6 +137,11 @@ set foldenable
 set splitright
 set splitbelow
 set nohidden
+
+" Disable scroll bars in the GUI
+if has("gui_running")
+    let &guioptions = substitute(&guioptions, '[lrLR]', '', 'g')
+endif
 
 
 "           Formatting
@@ -300,7 +308,6 @@ function! BuildDictionaries()
     mkspell! $HOME/.en.local.utf-8.add
 endfunction
 
-
 "       SetMatches()
 " Sets helper matches for files, at the moment this is for long lines and for
 " trailing whitespace.
@@ -324,6 +331,7 @@ endfunction
 
 "           Auto Commands
 "------------------------------------------------------------------------------
+if has('autocmd')
 augroup vimrc_autocmd
     " Remove all auto commands from the current group.
     autocmd!
@@ -355,6 +363,7 @@ augroup vimrc_autocmd
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
             \ && b:NERDTree.isTabTree()) | q | endif
 augroup END
+endif
 
 
 "           Commands
