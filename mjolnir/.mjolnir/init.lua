@@ -43,6 +43,6 @@ hotkey.bind(mash, 'h', function() tiling.promote() end)
 -- If you want to set the layouts that are enabled
 tiling.set('layouts', {
     'fullscreen',
-    'main-vertical',
-    'term-vim-vertical'
+    'term-vim-vertical',
+    'main-vertical'
 })
