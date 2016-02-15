@@ -138,11 +138,6 @@ set splitright
 set splitbelow
 set nohidden
 
-" Disable scroll bars in the GUI
-if has("gui_running")
-    let &guioptions = substitute(&guioptions, '[lrLR]', '', 'g')
-endif
-
 
 "           Formatting
 "------------------------------------------------------------------------------
@@ -325,6 +320,14 @@ function! SetMatches()
     endif
 endfunction
 
+"       Reload()
+" Reloads Ctrl+P and closes any hidden buffers.
+function! Reload()
+    silent! CtrlPClearCache
+    silent! call CloseHiddenBuffers()
+    redraw!
+endfunction
+
 " TODO: make a function to format the text?
 " execute '%!python -m json.tool'
 
@@ -413,6 +416,9 @@ vnoremap <right> <nop>
 " Open URL on this line with the browser \w
 map <Leader>w :call Browser ()<CR>
 
+" Reload various things
+map <Leader>r :call Reload()<CR>
+
 " Toggle folding at the cursor position with spacebar when in normal mode, as
 " well as folding code with spacebar when in visual mode.
 nnoremap <silent> <Space>f @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -421,9 +427,6 @@ vnoremap <Space>f zf
 " Map ctrl + c to copy when in visual mode.
 vnoremap <C-c> "+yy
 inoremap <C-S-v> <F12><C-r>+<F12>
-
-" Clear highlighted searches when pressing Ctrl+L
-nnoremap <C-L> :nohlsearch<CR><C-L>
 
 " Fix some keys not working in screen.
 map OH <Home>
