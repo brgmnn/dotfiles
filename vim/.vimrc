@@ -419,6 +419,8 @@ map <Leader>w :call Browser ()<CR>
 " Reload various things
 map <Leader>r :call Reload()<CR>
 
+nmap ; :
+
 " Toggle folding at the cursor position with spacebar when in normal mode, as
 " well as folding code with spacebar when in visual mode.
 nnoremap <silent> <Space>f @=(foldlevel('.')?'za':"\<Space>")<CR>
