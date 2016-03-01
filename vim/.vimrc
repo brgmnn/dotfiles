@@ -387,7 +387,7 @@ command! -bang Wa wa<bang>
 "           Key Mappings
 "------------------------------------------------------------------------------
 " Map the leader key.
-let mapleader = ","
+let mapleader = "\<Space>"
 
 " Move left and right a word at a time with ctrl+arrow keys.
 nnoremap <C-h> b
@@ -419,12 +419,16 @@ map <Leader>w :call Browser ()<CR>
 " Reload various things
 map <Leader>r :call Reload()<CR>
 
+" Productivity, press either ';' or ':' in normal will begin a command (:).
 nmap ; :
+
+" Allow searching for text highlighted in visual mode by double tapping '/'.
+vnoremap // y/<C-R>"<CR>"
 
 " Toggle folding at the cursor position with spacebar when in normal mode, as
 " well as folding code with spacebar when in visual mode.
 nnoremap <silent> <Space>f @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space>f zf
+vnoremap <Leader>f zf
 
 " Map ctrl + c to copy when in visual mode.
 vnoremap <C-c> "+yy
@@ -457,7 +461,7 @@ cmap w!! w !sudo tee % >/dev/null
 "           Plugin Key Mappings
 "------------------------------------------------------------------------------
 " NerdTree
-nnoremap <Space>n :NERDTreeToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
 
 
 "           Load local host settings
