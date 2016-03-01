@@ -12,6 +12,10 @@ function fish_prompt --description "Write out the prompt"
         set -g __fish_prompt_normal (set_color normal)
     end
 
+    if not set -q __fish_prompt_cwd
+        set -g __fish_prompt_cwd (set_color $fish_color_cwd)
+    end
+
     # Just calculate these once, to save a few cycles when displaying the prompt
     if not set -q __fish_prompt_hostname
         set -g __fish_prompt_hostname \
@@ -27,54 +31,40 @@ function fish_prompt --description "Write out the prompt"
         end
     end
 
-    switch $USER
-        # Root user
-        case root
-            if not set -q __fish_prompt_cwd
-                if set -q fish_color_cwd_root
-                    set -g __fish_prompt_cwd (set_color $fish_color_cwd_root) \
-                            $__fish_prompt_bg
-                else
-                    set -g __fish_prompt_cwd (set_color $fish_color_cwd) \
-                            $__fish_prompt_bg
-                end
-            end
+    # Print out duration of command if it's over a certain duration
+    set -q CMD_DURATION; and test $CMD_DURATION -gt 4000; and begin
+        set -l days    (math $CMD_DURATION / 86400000)
+        set -l hours   (math $CMD_DURATION / 3600000 \% 24)
+        set -l minutes (math $CMD_DURATION / 60000 \% 60)
+        set -l seconds (math $CMD_DURATION / 1000 \% 60)
+        set    days    (test $CMD_DURATION -gt 86399999; and echo $days"d "; \
+                or echo "")
+        set    hours   (test $CMD_DURATION -gt 3599999; and echo $hours"h "; \
+                or echo "")
+        set    minutes (test $CMD_DURATION -gt 59999; and echo $minutes"m "; \
+                or echo "")
+        set    seconds (test $CMD_DURATION -gt 59999; and echo $seconds"s"; \
+                or echo "$seconds."(math $CMD_DURATION / 100 \% 10)"s")
 
-            echo -n -s "$USER" @ "$__fish_prompt_hostname $__fish_prompt_cwd" \
-                    (prompt_long_pwd) "$__fish_prompt_normal" '# '
+        echo -s " "$__fish_prompt_bg(set_color 666666) \
+                " took $days$hours$minutes$seconds "$__fish_prompt_normal
+    end
 
-        # Normal users
-        case '*'
-            # Print out duration of command if it's over a certain duration
-            set -q CMD_DURATION; and test $CMD_DURATION -gt 4000; and begin
-                set -l days    (math $CMD_DURATION / 86400000)
-                set -l hours   (math $CMD_DURATION / 3600000 \% 24)
-                set -l minutes (math $CMD_DURATION / 60000 \% 60)
-                set -l seconds (math $CMD_DURATION / 1000 \% 60)
-                set    days    (test $CMD_DURATION -gt 86399999; and echo $days"d "; or echo "")
-                set    hours   (test $CMD_DURATION -gt 3599999; and echo $hours"h "; or echo "")
-                set    minutes (test $CMD_DURATION -gt 59999; and echo $minutes"m "; or echo "")
-                set    seconds (test $CMD_DURATION -gt 59999; and echo $seconds"s"; \
-                        or echo "$seconds."(math $CMD_DURATION / 100 \% 10)"s")
+    if set -q TMUX
+        echo -s $__fish_prompt_bg" "$__fish_prompt_session \
+                $__fish_prompt_cwd(prompt_long_pwd)" "$__fish_prompt_normal
+    else
+        echo -s $__fish_prompt_bg(set_color $fish_color_user)$USER \
+                $__fish_prompt_bg" "$__fish_prompt_session \
+                $__fish_prompt_hostname" "$__fish_prompt_cwd \
+                (prompt_long_pwd)$__fish_prompt_bg\x1b'[K'
+    end
 
-                echo -s " "$__fish_prompt_bg(set_color 666666)" took $days$hours$minutes$seconds " \
-                        $__fish_prompt_normal
-            end
-
-            if not set -q __fish_prompt_cwd
-                set -g __fish_prompt_cwd (set_color $fish_color_cwd)
-            end
-
-            echo -s $__fish_prompt_bg(set_color $fish_color_user)"$USER$__fish_prompt_bg " \
-                    "$__fish_prompt_session$__fish_prompt_hostname $__fish_prompt_cwd" \
-                    (prompt_long_pwd) "$__fish_prompt_bg"\x1b'[K'
-
-            if test $ret -eq 0
-                echo -s "$__fish_prompt_normal "\u00bb" "
-            else
-                echo -s "$__fish_prompt_normal "(set_color $fish_color_error) \
-                        \u00bb"$__fish_prompt_normal "
-            end
+    if test $ret -eq 0
+        echo -s "$__fish_prompt_normal "\u00bb" "
+    else
+        echo -s "$__fish_prompt_normal "(set_color $fish_color_error) \
+                \u00bb"$__fish_prompt_normal "
     end
 end
 
