@@ -1,7 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 #       docker-clean
-# Cleans all docker containers and images
+# Cleans all docker containers and images.
 
-docker ps -q | xargs docker rm
-docker images -q | xargs docker rmi
+docker rm $(docker ps -q)
+docker rmi $(docker ps -q)

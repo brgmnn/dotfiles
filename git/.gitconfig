@@ -37,6 +37,7 @@
         && git rebase upstream/master
     su   = !git submodule update
     nuke = !git reset --hard HEAD && git clean -f -d
+    unstage = reset
 
 [include]
     path = ~/.gitconfig.local

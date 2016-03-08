@@ -11,8 +11,8 @@ ret=$?
 
 case "$ret" in
     0) echo "$addr" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}';;
-    6) echo "couldn't resolve host";;
-    *) echo "failed to get ip address";;
+    6) echo "Couldn't resolve host";;
+    *) echo "Failed to get ip address";;
 esac
 
 exit $ret
