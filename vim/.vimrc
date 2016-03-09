@@ -42,6 +42,7 @@ Plug 'tpope/vim-rails',           { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',         { 'for': 'ruby' }
 Plug 'rust-lang/rust.vim',        { 'for': 'rust' }
 Plug 'brgmnn/vim-syncthing'
+Plug 'scrooloose/syntastic'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'artoj/qmake-syntax-vim'
 Plug 'cespare/vim-toml',          { 'for': 'toml' }
@@ -82,6 +83,20 @@ let g:airline_exclude_preview = 1
 let g:airline_section_z = '%3p%% %3v'
 let g:airline_mode_map = {'c': 'C ', 'i': 'I ', 'n': 'N ', 'v': 'V ',
         \ 'R': 'R ', 'V': 'VL', '' : 'VB' }
+
+" Syntastic
+let g:syntastic_check_on_open        = 1
+let g:syntastic_check_on_wq          = 0
+let g:syntastic_aggregate_errors     = 1
+let g:syntastic_error_symbol         = '✗'
+let g:syntastic_warning_symbol       = '?'
+let g:syntastic_style_error_symbol   = '✗'
+let g:syntastic_style_warning_symbol = '?'
+let g:syntastic_stl_format           = '✗ %F#%t'
+
+if filereadable(glob("$HOME/.vim/syntax-checkers.vim"))
+    source $HOME/.vim/syntax-checkers.vim
+endif
 
 " delimitMate
 let delimitMate_expand_cr = 1
