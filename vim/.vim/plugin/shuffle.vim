@@ -13,7 +13,7 @@
 "          Press "V" to select some line.  Use command :Shuffle to do the left
 "          work.
 
-if exists("g:loaded_shuffle")
+if exists('g:loaded_shuffle')
     finish
 endif
 let g:loaded_shuffle = 1
