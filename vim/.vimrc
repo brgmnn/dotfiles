@@ -27,30 +27,32 @@ if v:version > 704 || has('nvim')
 end
 
 " Language Plugins
+Plug 'artoj/qmake-syntax-vim'
+Plug 'brgmnn/vim-opencl',         { 'for': 'opencl' }
+Plug 'brgmnn/vim-syncthing'
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'cespare/vim-toml',          { 'for': 'toml' }
+Plug 'dag/vim-fish',              { 'for': 'fish' }
+Plug 'digitaltoad/vim-jade',      { 'for': 'jade' }
 Plug 'ekalinin/Dockerfile.vim',   { 'for': 'Dockerfile' }
 Plug 'elixir-lang/vim-elixir',    { 'for': 'elixer' }
-Plug 'dag/vim-fish',              { 'for': 'fish' }
-Plug 'fatih/vim-go',              { 'for': 'go' }
-Plug 'tpope/vim-git'
-Plug 'digitaltoad/vim-jade',      { 'for': 'jade' }
-Plug 'pangloss/vim-javascript',   { 'for': 'javascript' }
 Plug 'elzr/vim-json',             { 'for': 'json' }
-Plug 'tpope/vim-liquid',          { 'for': 'liquid' }
-Plug 'plasticboy/vim-markdown',   { 'for': 'markdown' }
-Plug 'brgmnn/vim-opencl',         { 'for': 'opencl' }
-Plug 'tpope/vim-rails',           { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby',         { 'for': 'ruby' }
-Plug 'rust-lang/rust.vim',        { 'for': 'rust' }
-Plug 'brgmnn/vim-syncthing'
-Plug 'scrooloose/syntastic'
+Plug 'fatih/vim-go',              { 'for': 'go' }
 Plug 'justinmk/vim-syntax-extra'
-Plug 'artoj/qmake-syntax-vim'
-Plug 'cespare/vim-toml',          { 'for': 'toml' }
-Plug 'ngmy/vim-rubocop',          { 'for': 'ruby' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'kchmck/vim-coffee-script',  { 'for': 'coffee' }
 Plug 'mxw/vim-jsx'
+Plug 'ngmy/vim-rubocop',          { 'for': 'ruby' }
+Plug 'pangloss/vim-javascript',   { 'for': 'javascript' }
+Plug 'plasticboy/vim-markdown',   { 'for': 'markdown' }
+Plug 'rust-lang/rust.vim',        { 'for': 'rust' }
+Plug 'scrooloose/syntastic'
 Plug 'tmatilai/vim-monit',        { 'for': 'monitrc' }
+Plug 'todesking/vint-syntastic',  { 'for': 'vim' }
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-liquid',          { 'for': 'liquid' }
+Plug 'tpope/vim-rails',           { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby',         { 'for': 'ruby' }
 
 " CSS and SCSS language plugin
 if v:version < 704 && !has('nvim')
@@ -59,7 +61,7 @@ endif
 
 " This is ugly but I don't know how else we can load plugins in several
 " locations.
-if filereadable(glob("$HOME/.config/nvim/plugins.vim"))
+if filereadable(glob('$HOME/.config/nvim/plugins.vim'))
     source $HOME/.config/nvim/plugins.vim
 endif
 
@@ -94,12 +96,12 @@ let g:syntastic_style_error_symbol   = '✗'
 let g:syntastic_style_warning_symbol = '?'
 let g:syntastic_stl_format           = '✗ %F#%t'
 
-if filereadable(glob("$HOME/.vim/syntax-checkers.vim"))
+if filereadable(glob('$HOME/.vim/syntax-checkers.vim'))
     source $HOME/.vim/syntax-checkers.vim
 endif
 
 " delimitMate
-let delimitMate_expand_cr = 1
+let g:delimitMate_expand_cr = 1
 
 " Git Gutter
 let g:gitgutter_sign_added = '+'
@@ -115,7 +117,7 @@ let g:NERDTreeShowHidden=0
 let g:ctrlp_working_path_mode = 'ra'
 
 " RuboCop
-let g:vimrubocop_config = "$HOME/.vim/rubocop.yml"
+let g:vimrubocop_config = '$HOME/.vim/rubocop.yml'
 
 
 "           Spelling
@@ -124,11 +126,11 @@ let g:vimrubocop_config = "$HOME/.vim/rubocop.yml"
 set spelllang=en_gb
 set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.en.local.utf-8.add
 
-if empty(glob("$HOME/.vim/spell/en.utf-8.add.spl"))
+if empty(glob('$HOME/.vim/spell/en.utf-8.add.spl'))
     silent! mkspell $HOME/.vim/spell/en.utf-8.add
 endif
-if filereadable(glob("$HOME/.en.local.utf-8.add"))
-    if empty(glob("$HOME/.en.local.utf-8.add.spl"))
+if filereadable(glob('$HOME/.en.local.utf-8.add'))
+    if empty(glob('$HOME/.en.local.utf-8.add.spl'))
         silent! mkspell $HOME/.vim/spell/en.local.utf-8.add
     endif
 endif
@@ -158,9 +160,9 @@ set nohidden
 "------------------------------------------------------------------------------
 " Set line break and column break at 80 characters
 set wrap
-set lbr
+set linebreak
 set textwidth=80
-set wm=0
+set wrapmargin=0
 set formatoptions+=t
 
 " configure tabbing in Vim to be 4 spaces with automatic indentation
@@ -176,17 +178,18 @@ set smartindent
 set backspace=indent,eol,start
 set pastetoggle=<F12>
 
-if !has("gui_running")
+if !has('gui_running')
     set clipboard=unnamedplus
 endif
 
 " File formatting
-if has("multi_byte")
-    if &termencoding == ""
+if has('multi_byte')
+    if &termencoding ==? ''
         let &termencoding = &encoding
     endif
     set encoding=utf-8
     setglobal fileencoding=utf-8
+    scriptencoding utf-8
     "setglobal bomb
     set fileencodings=ucs-bom,utf-8,latin1
 endif
@@ -270,10 +273,10 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 " Opens a URL on the current line in the users browser. The browser command is
 " read from the $BROWSER environment variable.
 function! Browser()
-    let line = getline(".")
-    let line = matchstr(line, "http[^   ]*")
-    if line != ""
-        silent exec "!$BROWSER ".line
+    let l:line = getline('.')
+    let l:line = matchstr(l:line, 'http[^   ]*')
+    if l:line !=? ''
+        silent exec '!$BROWSER '.l:line
         redraw!
     endif
 endfunction
@@ -282,7 +285,7 @@ endfunction
 " Restores the cursor to the line it was on when a buffer was closed. This
 " function is called on entering a buffer by the auto commands.
 function! RestoreCursor()
-    if line("'\"") <= line("$")
+    if line("'\"") <= line('$')
         normal! g`"
         return 1
     endif
@@ -293,21 +296,21 @@ endfunction
 " been modified.
 function! CloseHiddenBuffers()
     " Get a list of all buffers in all tabs.
-    let tablist = []
-    for i in range(tabpagenr('$'))
-        call extend(tablist, tabpagebuflist(i + 1))
+    let l:bufs = []
+    for l:i in range(tabpagenr('$'))
+        call extend(l:bufs, tabpagebuflist(l:i + 1))
     endfor
 
-    let nclosed = 0
-    for i in range(1, bufnr('$'))
+    let l:nclosed = 0
+    for l:i in range(1, bufnr('$'))
         " If buffer i exists and isn't modified and isn't in the list of
         " buffers open in windows and tabs, then we delete it.
-        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
-            silent exec 'bwipeout' i
-            let nclosed = nclosed + 1
+        if bufexists(l:i) && !getbufvar(l:i,'&mod') && index(l:bufs, l:i) == -1
+            silent exec 'bwipeout' l:i
+            let l:nclosed = l:nclosed + 1
         endif
     endfor
-    echomsg nclosed . ' buffer(s) closed.'
+    echomsg l:nclosed . ' buffer(s) closed.'
 endfunction
 
 "       BuildDictionaries()
@@ -402,7 +405,7 @@ command! -bang Wa wa<bang>
 "           Key Mappings
 "------------------------------------------------------------------------------
 " Map the leader key.
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 " Move left and right a word at a time with ctrl+arrow keys.
 nnoremap <C-h> b
@@ -482,6 +485,6 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 "           Load local host settings
 "------------------------------------------------------------------------------
 " Load local vimrc.
-if filereadable(glob("$HOME/.vimrc.local"))
+if filereadable(glob('$HOME/.vimrc.local'))
     source $HOME/.vimrc.local
 endif
