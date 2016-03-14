@@ -218,6 +218,9 @@ if v:version > 704 || has('nvim')
     set relativenumber
 end
 
+" Make the vertical split bar a continuous line.
+set fillchars+=vert:│
+
 " leave 5 lines overlap when scrolling
 set scrolloff=5
 set sidescrolloff=5

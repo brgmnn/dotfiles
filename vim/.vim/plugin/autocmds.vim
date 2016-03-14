@@ -24,8 +24,12 @@ augroup vimrc_autocmd
 
     " Switch between normal and hybrid line number modes.
     if v:version > 704 || has('nvim')
-        autocmd FocusLost,InsertEnter,WinLeave * set norelativenumber
-        autocmd FocusGained,InsertLeave,WinEnter * set relativenumber
+        autocmd FocusLost,InsertEnter,WinLeave * if
+            \ !exists('b:NERDTree') |
+            \ set norelativenumber | endif
+        autocmd FocusGained,InsertLeave,WinEnter * if
+            \ !exists('b:NERDTree') |
+            \ set norelativenumber | endif
     end
 
     " Close NerdTree buffers if it's the only window left
