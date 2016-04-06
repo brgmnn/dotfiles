@@ -38,6 +38,7 @@
     su   = !git submodule update
     nuke = !git reset --hard HEAD && git clean -f -d
     unstage = reset
+    rm-all = !git ls-files --deleted -z | xargs -0 git rm
 
 [include]
     path = ~/.gitconfig.local
