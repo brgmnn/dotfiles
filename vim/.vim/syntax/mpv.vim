@@ -1,9 +1,9 @@
-" Vim syntax file
+" MPV config syntax
 " Language: mpv.conf
 " Maintainer: Daniel Bergmann
-" Last Change: 13-November-2014
+" Last Change: 14-March-2016
 
-if exists("b:current_syntax")
+if exists('b:current_syntax')
   finish
 endif
 
@@ -22,4 +22,4 @@ hi def link mpvOperator Operator
 hi def link mpvString   String
 hi def link mpvColor    Special
 
-let b:current_syntax = "mpv"
+let b:current_syntax = 'mpv'

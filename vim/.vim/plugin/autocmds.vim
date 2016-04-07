@@ -29,7 +29,7 @@ augroup vimrc_autocmd
             \ set norelativenumber | endif
         autocmd FocusGained,InsertLeave,WinEnter * if
             \ !exists('b:NERDTree') |
-            \ set norelativenumber | endif
+            \ set relativenumber | endif
     end
 
     " Close NerdTree buffers if it's the only window left
