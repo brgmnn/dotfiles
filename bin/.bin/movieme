@@ -12,10 +12,51 @@
 # ~/Desktop/dr-strangelove.mp4 23:12 3
 # ~/Desktop/holman-backflip-on-fire.mov 3.9 1.75
 
-set -u
-set -e
+set -eu
 
-tmpdir=mktemp -d
-ffmpeg -i $1 -f image2 -ss $2 -t $3 -r 7 $tmpdir/d-%05d.png
-gifme $tmpdir/* -d 0
+# TODO: use gmktemp for os x if available otherwise use mktemp
+tmpdir=`gmktemp -d`
+echo $tmpdir
+
+# Optionally boomerang the video (append it reversed to itself).
+boomerang=0
+case "$1" in
+    -b*)
+        boomerang=1
+        shift;;
+esac
+
+input="$1"
+offset="$2"
+duration="$3"
+
+video="$tmpdir/clip.mkv"
+palette="$tmpdir/palette.png"
+
+# Crop the video to the correct length
+ffmpeg -ss $offset -t $duration -i $input -an $video
+
+# Optionally reverse the clip and add that to the end of the original clip.
+if [ $boomerang -eq 1 ]; then
+    vr="$tmpdir/clip-reversed.mkv"
+    vnew="$tmpdir/clip-boomerang.mkv"
+    ffmpeg -i $video -an -vf reverse $vr
+    ffmpeg -i $video -i $vr \
+        -filter_complex '[0:0] [1:0] concat=n=2:v=1:a=0 [v]' -map '[v]' $vnew
+    video=$vnew
+fi
+
+# Generate the palette for the GIF
+ffmpeg -y -i $video \
+    -vf 'fps=10,scale=320:-1:flags=lanczos,palettegen=stats_mode=full' $palette
+
+# Generate the GIF
+ffmpeg -i $video -i $palette -filter_complex \
+"fps=10,scale=480:-1:flags=lanczos[x];[x][1:v]paletteuse" "$tmpdir/output.gif"
+
+# Copy the GIF back to the working folder.
+filename=$(basename "$input")
+filename="${filename%.*}"
+cp "$tmpdir/output.gif" "$filename".gif
+
 rm -rf $tmpdir
