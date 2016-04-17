@@ -13,5 +13,5 @@ else
 fi
 
 git log --abbrev-commit --decorate \
-    --format=format:"%C(26)%d%C(reset)%n %C(220)%<(9)%h%C(reset) %<(14,trunc)%C(241)%ar%C(reset) %<($maxlen,trunc)%C(222)%an%C(reset) %s" \
+    --format=format:"%C(26)%d%C(reset)%n %C(220)%<(9)%h%C(reset) %<(14,trunc)%C(241)%ad%C(reset) %<($maxlen,trunc)%C(222)%an%C(reset) %s" \
     | perl -pe 's/\x1b\[[0-9;]*m\x1b\[m\n//g' | less -FrX
