@@ -1,0 +1,66 @@
+html {
+    font-size: .65cm;
+}
+
+body {
+    color: #fff;
+    background: no-repeat top center/100% url("images/isles.jpg");
+}
+
+/* Links */
+a {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: .5px .5px 1px #000;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    margin: 0;
+    padding: .5rem;
+    list-style: none;
+    position: fixed;
+    top: 1rem;
+}
+
+li {
+    line-height: 1.2rem;
+}
+
+ul.left {
+    margin-right: 50%;
+    text-align: right;
+    right: 0;
+    border-right: 1px dotted #eee;
+}
+ul.right {
+    margin-left: 50%;
+    text-align: left;
+    left: 0;
+}
+
+/* Clock */
+.clock {
+    position: fixed;
+    bottom: 1rem;
+    left: 0;
+    width: 100%;
+}
+
+.clock div {
+    text-align: center;
+}
+
+#time {
+    font-family: serif;
+    font-size: 3rem;
+    text-shadow: .05rem .05rem .1rem #666;
+}
+
+#time .faded {
+    font-size: .8em;
+    opacity: 0.3;
+}
