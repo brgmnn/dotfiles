@@ -1,0 +1,3 @@
+debian8:
+  image: debian:8
+  script: test/all.sh
