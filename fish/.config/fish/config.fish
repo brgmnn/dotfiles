@@ -8,6 +8,8 @@ set -x CXX      clang++
 
 set -x LD_LIBRARY_PATH /usr/local/lib $LD_LIBRARY_PATH
 
+set -x HOMEBREW_NO_ANALYTICS 1
+
 
 # A fix for older versions of fish which don't have the source command.
 if math (echo $FISH_VERSION | sed 's/\.//g') '<220' >/dev/null ^&-
