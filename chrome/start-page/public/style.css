@@ -3,6 +3,11 @@
   src: url('fonts/DroidSerif.ttf');
 }
 
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
 html {
     font-size: .65cm;
 }
@@ -14,6 +19,12 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    margin: 0;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
 }
 
 /* Links */
