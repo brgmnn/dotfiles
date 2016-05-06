@@ -1,3 +1,28 @@
+(function() {
+  var lastTime = 0;
+  var vendors = ['ms', 'moz', 'webkit', 'o'];
+  for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
+      || window[vendors[x]+'CancelRequestAnimationFrame'];
+  }
+
+  if (!window.requestAnimationFrame)
+    window.requestAnimationFrame = function(callback, element) {
+      var currTime = new Date().getTime();
+      var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+      var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+                                 timeToCall);
+      lastTime = currTime + timeToCall;
+      return id;
+    };
+
+    if (!window.cancelAnimationFrame)
+      window.cancelAnimationFrame = function(id) {
+        clearTimeout(id);
+      };
+}());
+
 var gl = null;
 var canvas;
 
@@ -8,22 +33,27 @@ var Particles = {
   buffer: null,
   shader: null,
 
-  SIZE: 50000,
-  FPS: 60,
+  SIZE: 500,
+
+  time: null,
+  dt: 1,
+  MAX_DT: 100,
 
   // Percent of total viewport.
-  MAX_SPEED: 0.1,
+  MAX_SPEED: 0.0,
 
   init: function() {
     for (var i=0; i<this.SIZE; i++) {
       // Initialise the particle positions
-      this.position.push(Math.random() - 0.5); // pos x
-      this.position.push(Math.random() - 0.5); // pos y
+      this.position.push(2*Math.random() - 1.0); // pos x
+      this.position.push(2*Math.random() - 1.0); // pos y
+      //this.position.push(Math.random() - 0.5); // pos x
+      //this.position.push(Math.random() - 0.5); // pos y
       this.position.push(0.0);
 
       // Initialise the particle velocities
-      this.velocity.push(this.MAX_SPEED*(Math.random() - 0.5)/(this.FPS)); // vel x
-      this.velocity.push(this.MAX_SPEED*(Math.random() - 0.5)/(this.FPS)); // vel y
+      this.velocity.push( this.MAX_SPEED*(Math.random() - 0.5) ); // vel x
+      this.velocity.push( this.MAX_SPEED*(Math.random() - 0.5) ); // vel y
     }
 
     this.create_buffer();
@@ -41,7 +71,7 @@ var Particles = {
       'attribute vec3 coordinates;' +
       'void main(void) {' +
       '  gl_Position = vec4(coordinates, 1.0);' +
-      '  gl_PointSize = 1.0;'+
+      '  gl_PointSize = 2.0;'+
       '}';
 
     // Create a vertex shader object
@@ -82,18 +112,27 @@ var Particles = {
     gl.enableVertexAttribArray(coord);
   },
 
+  get_timestep: function() {
+    var now = Date.now();
+    this.dt = Math.max(now - (this.time || now), this.MAX_DT);
+    this.time = now;
+  },
+
   iterate: function() {
+    this.get_timestep();
     for (var i=0; i<this.SIZE; i++) {
       var x = this.position[3*i  ];
       var y = this.position[3*i+1];
 
-      // gravity velocity adjustment
-      this.velocity[2*i  ] -= 0.0001 * x / ( (x*x + y*y) * this.FPS);
-      this.velocity[2*i+1] -= 0.0001 * y / ( (x*x + y*y) * this.FPS);
+      // gravity velocity adjustment for central gravity point
+      //this.velocity[2*i  ] -= 0.00001 * x / (x*x + y*y);
+      //this.velocity[2*i+1] -= 0.00001 * y / (x*x + y*y);
+
+      this.naive_gravity(i);
 
       // move particle
-      x = this.position[3*i  ] + this.velocity[2*i  ];
-      y = this.position[3*i+1] + this.velocity[2*i+1];
+      x = this.position[3*i  ] + this.velocity[2*i  ] * this.dt * 0.001;
+      y = this.position[3*i+1] + this.velocity[2*i+1] * this.dt * 0.001;
 
       // bound checking for x
       if (x < -1.0 || x > 1.0) {
@@ -109,6 +148,36 @@ var Particles = {
         this.position[3*i+1] = y;
       }
     }
+  },
+
+  naive_gravity: function(p) {
+    var vx = 0.0;
+    var vy = 0.0;
+
+    for (var i=0; i<this.SIZE; i++) {
+      if (i != p) {
+        var r2 = this.distance_sqrd(p, i);
+
+        var sx = this.position[3*p  ] > this.position[3*i  ] ? -1 : 1;
+        var sy = this.position[3*p+1] > this.position[3*i+1] ? -1 : 1;
+
+        vx += sx / r2;
+        vy += sy / r2;
+      }
+    }
+
+    this.velocity[2*p  ] += 0.0000005 * this.between(-100, vx, 100);
+    this.velocity[2*p+1] += 0.0000005 * this.between(-100, vy, 100);
+  },
+
+  distance_sqrd: function(a, b) {
+    var dx = this.position[3*a  ]-this.position[3*b  ];
+    var dy = this.position[3*a+1]-this.position[3*b+1];
+    return dx*dx + dy*dy;
+  },
+
+  between: function(low, val, high) {
+    return Math.max(Math.min(val, high), low);
   }
 }
 
@@ -132,6 +201,8 @@ function initWebGL(canvas) {
 }
 
 function render() {
+  requestAnimationFrame(render);
+
   Particles.iterate();
 
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Particles.position), gl.STATIC_DRAW);
@@ -169,20 +240,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
   Particles.init();
 
-  window.setInterval(render, 1000/Particles.FPS);
-
-
-
-//  // Set clear color to black, fully opaque
-//  gl.clearColor(0.0, 0.0, 0.0, 0.0);
-//  // Enable depth testing
-//  gl.enable(gl.DEPTH_TEST);
-//  // Near things obscure far things
-//  gl.depthFunc(gl.LEQUAL);
-//  // Clear the color as well as the depth buffer.
-//  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-//
-
-//  gl.viewport(0, 0, canvas.width, canvas.height);
-//  debugger;
+  render();
 });
