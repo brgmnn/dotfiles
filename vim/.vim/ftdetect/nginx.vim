@@ -1,2 +1,2 @@
-autocmd BufNewFile,BufRead /etc/nginx/*.conf,/usr/local/nginx/conf/*.conf
+autocmd BufNewFile,BufRead */nginx/*.conf
         \ set filetype=nginx
