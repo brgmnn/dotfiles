@@ -8,17 +8,17 @@ var Particles = {
   buffer: null,
   shader: null,
 
-  SIZE: 1500,
+  SIZE: 50000,
   FPS: 60,
 
   // Percent of total viewport.
-  MAX_SPEED: 1,
+  MAX_SPEED: 0.1,
 
   init: function() {
     for (var i=0; i<this.SIZE; i++) {
       // Initialise the particle positions
-      this.position.push(2*Math.random() - 1); // pos x
-      this.position.push(2*Math.random() - 1); // pos y
+      this.position.push(Math.random() - 0.5); // pos x
+      this.position.push(Math.random() - 0.5); // pos y
       this.position.push(0.0);
 
       // Initialise the particle velocities
@@ -41,7 +41,7 @@ var Particles = {
       'attribute vec3 coordinates;' +
       'void main(void) {' +
       '  gl_Position = vec4(coordinates, 1.0);' +
-      '  gl_PointSize = 1.5;'+
+      '  gl_PointSize = 1.0;'+
       '}';
 
     // Create a vertex shader object
@@ -84,18 +84,29 @@ var Particles = {
 
   iterate: function() {
     for (var i=0; i<this.SIZE; i++) {
-      this.position[3*i  ] += this.velocity[2*i  ];
-      this.position[3*i+1] += this.velocity[2*i+1];
-
       var x = this.position[3*i  ];
       var y = this.position[3*i+1];
 
+      // gravity velocity adjustment
+      this.velocity[2*i  ] -= 0.0001 * x / ( (x*x + y*y) * this.FPS);
+      this.velocity[2*i+1] -= 0.0001 * y / ( (x*x + y*y) * this.FPS);
+
+      // move particle
+      x = this.position[3*i  ] + this.velocity[2*i  ];
+      y = this.position[3*i+1] + this.velocity[2*i+1];
+
+      // bound checking for x
       if (x < -1.0 || x > 1.0) {
-        this.velocity[2*i] *= -1.0;
+        this.velocity[2*i] *= -0.2;
+      } else {
+        this.position[3*i  ] = x;
       }
 
+      // bound checking for y
       if (y < -1.0 || y > 1.0) {
-        this.velocity[2*i+1] *= -1.0;
+        this.velocity[2*i+1] *= -0.2;
+      } else {
+        this.position[3*i+1] = y;
       }
     }
   }
