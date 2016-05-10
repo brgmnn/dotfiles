@@ -156,18 +156,32 @@ var Particles = {
 
     for (var i=0; i<this.SIZE; i++) {
       if (i != p) {
-        var r2 = this.distance_sqrd(p, i);
+        var dx = this.position[3*p  ]-this.position[3*i  ];
+        var dy = this.position[3*p+1]-this.position[3*i+1];
 
-        var sx = this.position[3*p  ] > this.position[3*i  ] ? -1 : 1;
-        var sy = this.position[3*p+1] > this.position[3*i+1] ? -1 : 1;
+        var r2 = dx*dx + dy*dy;
+        var r = Math.sqrt(r2);
 
-        vx += sx / r2;
-        vy += sy / r2;
+        var sin_a = dx / r;
+        var cos_a = dy / r;
+
+        vx -= (1 / r2) * sin_a;
+        vy -= (1 / r2) * cos_a;
+
+        // collision
+        if (r2 < 0.0000025) {
+          this.velocity[2*p  ] *= -0.9;
+          this.velocity[2*p+1] *= -0.9;
+          this.position[3*p  ] += 0.005*(Math.random() - 0.5)
+          this.position[3*p+1] += 0.005*(Math.random() - 0.5)
+        }
       }
     }
 
     this.velocity[2*p  ] += 0.0000005 * this.between(-100, vx, 100);
     this.velocity[2*p+1] += 0.0000005 * this.between(-100, vy, 100);
+    //this.velocity[2*p  ] += 0.000000005 * vx;
+    //this.velocity[2*p+1] += 0.000000005 * vy;
   },
 
   distance_sqrd: function(a, b) {
