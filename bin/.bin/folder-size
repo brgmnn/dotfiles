@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+#       folder-size
+# Returns the size of a folder. If no folder is passed it will return the folder
+# size of the current folder.
+
+folder="$1"
+
+if [ ! "$folder" ]; then
+    folder="."
+fi
+
+du -ch "$folder" | grep total | awk '{ print $1 }'
