@@ -21,6 +21,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
+Plug 'joshdick/onedark.vim'
+Plug 'joshdick/airline-onedark.vim'
 
 if v:version > 704 || has('nvim')
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
@@ -70,6 +72,9 @@ call plug#end()
 
 "           Plugin Settings
 "------------------------------------------------------------------------------
+" One Dark
+let g:onedark_terminal_italics = 0
+
 " Airline (modifies vims statusline)
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
@@ -85,6 +90,7 @@ let g:airline_exclude_preview = 1
 let g:airline_section_z = '%3p%% %3v'
 let g:airline_mode_map = {'c': 'C ', 'i': 'I ', 'n': 'N ', 'v': 'V ',
         \ 'R': 'R ', 'V': 'VL', '' : 'VB' }
+let g:airline_theme = 'onedark'
 
 " Syntastic
 let g:syntastic_check_on_open        = 1
@@ -155,6 +161,10 @@ set splitright
 set splitbelow
 set nohidden
 
+" Helps with some bugs.
+set ttyfast
+set lazyredraw
+
 
 "           Formatting
 "------------------------------------------------------------------------------
@@ -198,10 +208,8 @@ endif
 "           Color, Style and Syntax
 "------------------------------------------------------------------------------
 syntax enable
-
-if !has('nvim') | set t_Co=256 | endif
 set background=dark
-colorscheme badwolf
+colorscheme onedark
 
 " Turn on highlighting for search, match the search term as it is typed.
 set hlsearch
@@ -225,8 +233,8 @@ set fillchars+=vert:│
 set scrolloff=5
 set sidescrolloff=5
 
-" enable mouse support
-set mouse=a
+" disable the mouse
+set mouse=
 set mousehide
 
 
