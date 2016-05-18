@@ -19,6 +19,10 @@ if math (echo $FISH_VERSION | sed 's/\.//g') '<220' >/dev/null ^&-
 end
 
 
+# Abbreviations
+abbr -a dc='docker-compose'
+
+
 # Source local environment variables file
 source ~/.fishenv ^&-
 
@@ -34,27 +38,27 @@ fundle init
 
 
 # Set colors
-set -U fish_color_autosuggestion   555
-set -U fish_color_command          005fd7
-set -U fish_color_comment          990000
-set -U fish_color_cwd              87ffaf
-set -U fish_color_cwd_root         red
-set -U fish_color_end              009900
-set -U fish_color_error            ff5f5f
-set -U fish_color_escape           cyan
-set -U fish_color_history_current  cyan
-set -U fish_color_host             cyan
-set -U fish_color_match            cyan
-set -U fish_color_normal           normal
-set -U fish_color_operator         cyan
-set -U fish_color_param            00afff
-set -U fish_color_quote            ffd700
-set -U fish_color_redirection      00afff
-set -U fish_color_search_match     --background=333333
-set -U fish_color_selection        --background=purple
-set -U fish_color_status           red
-set -U fish_color_user             ffde99
-set -U fish_color_valid_path       --underline
+set -U fish_color_autosuggestion  555
+set -U fish_color_command         005fd7
+set -U fish_color_comment         990000
+set -U fish_color_cwd             87ffaf
+set -U fish_color_cwd_root        red
+set -U fish_color_end             009900
+set -U fish_color_error           ff5f5f
+set -U fish_color_escape          cyan
+set -U fish_color_history_current cyan
+set -U fish_color_host            cyan
+set -U fish_color_match           cyan
+set -U fish_color_normal          normal
+set -U fish_color_operator        cyan
+set -U fish_color_param           00afff
+set -U fish_color_quote           ffd700
+set -U fish_color_redirection     00afff
+set -U fish_color_search_match    --background=333333
+set -U fish_color_selection       --background=purple
+set -U fish_color_status          red
+set -U fish_color_user            ffde99
+set -U fish_color_valid_path      --underline
 
 
 # Set the ls colors
