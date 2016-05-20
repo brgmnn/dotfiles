@@ -25,8 +25,9 @@ abbr -a gs='git status'
 abbr -a gd='git diff'
 abbr -a gc='git commit'
 abbr -a ga='git add'
+abbr -a gco='git checkout'
 abbr -a gca='git commit --amend'
-abbr -a gbr='git branch -vv'
+abbr -a gb='git branch -vv'
 
 
 # Source local environment variables file
