@@ -40,7 +40,7 @@ var Particles = {
   MAX_DT: 100,
 
   // Percent of total viewport.
-  MAX_SPEED: 0.0,
+  MAX_SPEED: 0.01,
 
   init: function() {
     for (var i=0; i<this.SIZE; i++) {

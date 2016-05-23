@@ -23,10 +23,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
 Plug 'joshdick/onedark.vim'
 Plug 'joshdick/airline-onedark.vim'
+Plug 'godlygeek/tabular'
 
-if v:version > 704 || has('nvim')
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-end
+" if v:version > 704 || has('nvim')
+"     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" end
 
 " Language Plugins
 Plug 'artoj/qmake-syntax-vim'
@@ -40,6 +41,7 @@ Plug 'ekalinin/Dockerfile.vim',   { 'for': 'Dockerfile' }
 Plug 'elixir-lang/vim-elixir',    { 'for': 'elixer' }
 Plug 'elzr/vim-json',             { 'for': 'json' }
 Plug 'fatih/vim-go',              { 'for': 'go' }
+Plug 'isRuslan/vim-es6',          { 'for': 'javascript' }
 Plug 'justinmk/vim-syntax-extra'
 Plug 'kchmck/vim-coffee-script',  { 'for': 'coffee' }
 Plug 'mxw/vim-jsx'
@@ -51,7 +53,7 @@ Plug 'scrooloose/syntastic'
 Plug 'tmatilai/vim-monit',        { 'for': 'monitrc' }
 Plug 'todesking/vint-syntastic',  { 'for': 'vim' }
 Plug 'tpope/vim-git'
-Plug 'tpope/vim-haml'
+Plug 'tpope/vim-haml',            { 'for': 'haml' }
 Plug 'tpope/vim-liquid',          { 'for': 'liquid' }
 Plug 'tpope/vim-rails',           { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',         { 'for': 'ruby' }
