@@ -24,7 +24,7 @@ function fish_prompt --description "Write out the prompt"
 
     # Generate a session string if we are in an SSH connection.
     if not set -q __fish_prompt_session
-        if set -q SSH_CLIENT; or set -q SSH_TTY; or true
+        if set -q SSH_CLIENT; or set -q SSH_TTY
             set -g __fish_prompt_session (set_color 666666)"ssh:"$__fish_prompt_bg
         else
             set -g __fish_prompt_session ""
