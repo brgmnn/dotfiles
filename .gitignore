@@ -18,6 +18,9 @@ neovim/.config/nvim/plugs/*
 # Fish paths
 fish/.config/fish/plugins/
 
+# MPV
+mpv/.config/mpv/watch_later/
+
 # Ignore likely places for sensitive information
 .ssh/*
 ssh/*
