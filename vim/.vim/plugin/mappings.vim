@@ -54,13 +54,6 @@ imap OF <End>
 " Disable Ex mode
 nnoremap Q <nop>
 
-" Remap uppercase navigation keys to be navigation keys as I commonly misstype
-" with the shift key on.
-nnoremap K k
-nnoremap J j
-vnoremap K k
-vnoremap J j
-
 " Timestamp
 nnoremap <F5> "=strftime("%c")<CR>P
 inoremap <F5> <C-R>=strftime("%c")<CR>
