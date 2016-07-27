@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #       docker-clean
-# Cleans all docker containers and images.
+# Cleans docker containers and images.
 
-docker rm $(docker ps -q)
-docker rmi $(docker ps -q)
+docker rm $(docker ps -q --filter "status=exited")
+docker rmi -f $(docker images -q --filter "dangling=true")
