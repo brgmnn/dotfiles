@@ -4,6 +4,3 @@
 [submodule "fish/.config/fish/fundle"]
 	path = fish/.config/fish/fundle
 	url = https://github.com/tuvistavie/fundle.git
-[submodule "vim/.vim/vim-plug"]
-	path = vim/.vim/vim-plug
-	url = https://github.com/junegunn/vim-plug.git

@@ -1,1 +1,2 @@
 vim/.vim/bundle/* linguist-vendored=false
+vim/.vim/autoload/plug.vim linguist-vendored=false
