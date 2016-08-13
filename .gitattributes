@@ -1,2 +1,3 @@
-vim/.vim/bundle/* linguist-vendored=false
+fish/.config/fish/functions/fundle.fish linguist-vendored=false
 vim/.vim/autoload/plug.vim linguist-vendored=false
+vim/.vim/bundle/* linguist-vendored=false
