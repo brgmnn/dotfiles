@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+#       ssh-portforward
+# Usage:
+#   ssh-portforward $host $remote $local
+
+set -eu
+
+host=$1
+remote_port=$2
+local_port=$3
+
+ssh -L $local_port:localhost:$remote_port $host -N
