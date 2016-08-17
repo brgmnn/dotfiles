@@ -7,9 +7,14 @@ if !has('nvim') | set nocompatible | endif
 set shell=/bin/sh
 filetype plugin indent on
 
+" Override HOME variable to the dotfiles vim folder.
+if has('win32') || has('win16')
+    let $HOME = $HOME . '/dotfiles/vim'
+end
+
 "           Plugins
 "------------------------------------------------------------------------------
-call plug#begin('~/.vim/plugs')
+call plug#begin($HOME.'/.vim/plugs')
 
 Plug 'rking/ag.vim'
 Plug 'bling/vim-airline'
@@ -123,6 +128,7 @@ let g:NERDTreeShowHidden=0
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = 'node_modules'
 
 " RuboCop
 let g:vimrubocop_config = '$HOME/.vim/rubocop.yml'
@@ -269,15 +275,15 @@ set undolevels=1000
 " backup and swap files.
 set backup
 set writebackup
-set backupdir=~/.vim/backup//,/var/tmp//,/tmp//
-set directory=~/.vim/swap//,/var/tmp//,/tmp//
+set backupdir=$HOME/.vim/backup/,/var/tmp//,/tmp//
+set directory=$HOME/.vim/swap/,/var/tmp//,/tmp//
 if has('persistent_undo')
     set undofile
-    set undodir  =~/.vim/undo//,/var/tmp//,/tmp//
+    set undodir =$HOME/.vim/undo/,/var/tmp//,/tmp//
 endif
 
 " Vim info
-set viminfo='10,\"100,:20,%,n~/.viminfo
+set viminfo='10,\"100,:20,%,n$HOME/.viminfo
 
 " Map the leader key.
 let g:mapleader = "\<Space>"

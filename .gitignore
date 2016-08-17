@@ -2,6 +2,9 @@
 *.log
 *.swp
 *~
+vim/.cache/*
+vim/.viminfo
+vim/.vimrc.local
 vim/.vim/.netrwhist
 vim/.vim/backup
 vim/.vim/bundle/*
