@@ -10,7 +10,7 @@ filetype plugin indent on
 " Override HOME variable to the dotfiles vim folder.
 if has('win32') || has('win16')
     let $HOME = $HOME . '/dotfiles/vim'
-end
+endif
 
 "           Plugins
 "------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ Plug 'godlygeek/tabular'
 
 " if v:version > 704 || has('nvim')
 "     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-" end
+" endif
 
 " Language Plugins
 Plug 'artoj/qmake-syntax-vim'
@@ -128,7 +128,7 @@ let g:NERDTreeShowHidden=0
 
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = 'node_modules'
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components'
 
 " RuboCop
 let g:vimrubocop_config = '$HOME/.vim/rubocop.yml'
@@ -217,7 +217,12 @@ endif
 "------------------------------------------------------------------------------
 syntax enable
 set background=dark
-colorscheme onedark
+if &t_Co == 16
+    colorscheme 16bit
+else
+    colorscheme onedark
+endif
+
 
 " Turn on highlighting for search, match the search term as it is typed.
 set hlsearch
