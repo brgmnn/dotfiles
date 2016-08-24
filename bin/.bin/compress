@@ -31,7 +31,7 @@ EOF
 # '.' from the file or directory name.
 function arname() {
     if [[ "$#" -eq 1 ]]; then
-        echo "$(basename $1 | tr -d .)-$(date +"%Y-%m-%d")"
+        echo "$(basename "$1" | tr -d .)-$(date +"%Y-%m-%d")"
     else
         echo "$(basename $(pwd) | tr -d .)-$(date +"%Y-%m-%d")"
     fi
@@ -41,13 +41,13 @@ case "$1" in
     -bz2)
         # Compress as a tar.bz2 archive.
         shift
-        tar -jcvf "`arname $@`.tar.bz2" $@
+        tar -jcvf "`arname "$@"`.tar.bz2" "$@"
         exit
         ;;
     -zip)
         # Compress as a zip file.
         shift
-        zip -r9 "`arname $@`.zip" $@
+        zip -r9 "`arname "$@"`.zip" "$@"
         exit
         ;;
     -gz)
@@ -67,4 +67,4 @@ case "$1" in
 esac
 
 # Default case, use tar and create a tar.gz archive.
-tar -zcvf "`arname $@`.tar.gz" $@
+tar -zcvf "`arname "$@"`.tar.gz" "$@"
