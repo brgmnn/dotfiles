@@ -97,7 +97,9 @@ let g:airline_exclude_preview = 1
 let g:airline_section_z = '%3p%% %3v'
 let g:airline_mode_map = {'c': 'C ', 'i': 'I ', 'n': 'N ', 'v': 'V ',
         \ 'R': 'R ', 'V': 'VL', '' : 'VB' }
-let g:airline_theme = 'onedark'
+if &t_Co > 16
+    let g:airline_theme = 'onedark'
+endif
 
 " Syntastic
 let g:syntastic_check_on_open        = 1
@@ -121,6 +123,11 @@ let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_modified_removed = '*'
+
+" NerdCommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDCommentEmptyLines = 1
 
 " NerdTree
 let g:NERDTreeWinSize=50
@@ -218,7 +225,7 @@ endif
 syntax enable
 set background=dark
 if &t_Co == 16
-    colorscheme 16bit
+    colorscheme 4bit
 else
     colorscheme onedark
 endif
@@ -234,10 +241,12 @@ set showbreak=↳
 
 " have line numbers
 set number
-set cursorline
+if &t_Co > 16
+    set cursorline
+endif
 if v:version > 704 || has('nvim')
     set relativenumber
-end
+endif
 
 " Make the vertical split bar a continuous line.
 set fillchars+=vert:│
