@@ -1,3 +1,6 @@
+# Old files
+*.old
+
 # Ignore vim swap files
 *.log
 *.swp
