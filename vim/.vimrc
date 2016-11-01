@@ -57,6 +57,7 @@ Plug 'rust-lang/rust.vim',        { 'for': 'rust' }
 Plug 'scrooloose/syntastic'
 Plug 'tmatilai/vim-monit',        { 'for': 'monitrc' }
 Plug 'todesking/vint-syntastic',  { 'for': 'vim' }
+Plug 'tpope/vim-cucumber',        { 'for': 'cucumber' }
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-haml',            { 'for': 'haml' }
 Plug 'tpope/vim-liquid',          { 'for': 'liquid' }
