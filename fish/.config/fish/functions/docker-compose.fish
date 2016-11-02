@@ -1,13 +1,13 @@
-function docker
+function docker-compose
     if set -q TMUX
-        set -l subcmd exec logs attach run
+        set -l subcmd run
 
         if contains $argv[1] $subcmd
             tmux select-pane -P 'bg=colour233'
         end
     end
 
-    command docker $argv
+    command docker-compose $argv
 
     if set -q TMUX
         tmux select-pane -P 'bg=default'
