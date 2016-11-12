@@ -40,6 +40,7 @@ set -x fundle_plugins_dir ~/.config/fish/plugins
 fundle plugin 'tuvistavie/fish-completion-helpers'
 fundle plugin 'barnybug/docker-fish-completion'
 fundle plugin 'brgmnn/fish-docker-compose'
+fundle plugin 'brgmnn/fish-hyper'
 
 fundle init
 
