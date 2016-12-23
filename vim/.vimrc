@@ -44,6 +44,7 @@ Plug 'dag/vim-fish',              { 'for': 'fish' }
 Plug 'digitaltoad/vim-jade',      { 'for': 'jade' }
 Plug 'ekalinin/Dockerfile.vim',   { 'for': 'Dockerfile' }
 Plug 'elixir-lang/vim-elixir',    { 'for': 'elixer' }
+Plug 'elmcast/elm-vim',           { 'for': 'elm' }
 Plug 'elzr/vim-json',             { 'for': 'json' }
 Plug 'fatih/vim-go',              { 'for': 'go' }
 Plug 'isRuslan/vim-es6',          { 'for': 'javascript' }
