@@ -36,6 +36,7 @@ Plug 'godlygeek/tabular'
 
 " Language Plugins
 Plug 'artoj/qmake-syntax-vim'
+Plug 'b4b4r07/vim-hcl',           { 'for': 'hcl' }
 Plug 'brgmnn/vim-opencl',         { 'for': 'opencl' }
 Plug 'brgmnn/vim-syncthing',      { 'for': 'stignore' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
