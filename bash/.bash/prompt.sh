@@ -3,8 +3,8 @@
 export __BASH_BOLD=`tput bold`
 export __BASH_NORMAL=`tput sgr0`
 
-if [ -f $HOME/.LS_COLORS ]; then
-    export __BASH_DIR=`awk '/^DIR/{print $NF}' $HOME/.LS_COLORS`
+if [ -f "$HOME/.LS_COLORS" ]; then
+    export __BASH_DIR=`awk '/^DIR/{print $NF}' "$HOME/.LS_COLORS"`
 else
     export __BASH_DIR=`tput sgr0`
 fi
