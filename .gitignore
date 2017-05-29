@@ -23,6 +23,8 @@ neovim/.config/nvim/plugs/*
 
 # Fish paths
 fish/.config/fish/plugins/
+fish/.config/fish/fish_history
+fish/.config/fish/fishd.*
 
 # MPV
 mpv/.config/mpv/watch_later/
