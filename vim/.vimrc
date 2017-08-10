@@ -43,7 +43,7 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'cespare/vim-toml',          { 'for': 'toml' }
 Plug 'dag/vim-fish',              { 'for': 'fish' }
 Plug 'digitaltoad/vim-jade',      { 'for': 'jade' }
-Plug 'ekalinin/Dockerfile.vim',   { 'for': 'Dockerfile' }
+Plug 'ekalinin/Dockerfile.vim',
 Plug 'elixir-lang/vim-elixir',    { 'for': 'elixer' }
 Plug 'elmcast/elm-vim',           { 'for': 'elm' }
 Plug 'elzr/vim-json',             { 'for': 'json' }
