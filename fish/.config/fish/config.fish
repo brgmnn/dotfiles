@@ -47,20 +47,24 @@ fundle init
 
 # Set colors
 set -U fish_color_autosuggestion  555
-set -U fish_color_command         005fd7
+# set -U fish_color_command         005fd7
+set -U fish_color_command         61AFEF
 set -U fish_color_comment         990000
-set -U fish_color_cwd             87ffaf
+set -U fish_color_cwd             87d787
 set -U fish_color_cwd_root        red
 set -U fish_color_end             009900
-set -U fish_color_error           ff5f5f
+set -U fish_color_error           E06C75
 set -U fish_color_escape          cyan
 set -U fish_color_history_current cyan
 set -U fish_color_host            cyan
 set -U fish_color_match           cyan
-set -U fish_color_normal          normal
+# set -U fish_color_normal          normal
+set -U fish_color_normal          ABB2BF
 set -U fish_color_operator        cyan
-set -U fish_color_param           00afff
-set -U fish_color_quote           ffd700
+# set -U fish_color_param           00afff
+set -U fish_color_param           ffffff
+# set -U fish_color_quote           ffd700
+set -U fish_color_quote           E5C07B
 set -U fish_color_redirection     00afff
 set -U fish_color_search_match    --background=333333
 set -U fish_color_selection       --background=purple

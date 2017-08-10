@@ -4,7 +4,7 @@ function _git_dirty --description "Prints a short status string for how dirty a 
     set -l staged    (git status -s | grep '^[ADMR]' | wc -l | tr -d '[[:space:]]')
 
     if test $untracked -gt 0
-        echo -n (set_color dd0000)"$untracked?"(set_color normal)
+        echo -n (set_color red)"$untracked?"(set_color normal)
     end
 
     if test $modified -gt 0
@@ -13,6 +13,6 @@ function _git_dirty --description "Prints a short status string for how dirty a 
 
     if test $staged -gt 0
         #echo -n (set_color $fish_color_user)"$staged+"(set_color normal)
-        echo -n (set_color 00dd00)"$staged+"(set_color normal)
+        echo -n (set_color green)"$staged+"(set_color normal)
     end
 end

@@ -5,7 +5,7 @@ function fish_prompt --description "Write out the prompt"
 
     # Prompt header background
     if not set -q __fish_prompt_bg
-        set -g __fish_prompt_bg (set_color normal)(set_color -b 1a1a1a)
+        set -g __fish_prompt_bg (set_color normal)(set_color -b 262626)
     end
 
     if not set -q __fish_prompt_normal
@@ -51,9 +51,11 @@ function fish_prompt --description "Write out the prompt"
     end
 
     if set -q TMUX
+        echo -s
         echo -s $__fish_prompt_bg" "$__fish_prompt_session \
                 $__fish_prompt_cwd(prompt_long_pwd)" "$__fish_prompt_normal
     else
+        echo -s
         echo -s $__fish_prompt_bg(set_color $fish_color_user)$USER \
                 $__fish_prompt_bg" "$__fish_prompt_session \
                 $__fish_prompt_hostname" "$__fish_prompt_cwd \
