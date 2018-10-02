@@ -9,7 +9,7 @@ filetype plugin indent on
 
 " Override HOME variable to the dotfiles vim folder.
 if has('win32') || has('win16')
-    let $HOME = $HOME . '/dotfiles/vim'
+    let $HOME = escape($HOME . '/dotfiles/vim')
 endif
 
 "           Plugins
