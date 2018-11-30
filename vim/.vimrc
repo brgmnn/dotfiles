@@ -18,6 +18,7 @@ call plug#begin($HOME.'/.vim/plugs')
 
 Plug 'rking/ag.vim'
 Plug 'bling/vim-airline'
+Plug 'w0rp/ale'
 Plug 'kien/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'junegunn/vim-easy-align'
@@ -82,6 +83,9 @@ call plug#end()
 
 "           Plugin Settings
 "------------------------------------------------------------------------------
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+
 " One Dark
 let g:onedark_terminal_italics = 0
 
