@@ -2,40 +2,44 @@
 
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
-dpi:
-  x: 96.0
-  y: 96.0
+#dpi:
+#  x: 96.0
+#  y: 96.0
 
 # Display tabs using this many cells (changes require restart)
-tabspaces: 4
+# tabspaces: 4
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
 font:
+  size: 12.0
   normal:
     family: monospace
-    # Style can be specified to pick a specific face.
     # style: Regular
-
   bold:
     family: monospace
-    # Style can be specified to pick a specific face.
     # style: Bold
-
   italic:
     family: monospace
-    # Style can be specified to pick a specific face.
     style: Italic
 
-  size: 14.0
-  offset:
-    x: 0.0
-    y: 0.0
+  use_thin_strokes: false
+
+
+scrolling:
+  multiplier: 2
+
+
+window:
+  padding:
+    x: 0
+    y: 0
+
 
 # Should display the render timer
-render_timer: false
+#render_timer: false
 
 # Colors (Tomorrow Night Bright)
 colors:
@@ -188,8 +192,18 @@ key_bindings:
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
+mouse:
+  url:
+    launcher:
+      program: open
 
+cursor:
+  style: Block
+  unfocused_hollow: false
 # Shell
 #
 # You can set this to a path to your favorite shell, e.g. /bin/fish
 shell:
+  program: /bin/zsh
+  # args:
+    # - --command=tmux
