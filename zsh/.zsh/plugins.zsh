@@ -2,6 +2,7 @@
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
+
 antigen bundle git
 antigen bundle svn
 
@@ -10,3 +11,6 @@ antigen bundle svn
 
 # Autoenv, directory specific environments.
 antigen bundle Tarrasch/zsh-autoenv
+
+
+antigen apply

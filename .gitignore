@@ -32,6 +32,9 @@ fish/.config/fish/fishd.*
 # MPV
 mpv/.config/mpv/watch_later/
 
+# ZSH
+*.zwc
+
 # Ignore likely places for sensitive information
 .ssh/*
 ssh/*

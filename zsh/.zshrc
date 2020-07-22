@@ -23,7 +23,7 @@ path=(~/.bin /usr/local/opt/coreutils/libexec/gnubin $path)
 
 #       Antigen
 # Use antigen script to load plugins and themes for zsh from github.
-source ~/.zsh/antigen/antigen.zsh
+source ~/.zsh/antigen.zsh
 source ~/.zsh/plugins.zsh
 
 
