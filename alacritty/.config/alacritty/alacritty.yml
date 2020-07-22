@@ -131,6 +131,7 @@ colors:
 key_bindings:
   - { key: V,        mods: Control|Shift, action: Paste                       }
   - { key: C,        mods: Control|Shift, action: Copy                        }
+  - { key: N,        mods: Command,       command: { program: "open", args: ["-n", "/Applications/Alacritty.app"] } }
   - { key: Home,                          chars: "\x1b[H",   mode: ~AppCursor }
   - { key: Home,                          chars: "\x1b[1~",  mode: AppCursor  }
   - { key: End,                           chars: "\x1b[F",   mode: ~AppCursor }
@@ -203,7 +204,7 @@ cursor:
 # Shell
 #
 # You can set this to a path to your favorite shell, e.g. /bin/fish
-shell:
-  program: /bin/zsh
+# shell:
+  # program: /bin/zsh
   # args:
     # - --command=tmux
