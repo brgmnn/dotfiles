@@ -8,6 +8,6 @@ fi
 #       Prompt
 # Configure the left and right prompt
 PROMPT='%(!.%F{1}%B.)%n%b%f %B%m%b %F{'$__ZSH_DIR'}%~%f%(!..)
- '$(echo "\u00bb")' '
+ %(?..%F{red}%?%f )'$(echo "\u00bb")' '
 
 RPROMPT='${vcs_info_msg_0_} '
