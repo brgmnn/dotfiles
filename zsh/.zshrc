@@ -91,6 +91,9 @@ setopt c_precedences
 [[ -r ~/.zsh/autocomplete.zsh ]] && source ~/.zsh/autocomplete.zsh
 [[ -r ~/.zsh/functions.zsh ]] && source ~/.zsh/functions.zsh
 
+# Source other programs
+[[ -r ~/.zsh/nvm.zsh ]] && source ~/.zsh/nvm.zsh
+
 eval "$(dircolors $HOME/.LS_COLORS)"
 
 # Source local .zshrc

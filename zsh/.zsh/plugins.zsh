@@ -4,7 +4,9 @@
 antigen use oh-my-zsh
 
 antigen bundle git
-antigen bundle svn
+# antigen bundle svn
+
+antigen bundle nvm
 
 # Pretty time
 #antigen bundle sindresorhus/pretty-time-zsh
