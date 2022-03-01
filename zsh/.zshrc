@@ -1,3 +1,7 @@
+# ZSH Modules
+zmodload zsh/mathfunc
+
+
 # Lines configured by zsh-newuser-install
 bindkey -v
 setopt extendedglob notify
@@ -18,13 +22,18 @@ zstyle ":completion:*" menu select
 
 # Set up the path
 typeset -U path
-path=(~/.bin /usr/local/opt/coreutils/libexec/gnubin $path)
+path=(~/.bin.local ~/.bin /usr/local/opt/coreutils/libexec/gnubin $path)
 
 
 #       Antigen
 # Use antigen script to load plugins and themes for zsh from github.
 source ~/.zsh/antigen.zsh
 source ~/.zsh/plugins.zsh
+
+
+#       Other scripts and plugins
+#
+source ~/.zsh/scripts/z.sh
 
 
 #       Prompt
@@ -90,6 +99,7 @@ setopt c_precedences
 [[ -r ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 [[ -r ~/.zsh/autocomplete.zsh ]] && source ~/.zsh/autocomplete.zsh
 [[ -r ~/.zsh/functions.zsh ]] && source ~/.zsh/functions.zsh
+[[ -r ~/.zsh/hooks.zsh ]] && source ~/.zsh/hooks.zsh
 
 # Source other programs
 [[ -r ~/.zsh/nvm.zsh ]] && source ~/.zsh/nvm.zsh

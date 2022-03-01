@@ -38,6 +38,9 @@ alias timer='echo "Timer started. Stop with Ctrl-D." \
 alias urlencode='python -c "import sys, urllib; \
         print urllib.quote_plus(sys.argv[1]);"'
 
+# Docker
+alias dc='docker-compose'
+
 # Curl aliases that masquerade as internet explorer/firefox.
 alias iecurl='curl -H "User-Agent: Mozilla/5.0 (Windows; U; MSIE 6.0; \
         Windows NT 5.1; SV1; .NET CLR 2.0.50727)"'
