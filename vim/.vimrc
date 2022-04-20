@@ -143,6 +143,7 @@ let g:NERDTreeShowHidden=0
 " CtrlP
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = 'node_modules\|bower_components'
+let g:ctrlp_show_hidden = 1
 
 " RuboCop
 let g:vimrubocop_config = '$HOME/.vim/rubocop.yml'
