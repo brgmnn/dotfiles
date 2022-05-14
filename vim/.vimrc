@@ -45,7 +45,7 @@ Plug 'cespare/vim-toml',          { 'for': 'toml' }
 Plug 'dag/vim-fish',              { 'for': 'fish' }
 Plug 'digitaltoad/vim-jade',      { 'for': 'jade' }
 Plug 'ekalinin/Dockerfile.vim',
-Plug 'elixir-lang/vim-elixir',    { 'for': 'elixer' }
+Plug 'elixir-lang/vim-elixir',    { 'for': 'elixir' }
 Plug 'elmcast/elm-vim',           { 'for': 'elm' }
 Plug 'elzr/vim-json',             { 'for': 'json' }
 Plug 'fatih/vim-go',              { 'for': 'go' }
@@ -253,6 +253,7 @@ if &t_Co > 16
     set cursorline
 endif
 if v:version > 704 || has('nvim')
+    set nuw=5
     set relativenumber
 endif
 
