@@ -5,6 +5,22 @@ preexec() {
 precmd() {
     vcs_info
 
+    environment=`readlink .env`
+
+    if [[ $? -eq 0 ]]; then
+        environment=`echo -n $environment | cut -c6-`
+
+        if [[ "$environment" == "engineering" ]]; then
+            export ZSH_DOTENV_ENVIRONMENT="%F{7}(%f%F{yellow}engr%f%F{7})%f"
+        elif [[ "$environment" == "production" ]]; then
+            export ZSH_DOTENV_ENVIRONMENT="%K{red}%F{15} PROD %f%k"
+        else
+            export ZSH_DOTENV_ENVIRONMENT="%F{7}(%f%F{blue}${environment}%f%F{7})%f"
+        fi
+    else
+        unset ZSH_DOTENV_ENVIRONMENT
+    fi
+
     if (( ${+ZSH_CMD_TIME_START} )); then
         NOW=`date +%s.%3N`
         # let "elapsed = ${NOW} - ${ZSH_CMD_TIME_START} + 3*24*60*60 + 13*60*60 + 6*60 + 10"
