@@ -22,7 +22,7 @@ zstyle ":completion:*" menu select
 
 # Set up the path
 typeset -U path
-path=(~/.bin.local ~/.bin /usr/local/opt/coreutils/libexec/gnubin $path)
+path=(~/.bin.local ~/.bin /usr/local/opt/openjdk/bin /usr/local/opt/coreutils/libexec/gnubin $path)
 
 
 #       Antigen

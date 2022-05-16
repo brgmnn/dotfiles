@@ -3,6 +3,8 @@ preexec() {
 }
 
 precmd() {
+    vcs_info
+
     if (( ${+ZSH_CMD_TIME_START} )); then
         NOW=`date +%s.%3N`
         # let "elapsed = ${NOW} - ${ZSH_CMD_TIME_START} + 3*24*60*60 + 13*60*60 + 6*60 + 10"

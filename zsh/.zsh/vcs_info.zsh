@@ -17,7 +17,3 @@ zstyle ':vcs_info:*' actionformats \
 
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat \
     '%b%{'$reset_color'%}:%{'${fg[yellow]}'%}%r'
-
-precmd() {
-    vcs_info
-}
