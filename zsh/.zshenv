@@ -7,7 +7,9 @@ export CXX=clang++
 export SHELL=`which zsh`
 export LD_LIBRARY_PATH=/usr/local/lib
 
-. "$HOME/.cargo/env"
+if [ -r ~/.cargo/env ]; then
+    source "$HOME/.cargo/env"
+fi
 
 # Source local environment variables file
 if [ -r ~/.zshenv.local ]; then
