@@ -40,6 +40,7 @@ window:
     y: 0
   decorations: full
   title: Terminal
+  opacity: 1.0
 
 
 # Colors (Tomorrow Night Bright)
