@@ -8,6 +8,7 @@ if exists('b:current_syntax')
 endif
 
 syn match hosts_comment "#.*$"
+syn match hosts_comment "\/\*.*\*\/"
 syn match hosts_ipv4    "\v^([0-9]{1,3}\.){3}[0-9]{1,3}"
 syn match hosts_ipv6    "\v^[a-fA-F0-9:]*:[a-fA-F0-9:]+"
 syn match hosts_domain  "\v[a-zA-Z0-9\.\-]+$"
