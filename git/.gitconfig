@@ -8,6 +8,8 @@
     diff = true
     ui = true
     branch = true
+[init]
+    defaultBranch = main
 [pull]
     ff-only = true
 [push]
@@ -36,6 +38,9 @@
         %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)\
         %n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
     lg = !bash -c git-lg
+    attach-remote-branch = !git branch \
+        --set-upstream-to=origin/$(git branch --show-current) \
+        $(git branch --show-current)
     merge-upstream = !git fetch upstream && git checkout master \
         && git merge --ff-only upstream/master
     s    = status
