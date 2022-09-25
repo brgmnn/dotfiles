@@ -3,5 +3,8 @@
 #       docker-clean
 # Cleans docker containers and images.
 
+docker container prune
+docker volume prune
+docker image prune
 docker rm $(docker ps -q --filter "status=exited")
 docker rmi -f $(docker images -q --filter "dangling=true")
