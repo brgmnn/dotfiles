@@ -24,7 +24,6 @@ font:
   italic:
     family: Menlo
     style: Italic
-  use_thin_strokes: false
 
 
 scrolling:
