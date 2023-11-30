@@ -11,11 +11,11 @@ precmd() {
         environment=`echo -n $environment | cut -c6-`
 
         if [[ "$environment" == "engineering" ]]; then
-            export ZSH_DOTENV_ENVIRONMENT="%F{7}(%f%F{yellow}engr%f%F{7})%f"
+            export ZSH_DOTENV_ENVIRONMENT="%F{7}«%f%F{yellow}engr%f%F{7}»%f"
         elif [[ "$environment" == "production" ]]; then
             export ZSH_DOTENV_ENVIRONMENT="%K{red}%F{15} PROD %f%k"
         else
-            export ZSH_DOTENV_ENVIRONMENT="%F{7}(%f%F{blue}${environment}%f%F{7})%f"
+            export ZSH_DOTENV_ENVIRONMENT="%F{7}«%f%F{blue}${environment}%f%F{7}»%f"
         fi
     else
         unset ZSH_DOTENV_ENVIRONMENT
