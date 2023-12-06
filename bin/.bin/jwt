@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+set -e
+
+
+# Get and handle optional arguments
+while getopts "k:" OPTION; do
+    case "$OPTION" in
+        k)
+            option_secret="$OPTARG"
+            echo "Option -k used: $option_secret"
+            ;;
+        *)
+            echo "Invalid option: -$OPTION" >&2
+            exit 1;;
+    esac
+done
+
+# Remove optional args so we can grab the token
+shift "$(($OPTIND -1))"
+
+# Get the token
+if [ ! "$1" ]; then
+    echo "$0: no token specified."
+    exit
+fi
+
+echo $1
+
+exit
+
+# Function to decode base64-url
+decode_base64_url() {
+    local len=$((${#1} % 4))
+    local result="$1"
+
+    # Add the necessary '=' padding
+    if [ $len -eq 2 ]; then
+        result="$1=="
+    elif [ $len -eq 3 ]; then
+        result="$1="
+    fi
+
+    # Translate from base64-url to base64 and decode
+    echo -n $result | tr '_-' '/+' | base64 -d
+}
+
+# Encodes stdin to a base64 url encoded string
+encode_base64_url() {
+    base64 | tr -d '=' | tr '/+' '_-'
+}
+
+
+# Read in the token from input
+IFS='.' read -ra parts <<< "$1"
+
+header=${parts[0]}
+payload=${parts[1]}
+signature=${parts[2]}
+
+decoded_header=$(decode_base64_url $header)
+decoded_payload=$(decode_base64_url $payload)
+
+echo ""
+
+echo $decoded_header | jq
+echo $decoded_payload | jq
+
+algorithm=$(echo $decoded_header | jq -r ".alg")
+
+# Validate the signature if possible
+case $algorithm in
+    "HS256")
+        secret="hello"
+        expected_signature=$(echo -n "$header.$payload" | openssl dgst -sha256 -hmac $secret -binary | encode_base64_url)
+
+        if [ $signature = $expected_signature ]; then
+            echo -e "\033[32mSignature verified ✅\033[0m"
+        else
+            echo -e "\033[31mSignature invalid ❌\033[0m"
+        fi
+        ;;
+    *)
+        echo "Not verifying signature"
+        ;;
+esac
+
+echo ""
