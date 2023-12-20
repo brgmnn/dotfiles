@@ -41,6 +41,9 @@ alias urlencode='python -c "import sys, urllib; \
 # Docker
 alias dc='docker-compose'
 
+# Kubernetes
+alias k='kubectl'
+
 # Curl aliases that masquerade as internet explorer/firefox.
 alias iecurl='curl -H "User-Agent: Mozilla/5.0 (Windows; U; MSIE 6.0; \
         Windows NT 5.1; SV1; .NET CLR 2.0.50727)"'
