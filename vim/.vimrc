@@ -30,6 +30,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'joshdick/onedark.vim'
 Plug 'joshdick/airline-onedark.vim'
 Plug 'godlygeek/tabular'
+Plug 'markonm/traces.vim'
 
 " if v:version > 704 || has('nvim')
 "     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
