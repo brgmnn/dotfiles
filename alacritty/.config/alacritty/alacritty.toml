@@ -42,6 +42,24 @@ style = "Italic"
 [font.normal]
 family = "Menlo"
 
+[scrolling]
+multiplier = 2
+
+[window]
+decorations = "full"
+opacity = 1.0
+title = "Terminal"
+
+[window.dimensions]
+columns = 100
+lines = 35
+
+[window.padding]
+x = 0
+y = 0
+
+
+
 [[keyboard.bindings]]
 key = "N"
 mods = "Command"
@@ -304,19 +322,3 @@ mode = "~AppKeypad"
 [[mouse.bindings]]
 action = "PasteSelection"
 mouse = "Middle"
-
-[scrolling]
-multiplier = 2
-
-[window]
-decorations = "full"
-opacity = 1.0
-title = "Terminal"
-
-[window.dimensions]
-columns = 100
-lines = 35
-
-[window.padding]
-x = 0
-y = 0

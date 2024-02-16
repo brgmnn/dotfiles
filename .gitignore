@@ -4,6 +4,9 @@
 # Old files
 *.old
 
+# Alacritty
+alacritty/.local
+
 # Ignore vim swap files
 *.log
 *.swp
