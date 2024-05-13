@@ -79,12 +79,6 @@ key = "V"
 mods = "Command"
 
 [[keyboard.bindings]]
-chars = "74.24"
-key = "Left"
-mode = "AppCursor"
-mods = "Option"
-
-[[keyboard.bindings]]
 chars = "\u001Bh"
 key = "H"
 mods = "Command"
