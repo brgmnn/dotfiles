@@ -45,6 +45,9 @@ family = "Menlo"
 [scrolling]
 multiplier = 2
 
+[shell]
+program = "/usr/local/bin/tmux"
+
 [window]
 decorations = "full"
 opacity = 1.0
