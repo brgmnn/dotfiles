@@ -7,18 +7,28 @@ precmd() {
 
     environment=`readlink .env`
 
+    # Undecided if we like having chevrons: «»
+
+    # Sets the dotenv environment prompt string
     if [[ $? -eq 0 ]]; then
         environment=`echo -n $environment | cut -c6-`
 
         if [[ "$environment" == "engineering" ]]; then
-            export ZSH_DOTENV_ENVIRONMENT="%F{7}«%f%F{yellow}engr%f%F{7}»%f"
+            export ZSH_DOTENV_ENVIRONMENT="%F{7}env|%f%F{yellow}engr%f%F{7}%f"
         elif [[ "$environment" == "production" ]]; then
             export ZSH_DOTENV_ENVIRONMENT="%K{red}%F{15} PROD %f%k"
         else
-            export ZSH_DOTENV_ENVIRONMENT="%F{7}«%f%F{blue}${environment}%f%F{7}»%f"
+            export ZSH_DOTENV_ENVIRONMENT="%F{7}env|%f%F{blue}${environment}%f%F{7}%f"
         fi
     else
         unset ZSH_DOTENV_ENVIRONMENT
+    fi
+
+    # Sets the AWS profile prompt string
+    if [[ -n "$AWS_PROFILE" ]]; then
+        export ZSH_AWS_PROFILE="%F{7}aws|%f%F{yellow}${AWS_PROFILE}%f%F{7}%f"
+    else
+        unset ZSH_AWS_PROFILE
     fi
 
     if (( ${+ZSH_CMD_TIME_START} )); then

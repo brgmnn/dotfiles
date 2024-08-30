@@ -10,4 +10,4 @@ fi
 PROMPT='%(!.%F{1}%B.)%n%b%f %B%m%b %F{'$__ZSH_DIR'}%~%f%(!..)
  %(?..%F{red}%?%f )'$(echo "\u00bb")' '
 
-RPROMPT='${vcs_info_msg_0_} ${ZSH_DOTENV_ENVIRONMENT} '
+RPROMPT='${vcs_info_msg_0_} ${ZSH_DOTENV_ENVIRONMENT} ${ZSH_AWS_PROFILE}'
