@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# Define the directory to be zipped
+INPUT_DIR="$1"
+OUTPUT_ZIP_FILE="$2"
+
+# Check if the directory exists
+if [ ! -d "$INPUT_DIR" ]; then
+    echo "Directory $INPUT_DIR does not exist."
+    exit 1
+fi
+
+# Check if the output file name is provided
+if [ -z "$OUTPUT_ZIP_FILE" ]; then
+    OUTPUT_ZIP_FILE="$(basename $(realpath "$INPUT_DIR")).zip"
+fi
+
+# Create a temporary exclusion file
+EXCLUDE_FILE=$(mktemp)
+
+# Add patterns to exclude file
+# echo ".git/*" >> "$EXCLUDE_FILE"
+# echo "*/.env" >> "$EXCLUDE_FILE"
+# echo 
+
+# Exclude list
+cat <<EOF > "$EXCLUDE_FILE"
+/.git*
+.env
+*/.terraform.lock.hcl
+*.zip
+EOF
+
+# Add patterns from .gitignore if it exists
+if [ -f "$INPUT_DIR/.gitignore" ]; then
+    grep -v '^\s*#' "$INPUT_DIR/.gitignore" \
+        | grep -v '^\s*$' \
+        | sed -E "s|([^*])$|\1*|g" \
+        >> "$EXCLUDE_FILE"
+fi
+
+# Zip the directory excluding specified files
+zip -r "$OUTPUT_ZIP_FILE" "$INPUT_DIR" -x@"$EXCLUDE_FILE"
+
+# Clean up temporary file
+rm "$EXCLUDE_FILE"
+
+echo "Directory $INPUT_DIR has been zipped into $OUTPUT_ZIP_FILE"
