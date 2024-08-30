@@ -30,8 +30,13 @@
     insteadOf = github:
 
 [alias]
-    d = diff
-    dc = diff --cached
+    # Heavily used aliases
+    d    = diff
+    dc   = diff --cached
+    s    = status
+    nuke = !git reset --hard HEAD && git clean -f -d
+
+    # Uncommon but useful
     ff = "!f() { git merge --ff-only "$1"; }; f"
     lg2 = log --graph --abbrev-commit --decorate \
         --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) \
@@ -43,11 +48,9 @@
         $(git branch --show-current)
     merge-upstream = !git fetch upstream && git checkout master \
         && git merge --ff-only upstream/master
-    s    = status
     su   = !git submodule update
-    nuke = !git reset --hard HEAD && git clean -f -d
-    unstage = reset
     rm-all = !git ls-files --deleted -z | xargs -0 git rm
+    undelete = git checkout $(git rev-list -n 1 HEAD -- $1)~1 -- $1
 
 [include]
     path = ~/.gitconfig.local
