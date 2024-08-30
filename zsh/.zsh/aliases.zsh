@@ -44,6 +44,9 @@ alias dc='docker-compose'
 # Kubernetes
 alias k='kubectl'
 
+# Localstack AWS CLI
+alias awsl='aws --endpoint-url=http://localhost:4566'
+
 # Curl aliases that masquerade as internet explorer/firefox.
 alias iecurl='curl -H "User-Agent: Mozilla/5.0 (Windows; U; MSIE 6.0; \
         Windows NT 5.1; SV1; .NET CLR 2.0.50727)"'
