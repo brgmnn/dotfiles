@@ -67,6 +67,7 @@ Plug 'tpope/vim-haml',            { 'for': 'haml' }
 Plug 'tpope/vim-liquid',          { 'for': 'liquid' }
 Plug 'tpope/vim-rails',           { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby',         { 'for': 'ruby' }
+Plug 'wgwoods/vim-systemd-syntax', { 'for': 'systemd' }
 
 " CSS and SCSS language plugin
 if v:version < 704 && !has('nvim')
