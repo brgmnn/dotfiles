@@ -51,6 +51,7 @@
     su   = !git submodule update
     rm-all = !git ls-files --deleted -z | xargs -0 git rm
     undelete = git checkout $(git rev-list -n 1 HEAD -- $1)~1 -- $1
+    undo = git reset HEAD~
 
 [include]
     path = ~/.gitconfig.local
