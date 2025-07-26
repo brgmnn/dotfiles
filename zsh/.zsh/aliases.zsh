@@ -38,6 +38,9 @@ alias timer='echo "Timer started. Stop with Ctrl-D." \
 alias urlencode='python -c "import sys, urllib; \
         print urllib.quote_plus(sys.argv[1]);"'
 
+# PNPM
+alias p='pnpm'
+
 # Docker
 alias dc='docker-compose'
 
