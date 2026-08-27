@@ -45,8 +45,8 @@ family = "Menlo"
 [scrolling]
 multiplier = 2
 
-[shell]
-program = "/usr/local/bin/tmux"
+[terminal.shell]
+program = "/opt/homebrew/bin/tmux"
 
 [window]
 decorations = "full"
