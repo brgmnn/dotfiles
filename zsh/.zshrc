@@ -1,5 +1,6 @@
 # ZSH Modules
 zmodload zsh/mathfunc
+zmodload zsh/zprof
 
 
 # Lines configured by zsh-newuser-install
@@ -22,7 +23,7 @@ zstyle ":completion:*" menu select
 
 # Set up the path
 typeset -U path
-path=(~/.local/bin ~/.bin.local ~/.bin /usr/local/Fox/bin /usr/local/opt/openjdk/bin /opt/homebrew/opt/coreutils/libexec/gnubin /usr/local/opt/coreutils/libexec/gnubin $path)
+path=(~/.bin.local ~/.bin ~/.local/bin /usr/local/Fox/bin /usr/local/opt/openjdk/bin /opt/homebrew/opt/coreutils/libexec/gnubin /usr/local/opt/coreutils/libexec/gnubin $path)
 
 
 #       Antigen
@@ -55,6 +56,8 @@ setopt always_to_end
 setopt auto_remove_slash
 setopt list_packed
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+fpath+=~/.zsh/completions
 
 
 #       History
@@ -110,3 +113,14 @@ eval "$(dircolors $HOME/.LS_COLORS)"
 if [ -r ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+# pnpm
+export PNPM_HOME="/Users/daniel/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

@@ -15,3 +15,4 @@ fi
 if [ -r ~/.zshenv.local ]; then
     source ~/.zshenv.local
 fi
+. "$HOME/.cargo/env"
