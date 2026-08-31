@@ -65,6 +65,9 @@ if [ $# -eq 0 ]; then
     while read -r a b c d; do
         apply "$a" "$b" "$c" "$d"
     done
-else
+elif [ $# -eq 4 ] && [ "${1#%}" != "$1" ]; then
     apply "$1" "$2" "$3" "$4"
 fi
+# Anything else means the caller expanded its formats where there was no pane in
+# context: the empty args collapse under word splitting, so $1 is not a %N pane
+# id. Nothing to paint — exit 0 rather than erroring on a bogus target.
